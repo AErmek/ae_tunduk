@@ -1,1 +1,1 @@
-Tunduk test app for senior poisition
+Tunduk test app for senior position
