@@ -32,6 +32,8 @@ migrate_working_dir/
 .pub/
 /build/
 /coverage/
+app/build/
+app/coverage/
 
 # Symbolication related
 app.*.symbols
@@ -43,6 +45,9 @@ app.*.map.json
 /android/app/debug
 /android/app/profile
 /android/app/release
+/app/android/app/debug
+/app/android/app/profile
+/app/android/app/release
 
 # FVM Version Cache
 .fvm/
