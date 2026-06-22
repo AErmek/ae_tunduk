@@ -1,0 +1,27 @@
+name: cv_scan_app
+description: CV-Scan Mobile — offline-first HR screening app
+publish_to: none
+version: 1.0.0+1
+resolution: workspace
+
+environment:
+  sdk: ^3.12.2
+
+dependencies:
+  flutter:
+    sdk: flutter
+  cv_scan_core:
+    path: ../packages/core
+  cv_scan_domain:
+    path: ../packages/domain
+  cv_scan_data:
+    path: ../packages/data
+  feature_candidates_list:
+    path: ../packages/features/candidates_list
+  feature_candidate_detail:
+    path: ../packages/features/candidate_detail
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^6.0.0

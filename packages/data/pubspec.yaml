@@ -1,0 +1,20 @@
+name: cv_scan_data
+description: Data layer — repositories, remote (dio/retrofit), local (drift), sync engine
+publish_to: none
+resolution: workspace
+
+environment:
+  sdk: ^3.12.2
+
+dependencies:
+  flutter:
+    sdk: flutter
+  cv_scan_core:
+    path: ../core
+  cv_scan_domain:
+    path: ../domain
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^6.0.0
