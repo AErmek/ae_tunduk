@@ -1,3 +1,4 @@
+import 'package:cv_scan_core/cv_scan_core.dart';
 import 'package:cv_scan_domain/src/entities/candidate.dart';
 import 'package:cv_scan_domain/src/enums/candidate_verdict.dart';
 import 'package:cv_scan_domain/src/enums/sort_field.dart';
@@ -9,15 +10,15 @@ class GetCandidatesUseCase {
   final CandidateRepository _repository;
 
   Stream<List<Candidate>> call({
-    int page = 0,
-    int size = 10,
+    int? page,
+    int? size,
     CandidateVerdict? verdict,
     String? query,
     SortField sort = SortField.dateAdded,
   }) {
     return _repository.watchCandidates(
-      page: page,
-      size: size,
+      page: page ?? Config.i.pagination.defaultPage,
+      size: size ?? Config.i.pagination.defaultPageSize,
       verdict: verdict,
       query: query,
       sort: sort,

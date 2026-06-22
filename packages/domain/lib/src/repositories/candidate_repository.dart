@@ -7,19 +7,19 @@ import 'package:cv_scan_domain/src/enums/sort_field.dart';
 
 abstract interface class CandidateRepository {
   Stream<List<Candidate>> watchCandidates({
-    int page = 0,
-    int size = 10,
+    required int page,
+    required int size,
     CandidateVerdict? verdict,
     String? query,
-    SortField sort = SortField.dateAdded,
+    SortField sort,
   });
 
   Future<Page<Candidate>> fetchCandidates({
-    int page = 0,
-    int size = 10,
+    required int page,
+    required int size,
     CandidateVerdict? verdict,
     String? query,
-    SortField sort = SortField.dateAdded,
+    SortField sort,
   });
 
   Stream<Candidate?> watchCandidate(String id);
