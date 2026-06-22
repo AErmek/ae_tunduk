@@ -1,0 +1,222 @@
+openapi: 3.0.3
+info:
+  title: CV-Scan Mobile API
+  version: 1.0.0
+  description: >
+    Контракт API для мобильного клиента CV-Scan. Контракт зафиксирован:
+    реализовать строго, не добавляя и не переименовывая поля, не меняя коды ошибок.
+    Оптимистичная блокировка — через поле `version` и заголовок `If-Match`.
+
+servers:
+  - url: https://api.cv-scan.local/v1
+
+paths:
+  /candidates:
+    get:
+      summary: Список кандидатов (пагинация, фильтр, поиск, сортировка)
+      operationId: listCandidates
+      parameters:
+        - { name: page, in: query, schema: { type: integer, minimum: 0, default: 0 } }
+        - { name: size, in: query, schema: { type: integer, minimum: 1, maximum: 100, default: 10 } }
+        - name: verdict
+          in: query
+          required: false
+          schema: { type: string, enum: [ПОДХОДИТ, ЧАСТИЧНО, НЕ ПОДХОДИТ] }
+        - { name: q, in: query, required: false, schema: { type: string }, description: "Поиск по ФИО" }
+        - name: sort
+          in: query
+          required: false
+          schema: { type: string, enum: [name, experience, date_added], default: date_added }
+      responses:
+        '200':
+          description: Страница кандидатов
+          headers:
+            ETag:
+              description: Версия страницы для кэширования
+              schema: { type: string }
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/CandidatePage' }
+        '400':
+          description: Некорректные параметры
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/Error' }
+
+  /candidates/{id}:
+    get:
+      summary: Карточка кандидата
+      operationId: getCandidate
+      parameters:
+        - { name: id, in: path, required: true, schema: { type: string } }
+      responses:
+        '200':
+          description: Кандидат
+          headers:
+            ETag:
+              description: Текущая версия ресурса (для If-Match)
+              schema: { type: string }
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/Candidate' }
+        '404':
+          description: Не найден
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/Error' }
+
+    patch:
+      summary: Изменение статуса/заметки (оптимистичная блокировка)
+      operationId: patchCandidate
+      parameters:
+        - { name: id, in: path, required: true, schema: { type: string } }
+        - name: If-Match
+          in: header
+          required: true
+          description: Ожидаемая версия ресурса
+          schema: { type: integer }
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: '#/components/schemas/CandidatePatch' }
+      responses:
+        '200':
+          description: Обновлено
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/Candidate' }
+        '404':
+          description: Не найден
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/Error' }
+        '409':
+          description: Конфликт версий
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/Conflict' }
+
+  /sync:
+    post:
+      summary: Батч-синхронизация офлайн-изменений
+      operationId: sync
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: '#/components/schemas/SyncRequest' }
+      responses:
+        '200':
+          description: Результат синхронизации (применённые и конфликтные элементы)
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/SyncResponse' }
+        '400':
+          description: Некорректный запрос
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/Error' }
+
+components:
+  schemas:
+    Candidate:
+      type: object
+      required: [id, name, position, pos_label, verdict, vc, version, status]
+      properties:
+        id: { type: string }
+        name: { type: string }
+        position: { type: string, example: flutter-senior }
+        pos_label: { type: string, example: "Flutter — главный программист" }
+        file: { type: string, nullable: true }
+        email: { type: string, nullable: true }
+        phone: { type: string, nullable: true }
+        city: { type: string, nullable: true }
+        tg: { type: string, nullable: true }
+        exp:
+          type: array
+          items:
+            type: array
+            items: { type: string }
+            minItems: 4
+            maxItems: 4
+        total_exp: { type: string }
+        stack: { type: string }
+        edu: { type: string, nullable: true }
+        verdict: { type: string, enum: [ПОДХОДИТ, ЧАСТИЧНО, НЕ ПОДХОДИТ] }
+        vc: { type: string, enum: [verdict-green, verdict-orange, verdict-red] }
+        criteria:
+          type: array
+          items:
+            type: array
+            items: { type: string }
+            minItems: 2
+            maxItems: 2
+        summary: { type: string }
+        questions:
+          type: array
+          items: { type: string }
+        status: { type: string, enum: [new, review, invited, rejected] }
+        note: { type: string, nullable: true }
+        version: { type: integer, description: "Версия для оптимистичной блокировки" }
+        date_added: { type: string, format: date }
+
+    CandidatePage:
+      type: object
+      required: [items, page, size, total]
+      properties:
+        items:
+          type: array
+          items: { $ref: '#/components/schemas/Candidate' }
+        page: { type: integer }
+        size: { type: integer }
+        total: { type: integer }
+
+    CandidatePatch:
+      type: object
+      properties:
+        status: { type: string, enum: [new, review, invited, rejected] }
+        note: { type: string, nullable: true }
+
+    SyncRequest:
+      type: object
+      required: [changes]
+      properties:
+        changes:
+          type: array
+          items:
+            type: object
+            required: [id, baseVersion]
+            properties:
+              id: { type: string }
+              baseVersion: { type: integer, description: "Версия, на которой основано локальное изменение" }
+              status: { type: string, enum: [new, review, invited, rejected] }
+              note: { type: string, nullable: true }
+              clientUpdatedAt: { type: string, format: date-time }
+
+    SyncResponse:
+      type: object
+      required: [applied, conflicts]
+      properties:
+        applied:
+          type: array
+          items: { $ref: '#/components/schemas/Candidate' }
+        conflicts:
+          type: array
+          items: { $ref: '#/components/schemas/Conflict' }
+
+    Conflict:
+      type: object
+      required: [code, id, currentVersion, current]
+      properties:
+        code: { type: string, example: VERSION_CONFLICT }
+        id: { type: string }
+        currentVersion: { type: integer }
+        current: { $ref: '#/components/schemas/Candidate' }
+
+    Error:
+      type: object
+      required: [code, message]
+      properties:
+        code: { type: string }
+        message: { type: string }
