@@ -46,3 +46,6 @@ app.*.map.json
 
 # FVM Version Cache
 .fvm/
+
+# AI assistant config
+CLAUDE.md
