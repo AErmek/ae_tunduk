@@ -2,7 +2,7 @@ import 'package:cv_scan_core/src/config/api_config.dart';
 import 'package:cv_scan_core/src/config/app_environment.dart';
 import 'package:cv_scan_core/src/config/pagination_config.dart';
 
-class Config {
+final class Config {
   Config._();
 
   static final Config _instance = Config._();
