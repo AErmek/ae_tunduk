@@ -14,7 +14,15 @@ dependencies:
   cv_scan_domain:
     path: ../domain
 
+  dio: ^5.9.2
+  retrofit: ^4.9.2
+  json_annotation: ^4.12.0
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
   flutter_lints: ^6.0.0
+  openapi_retrofit_generator: ^2.0.4
+  build_runner: ^2.15.0
+  json_serializable: ^6.14.0
+  retrofit_generator: ^10.2.7
