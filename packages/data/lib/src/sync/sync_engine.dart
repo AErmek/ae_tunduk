@@ -1,5 +1,5 @@
 import 'package:cv_scan_core/cv_scan_core.dart';
-import 'package:cv_scan_data/src/exceptions/sync_exception.dart';
+import 'package:cv_scan_data/src/exceptions/sync_fail_exception.dart';
 import 'package:cv_scan_data/src/local/dao/candidates_dao.dart';
 import 'package:cv_scan_data/src/local/dao/outbox_dao.dart';
 import 'package:cv_scan_data/src/local/database/app_database.dart';
