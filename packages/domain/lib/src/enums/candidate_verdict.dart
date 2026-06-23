@@ -5,10 +5,13 @@ enum CandidateVerdict implements HasApiKey {
   partial('ЧАСТИЧНО'),
   doesNotFit('НЕ ПОДХОДИТ');
 
+  const CandidateVerdict(this.apiKey);
+
   @override
   final String apiKey;
 
-  const CandidateVerdict(this.apiKey);
-
   static CandidateVerdict get defaultValue => CandidateVerdict.doesNotFit;
+
+  static CandidateVerdict byApiKey(String value, {CandidateVerdict? defaultValue}) =>
+      CandidateVerdict.values.byApiKeyOrDefault(value, defaultValue: defaultValue ?? CandidateVerdict.defaultValue);
 }

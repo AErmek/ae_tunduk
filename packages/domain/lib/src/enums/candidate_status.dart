@@ -6,10 +6,13 @@ enum CandidateStatus implements HasApiKey {
   invited('invited'),
   rejected('rejected');
 
+  const CandidateStatus(this.apiKey);
+
   @override
   final String apiKey;
 
-  const CandidateStatus(this.apiKey);
-
   static CandidateStatus get defaultValue => CandidateStatus.newCandidate;
+
+  static CandidateStatus byApiKey(String value, {CandidateStatus? defaultValue}) =>
+      CandidateStatus.values.byApiKeyOrDefault(value, defaultValue: defaultValue ?? CandidateStatus.defaultValue);
 }

@@ -5,5 +5,5 @@ export 'src/config/pagination_config.dart';
 export 'src/contracts/has_api_key.dart';
 export 'src/errors/failure.dart';
 export 'src/exceptions/app_exception.dart';
-export 'src/network/exponential_backoff.dart';
+export 'src/utils/exponential_backoff.dart';
 export 'src/utils/stream_combine.dart';

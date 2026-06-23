@@ -1,7 +1,6 @@
 import 'dart:convert';
 import 'dart:isolate';
 
-import 'package:cv_scan_core/cv_scan_core.dart';
 import 'package:cv_scan_data/src/local/database/app_database.dart';
 import 'package:cv_scan_domain/cv_scan_domain.dart';
 import 'package:drift/drift.dart';
@@ -11,9 +10,9 @@ Candidate _mapRow(CandidatesTableData row) => Candidate(
   name: row.name,
   position: row.position,
   posLabel: row.posLabel,
-  verdict: _mapVerdict(row.verdict),
-  verdictColor: _mapVerdictColor(row.vc),
-  status: _mapStatus(row.status),
+  verdict: CandidateVerdict.byApiKey(row.verdict),
+  verdictColor: VerdictColor.byApiKey(row.vc),
+  status: CandidateStatus.byApiKey(row.status),
   version: row.version,
   file: row.file,
   email: row.email,
@@ -36,19 +35,11 @@ List<List<String>> _decodeMatrix(String json) {
   return outer.map((inner) => List<String>.from(inner as List)).toList();
 }
 
-CandidateVerdict _mapVerdict(String value) =>
-    CandidateVerdict.values.byApiKeyOrDefault(value, defaultValue: CandidateVerdict.defaultValue);
-
-VerdictColor _mapVerdictColor(String value) =>
-    VerdictColor.values.byApiKeyOrDefault(value, defaultValue: VerdictColor.defaultValue);
-
-CandidateStatus _mapStatus(String value) =>
-    CandidateStatus.values.byApiKeyOrDefault(value, defaultValue: CandidateStatus.defaultValue);
-
 extension CandidateLocalMapper on CandidatesTableData {
   Candidate toDomain() => _mapRow(this);
 
-  CandidateChange toDomainChange() => CandidateChange(id: id, version: version, status: _mapStatus(status), note: note);
+  CandidateChange toDomainChange() =>
+      CandidateChange(id: id, version: version, status: CandidateStatus.byApiKey(status), note: note);
 }
 
 extension CandidateCompanionMapper on Candidate {

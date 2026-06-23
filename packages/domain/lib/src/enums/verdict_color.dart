@@ -11,4 +11,7 @@ enum VerdictColor implements HasApiKey {
   final String apiKey;
 
   static VerdictColor get defaultValue => VerdictColor.red;
+
+  static VerdictColor byApiKey(String value, {VerdictColor? defaultValue}) =>
+      VerdictColor.values.byApiKeyOrDefault(value, defaultValue: defaultValue ?? VerdictColor.defaultValue);
 }

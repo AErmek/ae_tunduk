@@ -88,7 +88,7 @@ class SyncEngine {
       } on DioException catch (e) {
         if (!_isTransient(e) || !backoff.hasAttemptsLeft(attempt)) {
           await _markFailed(pending, e.message ?? e.type.name);
-          throw SyncException(attempt, e.message ?? e.type.name);
+          throw SyncFailException(attempt, e.message ?? e.type.name);
         }
         await Future<void>.delayed(backoff.delayFor(attempt));
         attempt++;
