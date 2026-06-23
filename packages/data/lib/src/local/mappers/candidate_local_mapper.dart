@@ -4,6 +4,7 @@ import 'dart:isolate';
 import 'package:cv_scan_core/cv_scan_core.dart';
 import 'package:cv_scan_data/src/local/database/app_database.dart';
 import 'package:cv_scan_domain/cv_scan_domain.dart';
+import 'package:drift/drift.dart';
 
 Candidate _mapRow(CandidatesTableData row) {
   return Candidate(
@@ -48,6 +49,37 @@ CandidateStatus _mapStatus(String value) =>
 
 extension CandidateLocalMapper on CandidatesTableData {
   Candidate toDomain() => _mapRow(this);
+
+  CandidateChange toDomainChange() => CandidateChange(id: id, version: version, status: _mapStatus(status), note: note);
+}
+
+extension CandidateCompanionMapper on Candidate {
+  CandidatesTableCompanion toCompanion() {
+    return CandidatesTableCompanion(
+      id: Value(id),
+      name: Value(name),
+      position: Value(position),
+      posLabel: Value(posLabel),
+      verdict: Value(verdict.apiKey),
+      vc: Value(verdictColor.apiKey),
+      status: Value(status.apiKey),
+      version: Value(version),
+      file: Value(file),
+      email: Value(email),
+      phone: Value(phone),
+      city: Value(city),
+      tg: Value(tg),
+      exp: Value(exp != null ? jsonEncode(exp) : null),
+      totalExp: Value(totalExp),
+      stack: Value(stack),
+      edu: Value(edu),
+      criteria: Value(criteria != null ? jsonEncode(criteria) : null),
+      summary: Value(summary),
+      questions: Value(questions != null ? jsonEncode(questions) : null),
+      note: Value(note),
+      dateAdded: Value(dateAdded),
+    );
+  }
 }
 
 Future<List<Candidate>> mapRowsAsync(List<CandidatesTableData> rows) {

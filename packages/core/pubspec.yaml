@@ -11,6 +11,8 @@ dependencies:
     sdk: flutter
   collection: any
 
+  stream_transform: ^2.1.1
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
