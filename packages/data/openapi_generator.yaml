@@ -1,4 +1,4 @@
 openapi_generator:
-  schema_path: ../../contract/openapi.yaml
+  schema_path: ../../meta/contract/openapi.yaml
   output_directory: lib/src/remote/generated
   json_serializer: json_serializable

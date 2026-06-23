@@ -1,8 +1,10 @@
+import 'package:cv_scan_data/src/remote/generated/models/error.dart' as dto;
+import 'package:cv_scan_domain/cv_scan_domain.dart';
 import 'package:dio/dio.dart';
 
 final class MockServerResponseProcessor {
   void notFound(RequestOptions options, RequestInterceptorHandler handler) {
-    _reject(options, handler, 404, {'code': 'NOT_FOUND', 'message': 'Not found'});
+    _reject(options, handler, 404, dto.Error(code: ServerFailureCode.notFound.apiKey, message: 'Not found').toJson());
   }
 
   void success<T>(RequestOptions options, RequestInterceptorHandler handler, T? data) {
@@ -24,6 +26,9 @@ final class MockServerResponseProcessor {
   }
 }
 
-Map<String, dynamic> candidateConflictModel(Object id, Map<String, dynamic> current) {
-  return {'code': 'VERSION_CONFLICT', 'id': id, 'currentVersion': current['version'], 'current': current};
-}
+Map<String, dynamic> candidateConflictModel(dynamic id, Map<String, dynamic> current) => {
+  'code': ServerFailureCode.versionConflict.apiKey,
+  'id': id,
+  'currentVersion': current['version'],
+  'current': current,
+};

@@ -8,6 +8,7 @@ export 'src/enums/candidate_verdict.dart';
 export 'src/enums/conflict_strategy.dart';
 export 'src/enums/sort_field.dart';
 export 'src/enums/verdict_color.dart';
+export 'src/errors/server_failure.dart';
 export 'src/repositories/candidate_repository.dart';
 export 'src/usecases/get_candidate_usecase.dart';
 export 'src/usecases/get_candidates_usecase.dart';

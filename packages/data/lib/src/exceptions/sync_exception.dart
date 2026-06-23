@@ -1,6 +1,5 @@
-class SyncException implements Exception {
-  const SyncException(this.message);
-  final String message;
-  @override
-  String toString() => 'SyncException: $message';
+import 'package:cv_scan_core/cv_scan_core.dart';
+
+final class SyncException extends AppException {
+  const SyncException(int attempt, String message) : super('Sync failed after $attempt retries: $message');
 }

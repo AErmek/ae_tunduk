@@ -29,5 +29,5 @@ dev_dependencies:
 flutter:
   uses-material-design: true
   assets:
-    - ../mock/candidates.json
-    - ../mock/candidates-large.json
+    - ../meta/mock/candidates.json
+    - ../meta/mock/candidates-large.json

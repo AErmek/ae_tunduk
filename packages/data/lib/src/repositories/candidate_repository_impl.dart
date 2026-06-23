@@ -37,12 +37,11 @@ class CandidateRepositoryImpl implements CandidateRepository {
   }
 
   @override
-  Stream<Candidate?> watchCandidate(String id) {
-    return combineLatest2(candidatesDao.watchById(id), outboxDao.watchPending(), (row, pending) {
-      if (row == null) return null;
-      return _applyOverlay([row], pending).first;
-    }).map((row) => row?.toDomain());
-  }
+  Stream<Candidate?> watchCandidate(String id) =>
+      combineLatest2(candidatesDao.watchById(id), outboxDao.watchPending(), (row, pending) {
+        if (row == null) return null;
+        return _applyOverlay([row], pending).first;
+      }).map((row) => row?.toDomain());
 
   @override
   Future<Page<Candidate>> fetchCandidates({

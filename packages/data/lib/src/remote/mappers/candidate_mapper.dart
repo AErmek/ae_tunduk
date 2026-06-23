@@ -7,32 +7,30 @@ import 'package:cv_scan_data/src/remote/generated/models/conflict.dart' as dto;
 import 'package:cv_scan_domain/cv_scan_domain.dart';
 
 extension CandidateDtoMapper on dto.Candidate {
-  Candidate toDomain() {
-    return Candidate(
-      id: id,
-      name: name,
-      position: position,
-      posLabel: posLabel,
-      verdict: verdict.toDomain(),
-      verdictColor: vc.toDomain(),
-      status: status.toDomain(),
-      version: version,
-      file: file,
-      email: email,
-      phone: phone,
-      city: city,
-      tg: tg,
-      exp: exp,
-      totalExp: totalExp,
-      stack: stack,
-      edu: edu,
-      criteria: criteria,
-      summary: summary,
-      questions: questions,
-      note: note,
-      dateAdded: dateAdded,
-    );
-  }
+  Candidate toDomain() => Candidate(
+    id: id,
+    name: name,
+    position: position,
+    posLabel: posLabel,
+    verdict: verdict.toDomain(),
+    verdictColor: vc.toDomain(),
+    status: status.toDomain(),
+    version: version,
+    file: file,
+    email: email,
+    phone: phone,
+    city: city,
+    tg: tg,
+    exp: exp,
+    totalExp: totalExp,
+    stack: stack,
+    edu: edu,
+    criteria: criteria,
+    summary: summary,
+    questions: questions,
+    note: note,
+    dateAdded: dateAdded,
+  );
 }
 
 extension CandidateVerdictMapper on CandidateVerdictVerdict {
@@ -50,7 +48,5 @@ extension CandidateStatusMapper on CandidateStatusStatus {
 }
 
 extension ConflictDtoMapper on dto.Conflict {
-  SyncConflict toDomain() {
-    return SyncConflict(id: id, currentVersion: currentVersion, current: current.toDomain());
-  }
+  SyncConflict toDomain() => SyncConflict(id: id, currentVersion: currentVersion, current: current.toDomain());
 }

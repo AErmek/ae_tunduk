@@ -88,9 +88,9 @@ class SyncEngine {
       } on DioException catch (e) {
         if (!_isTransient(e) || !backoff.hasAttemptsLeft(attempt)) {
           await _markFailed(pending, e.message ?? e.type.name);
-          throw SyncException('Sync failed after $attempt retries: ${e.message}');
+          throw SyncException(attempt, e.message ?? e.type.name);
         }
-        await Future.delayed(backoff.delayFor(attempt));
+        await Future<void>.delayed(backoff.delayFor(attempt));
         attempt++;
       }
     }
@@ -164,13 +164,11 @@ class SyncEngine {
     }
   }
 
-  bool _isTransient(DioException e) {
-    return switch (e.type) {
-      DioExceptionType.connectionError ||
-      DioExceptionType.connectionTimeout ||
-      DioExceptionType.sendTimeout ||
-      DioExceptionType.receiveTimeout => true,
-      _ => false,
-    };
-  }
+  bool _isTransient(DioException e) => switch (e.type) {
+    DioExceptionType.connectionError ||
+    DioExceptionType.connectionTimeout ||
+    DioExceptionType.sendTimeout ||
+    DioExceptionType.receiveTimeout => true,
+    _ => false,
+  };
 }
