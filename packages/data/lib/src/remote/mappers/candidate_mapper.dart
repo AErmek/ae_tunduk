@@ -1,3 +1,4 @@
+import 'package:cv_scan_core/cv_scan_core.dart';
 import 'package:cv_scan_data/src/remote/generated/models/candidate.dart' as dto;
 import 'package:cv_scan_data/src/remote/generated/models/candidate_status_status.dart';
 import 'package:cv_scan_data/src/remote/generated/models/candidate_vc_vc.dart';
@@ -35,48 +36,21 @@ extension CandidateDtoMapper on dto.Candidate {
 }
 
 extension CandidateVerdictMapper on CandidateVerdictVerdict {
-  CandidateVerdict toDomain() => switch (this) {
-        CandidateVerdictVerdict.undefined0 => CandidateVerdict.fits,
-        CandidateVerdictVerdict.undefined1 => CandidateVerdict.partial,
-        CandidateVerdictVerdict.undefined2 => CandidateVerdict.doesNotFit,
-        CandidateVerdictVerdict.$unknown => CandidateVerdict.partial,
-      };
+  CandidateVerdict toDomain() =>
+      CandidateVerdict.values.byApiKeyOrDefault(json ?? '', defaultValue: CandidateVerdict.defaultValue);
 }
 
 extension CandidateVcMapper on CandidateVcVc {
-  VerdictColor toDomain() => switch (this) {
-        CandidateVcVc.verdictGreen => VerdictColor.green,
-        CandidateVcVc.verdictOrange => VerdictColor.orange,
-        CandidateVcVc.verdictRed => VerdictColor.red,
-        CandidateVcVc.$unknown => VerdictColor.orange,
-      };
+  VerdictColor toDomain() => VerdictColor.values.byApiKeyOrDefault(json ?? '', defaultValue: VerdictColor.defaultValue);
 }
 
 extension CandidateStatusMapper on CandidateStatusStatus {
-  CandidateStatus toDomain() => switch (this) {
-        CandidateStatusStatus.valueNew => CandidateStatus.newCandidate,
-        CandidateStatusStatus.review => CandidateStatus.review,
-        CandidateStatusStatus.invited => CandidateStatus.invited,
-        CandidateStatusStatus.rejected => CandidateStatus.rejected,
-        CandidateStatusStatus.$unknown => CandidateStatus.newCandidate,
-      };
-}
-
-extension CandidateStatusDomainMapper on CandidateStatus {
-  CandidateStatusStatus toDto() => switch (this) {
-        CandidateStatus.newCandidate => CandidateStatusStatus.valueNew,
-        CandidateStatus.review => CandidateStatusStatus.review,
-        CandidateStatus.invited => CandidateStatusStatus.invited,
-        CandidateStatus.rejected => CandidateStatusStatus.rejected,
-      };
+  CandidateStatus toDomain() =>
+      CandidateStatus.values.byApiKeyOrDefault(json ?? '', defaultValue: CandidateStatus.defaultValue);
 }
 
 extension ConflictDtoMapper on dto.Conflict {
   SyncConflict toDomain() {
-    return SyncConflict(
-      id: id,
-      currentVersion: currentVersion,
-      current: current.toDomain(),
-    );
+    return SyncConflict(id: id, currentVersion: currentVersion, current: current.toDomain());
   }
 }
