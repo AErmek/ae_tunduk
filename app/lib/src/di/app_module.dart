@@ -7,10 +7,11 @@ import 'package:injectable/injectable.dart';
 @module
 abstract class AppModule {
   @singleton
-  AppDatabase get database => AppDatabase();
+  AppDatabase get database => DatabaseFactory.create();
 
   @singleton
-  Dio get dio => Dio();
+  Dio dio(CandidatesDao candidatesDao) =>
+      DioFactory.create(candidatesDao: candidatesDao);
 
   @singleton
   ApiClient apiClient(Dio dio) => ApiClient(dio);

@@ -27,12 +27,12 @@ extension GetItInjectableX on _i174.GetIt {
     final gh = _i526.GetItHelper(this, environment, environmentFilter);
     final appModule = _$AppModule();
     gh.singleton<_i755.AppDatabase>(() => appModule.database);
-    gh.singleton<_i361.Dio>(() => appModule.dio);
     gh.singleton<_i583.GoRouter>(() => appModule.router);
-    gh.singleton<_i755.ApiClient>(() => appModule.apiClient(gh<_i361.Dio>()));
+    gh.singleton<_i361.Dio>(() => appModule.dio(gh<_i755.CandidatesDao>()));
     gh.singleton<_i17.AppRouter>(
       () => _i506.GoRouterAppRouter(gh<_i583.GoRouter>()),
     );
+    gh.singleton<_i755.ApiClient>(() => appModule.apiClient(gh<_i361.Dio>()));
     return this;
   }
 }

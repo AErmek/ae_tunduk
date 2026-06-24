@@ -16,6 +16,10 @@ dependencies:
     path: ../packages/domain
   cv_scan_data:
     path: ../packages/data
+  shared:
+    path: ../packages/features/shared
+  feature_auth:
+    path: ../packages/features/auth
   feature_candidates_list:
     path: ../packages/features/candidates_list
   feature_candidate_detail:

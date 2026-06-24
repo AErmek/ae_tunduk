@@ -2,6 +2,7 @@ import 'package:cv_scan_data/src/local/dao/candidates_dao.dart';
 import 'package:cv_scan_data/src/local/dao/outbox_dao.dart';
 import 'package:cv_scan_data/src/local/database/app_database.dart';
 import 'package:cv_scan_data/src/remote/generated/api/api_client.dart';
+import 'package:cv_scan_data/src/repositories/auth_repository_impl.dart';
 import 'package:cv_scan_data/src/repositories/candidate_repository_impl.dart';
 import 'package:cv_scan_data/src/sync/sync_engine.dart';
 import 'package:cv_scan_domain/cv_scan_domain.dart';
@@ -18,6 +19,9 @@ abstract class DataModule {
   @singleton
   SyncEngine syncEngine(ApiClient apiClient, CandidatesDao candidatesDao, OutboxDao outboxDao) =>
       SyncEngine(apiClient: apiClient, candidatesDao: candidatesDao, outboxDao: outboxDao);
+
+  @Singleton(as: AuthRepository)
+  AuthRepositoryImpl authRepository() => AuthRepositoryImpl();
 
   @LazySingleton(as: CandidateRepository)
   CandidateRepositoryImpl candidateRepository(

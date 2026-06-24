@@ -1,5 +1,5 @@
-name: feature_candidate_detail
-description: Candidate detail feature — BLoC, view, widgets
+name: shared
+description: Shared blocs and widgets used across features
 publish_to: none
 resolution: workspace
 
@@ -13,12 +13,15 @@ dependencies:
     path: ../../core
   cv_scan_domain:
     path: ../../domain
-  shared:
-    path: ../shared
+  flutter_bloc: ^9.1.0
   get_it: ^9.2.1
   injectable: ^3.0.0
+  freezed_annotation: ^3.1.0
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
   flutter_lints: ^6.0.0
+  injectable_generator: ^3.1.0
+  build_runner: ^2.15.0
+  freezed: ^4.0.0-dev.3

@@ -1,5 +1,6 @@
 import 'package:cv_scan_core/src/config/api_config.dart';
 import 'package:cv_scan_core/src/config/app_environment.dart';
+import 'package:cv_scan_core/src/config/database_config.dart';
 import 'package:cv_scan_core/src/config/pagination_config.dart';
 
 final class Config {
@@ -12,5 +13,6 @@ final class Config {
 
   final AppEnvironment env = AppEnvironment.fromString(_env);
   final ApiConfig api = const ApiConfig();
+  final DatabaseConfig database = const DatabaseConfig();
   final PaginationConfig pagination = const PaginationConfig();
 }

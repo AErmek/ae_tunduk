@@ -9,4 +9,7 @@ enum AppEnvironment {
     'prod' => AppEnvironment.prod,
     _ => AppEnvironment.dev,
   };
+
+  bool get isProduction => this == AppEnvironment.prod;
+  bool get isNotProduction => !isProduction;
 }
