@@ -13,6 +13,8 @@ dependencies:
     path: ../../core
   cv_scan_domain:
     path: ../../domain
+  get_it: ^9.2.1
+  injectable: ^3.0.0
 
 dev_dependencies:
   flutter_test:

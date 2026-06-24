@@ -15,13 +15,11 @@ class GetCandidatesUseCase {
     CandidateVerdict? verdict,
     String? query,
     SortField sort = SortField.dateAdded,
-  }) {
-    return _repository.watchCandidates(
-      page: page ?? Config.i.pagination.defaultPage,
-      size: size ?? Config.i.pagination.defaultPageSize,
-      verdict: verdict,
-      query: query,
-      sort: sort,
-    );
-  }
+  }) => _repository.watchCandidates(
+    page: page ?? Config.i.pagination.defaultPage,
+    size: size ?? Config.i.pagination.defaultPageSize,
+    verdict: verdict,
+    query: query,
+    sort: sort,
+  );
 }

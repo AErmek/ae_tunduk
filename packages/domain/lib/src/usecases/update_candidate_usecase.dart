@@ -7,17 +7,6 @@ class UpdateCandidateUseCase {
 
   final CandidateRepository _repository;
 
-  Future<Candidate> call({
-    required String id,
-    required int version,
-    CandidateStatus? status,
-    String? note,
-  }) {
-    return _repository.updateCandidate(
-      id: id,
-      version: version,
-      status: status,
-      note: note,
-    );
-  }
+  Future<Candidate> call({required String id, required int version, CandidateStatus? status, String? note}) =>
+      _repository.updateCandidate(id: id, version: version, status: status, note: note);
 }

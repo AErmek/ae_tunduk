@@ -1,1 +1,7 @@
-
+export 'src/di/data_module.dart';
+export 'src/local/dao/candidates_dao.dart';
+export 'src/local/dao/outbox_dao.dart';
+export 'src/local/database/app_database.dart';
+export 'src/remote/generated/api/api_client.dart';
+export 'src/repositories/candidate_repository_impl.dart';
+export 'src/sync/sync_engine.dart';

@@ -92,6 +92,9 @@ class SyncEngine {
         }
         await Future<void>.delayed(backoff.delayFor(attempt));
         attempt++;
+      } catch (e) {
+        await _markFailed(pending, e.toString());
+        rethrow;
       }
     }
   }

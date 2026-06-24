@@ -1,3 +1,4 @@
+export 'src/di/domain_module.dart';
 export 'src/entities/candidate.dart';
 export 'src/entities/candidate_change.dart';
 export 'src/entities/page.dart';

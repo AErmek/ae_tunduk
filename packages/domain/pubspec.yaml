@@ -10,6 +10,10 @@ dependencies:
   cv_scan_core:
     path: ../core
   equatable: ^2.0.5
+  get_it: ^9.2.1
+  injectable: ^3.0.0
 
 dev_dependencies:
   flutter_lints: ^6.0.0
+  injectable_generator: ^3.1.0
+  build_runner: ^2.15.0

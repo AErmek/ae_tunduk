@@ -20,11 +20,16 @@ dependencies:
     path: ../packages/features/candidates_list
   feature_candidate_detail:
     path: ../packages/features/candidate_detail
+  go_router: ^17.3.0
+  get_it: ^9.2.1
+  injectable: ^3.0.0
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
   flutter_lints: ^6.0.0
+  build_runner: ^2.15.0
+  injectable_generator: ^3.1.0
 
 flutter:
   uses-material-design: true
