@@ -1,73 +1,40 @@
-import 'package:cv_scan_domain/cv_scan_domain.dart';
-import 'package:feature_auth/src/widgets/pin_pad.dart';
+import 'package:feature_auth/src/blocs/pin_verify/pin_verify_bloc.dart';
+import 'package:feature_auth/src/widgets/pin_body.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
 
-class LockPage extends StatefulWidget {
+class LockPage extends StatelessWidget {
   const LockPage({super.key});
 
   @override
-  State<LockPage> createState() => _LockPageState();
+  Widget build(BuildContext context) => BlocProvider(
+    create: (_) => PinVerifyBloc(
+      localAuth: GetIt.I(),
+      setLockedStatus: GetIt.I(),
+    )..add(const PinVerifyEvent.biometricRequested()),
+    child: const _LockView(),
+  );
 }
 
-class _LockPageState extends State<LockPage> {
-  final _pinService = GetIt.I<PinService>();
-  final _setAuthenticated = GetIt.I<SetAuthenticatedUseCase>();
-  bool _error = false;
+class _LockView extends StatelessWidget {
+  const _LockView();
 
   @override
-  void initState() {
-    super.initState();
-    _tryBiometric();
-  }
-
-  Future<void> _tryBiometric() async {
-    if (!await _pinService.isBiometricEnabled()) return;
-    final ok = await _pinService.authenticateWithBiometric();
-    if (ok && mounted) await _unlock();
-  }
-
-  Future<void> _onPin(String pin) async {
-    final ok = await _pinService.verifyPin(pin);
-    if (!mounted) return;
-    if (ok) {
-      await _unlock();
-    } else {
-      setState(() => _error = true);
-    }
-  }
-
-  Future<void> _unlock() => _setAuthenticated();
-
-  @override
-  Widget build(BuildContext context) => Scaffold(
-    body: SafeArea(
-      child: Center(
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            Text('CV-Scan', style: Theme.of(context).textTheme.headlineMedium),
-            const SizedBox(height: 8),
-            Text('Введите PIN-код', style: Theme.of(context).textTheme.bodyMedium),
-            if (_error) ...[
-              const SizedBox(height: 8),
-              Text('Неверный PIN', style: TextStyle(color: Theme.of(context).colorScheme.error)),
-            ],
-            const SizedBox(height: 40),
-            PinPad(onCompleted: _onPin),
-            const SizedBox(height: 24),
-            FutureBuilder(
-              future: _pinService.isBiometricEnabled(),
-              builder: (context, snap) {
-                if (snap.data != true) return const SizedBox.shrink();
-                return TextButton.icon(
-                  onPressed: _tryBiometric,
-                  icon: const Icon(Icons.fingerprint),
-                  label: const Text('Войти по биометрии'),
-                );
-              },
-            ),
-          ],
+  Widget build(BuildContext context) => PopScope(
+    canPop: false,
+    child: Scaffold(
+      body: BlocBuilder<PinVerifyBloc, PinVerifyState>(
+        builder: (context, state) => PinBody(
+          title: 'CV-Scan',
+          subtitle: 'Введите PIN-код',
+          errorText: state.maybeWhen(error: (message) => message, orElse: () => null),
+          onCompleted: (pin) => context.read<PinVerifyBloc>().add(PinVerifyEvent.pinSubmitted(pin)),
+          footer: TextButton.icon(
+            onPressed: () => context.read<PinVerifyBloc>().add(const PinVerifyEvent.biometricRequested()),
+            icon: const Icon(Icons.fingerprint),
+            label: const Text('Войти по биометрии'),
+          ),
         ),
       ),
     ),

@@ -2,10 +2,19 @@ import 'package:cv_scan_core/cv_scan_core.dart';
 import 'package:feature_auth/feature_auth.dart';
 import 'package:feature_candidate_detail/feature_candidate_detail.dart';
 import 'package:feature_candidates_list/feature_candidates_list.dart';
+import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
 final appRoutesMeta = <RouteBase>[
+  GoRoute(path: AppRoutes.restoring, builder: (_, _) => const RestoringPage()),
   GoRoute(path: AppRoutes.lock, builder: (_, _) => const LockPage()),
+  GoRoute(
+    path: AppRoutes.lockDialog,
+    pageBuilder: (_, _) => const MaterialPage(
+      fullscreenDialog: true,
+      child: LockPage(),
+    ),
+  ),
   GoRoute(path: AppRoutes.setupPin, builder: (_, _) => const SetupPinPage()),
   GoRoute(
     path: AppRoutes.candidatesList,

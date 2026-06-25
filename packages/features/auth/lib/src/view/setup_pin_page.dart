@@ -1,51 +1,50 @@
-import 'package:cv_scan_domain/cv_scan_domain.dart';
-import 'package:feature_auth/src/widgets/pin_pad.dart';
+import 'package:feature_auth/src/blocs/pin_setup/pin_setup_bloc.dart';
+import 'package:feature_auth/src/widgets/pin_body.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
 
-class SetupPinPage extends StatefulWidget {
+class SetupPinPage extends StatelessWidget {
   const SetupPinPage({super.key});
 
   @override
-  State<SetupPinPage> createState() => _SetupPinPageState();
+  Widget build(BuildContext context) => BlocProvider(
+    create: (_) => PinSetupBloc(localAuth: GetIt.I(), setAuthenticated: GetIt.I()),
+    child: const _SetupPinView(),
+  );
 }
 
-class _SetupPinPageState extends State<SetupPinPage> {
-  final _pinService = GetIt.I<PinService>();
-  final _setAuthenticated = GetIt.I<SetAuthenticatedUseCase>();
+class _SetupPinView extends StatelessWidget {
+  const _SetupPinView();
 
-  String? _firstPin;
-  bool _mismatch = false;
+  @override
+  Widget build(BuildContext context) => BlocConsumer<PinSetupBloc, PinSetupState>(
+    listenWhen: (_, current) => current.maybeMap(biometricPrompt: (_) => true, orElse: () => false),
+    listener: (context, state) async {
+      final enable = await _showBiometricDialog(context);
+      if (context.mounted) {
+        context.read<PinSetupBloc>().add(PinSetupEvent.biometricDecided(enabled: enable));
+      }
+    },
+    builder: (context, state) => Scaffold(
+      body: PinBody(
+        title: 'CV-Scan',
+        subtitle: state.when(
+          awaitingFirst: () => 'Создайте PIN-код',
+          awaitingConfirmation: () => 'Повторите PIN-код',
+          mismatch: () => 'Создайте PIN-код',
+          biometricPrompt: () => 'Создайте PIN-код',
+        ),
+        errorText: state.maybeWhen(
+          mismatch: () => 'PIN не совпадает, попробуйте снова',
+          orElse: () => null,
+        ),
+        onCompleted: (pin) => context.read<PinSetupBloc>().add(PinSetupEvent.pinSubmitted(pin)),
+      ),
+    ),
+  );
 
-  Future<void> _onPin(String pin) async {
-    if (_firstPin == null) {
-      setState(() {
-        _firstPin = pin;
-        _mismatch = false;
-      });
-      return;
-    }
-
-    if (pin != _firstPin) {
-      setState(() {
-        _firstPin = null;
-        _mismatch = true;
-      });
-      return;
-    }
-
-    await _pinService.savePin(pin);
-
-    final canBio = await _pinService.canUseBiometric();
-    if (canBio && mounted) {
-      final enable = await _showBiometricDialog();
-      if (enable) await _pinService.enableBiometric();
-    }
-
-    if (mounted) await _setAuthenticated();
-  }
-
-  Future<bool> _showBiometricDialog() async =>
+  Future<bool> _showBiometricDialog(BuildContext context) async =>
       await showDialog<bool>(
         context: context,
         builder: (ctx) => AlertDialog(
@@ -58,29 +57,4 @@ class _SetupPinPageState extends State<SetupPinPage> {
         ),
       ) ??
       false;
-
-  @override
-  Widget build(BuildContext context) => Scaffold(
-    body: SafeArea(
-      child: Center(
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            Text('CV-Scan', style: Theme.of(context).textTheme.headlineMedium),
-            const SizedBox(height: 8),
-            Text(
-              _firstPin == null ? 'Создайте PIN-код' : 'Повторите PIN-код',
-              style: Theme.of(context).textTheme.bodyMedium,
-            ),
-            if (_mismatch) ...[
-              const SizedBox(height: 8),
-              Text('PIN не совпадает, попробуйте снова', style: TextStyle(color: Theme.of(context).colorScheme.error)),
-            ],
-            const SizedBox(height: 40),
-            PinPad(onCompleted: _onPin),
-          ],
-        ),
-      ),
-    ),
-  );
 }

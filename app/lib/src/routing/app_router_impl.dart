@@ -1,8 +1,6 @@
 import 'package:cv_scan_core/cv_scan_core.dart';
 import 'package:go_router/go_router.dart';
-import 'package:injectable/injectable.dart';
 
-@Singleton(as: AppRouter)
 class AppRouterImpl implements AppRouter {
   AppRouterImpl(this._router);
 

@@ -29,6 +29,7 @@ final class RedirectChain {
 }
 
 abstract base class RedirectGuard {
+  const RedirectGuard();
   RouteMatcher get routeMatcher;
   GuardResult redirect(BuildContext context, GoRouterState state);
 }
