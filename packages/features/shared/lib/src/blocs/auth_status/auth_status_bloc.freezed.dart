@@ -56,12 +56,12 @@ extension AuthStatusEventPatterns on AuthStatusEvent {
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeMap<TResult extends Object?>({TResult Function( _AuthStatusStarted value)?  started,TResult Function( _AuthStatusLoggedOut value)?  loggedOut,TResult Function( _AuthStatusChanged value)?  changed,required TResult orElse(),}){
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>({TResult Function( _AuthStatusRestored value)?  restored,TResult Function( _AuthLockedStatusSet value)?  lockedStatusSet,TResult Function( _AuthStatusChanged value)?  changed,required TResult orElse(),}){
 final _that = this;
 switch (_that) {
-case _AuthStatusStarted() when started != null:
-return started(_that);case _AuthStatusLoggedOut() when loggedOut != null:
-return loggedOut(_that);case _AuthStatusChanged() when changed != null:
+case _AuthStatusRestored() when restored != null:
+return restored(_that);case _AuthLockedStatusSet() when lockedStatusSet != null:
+return lockedStatusSet(_that);case _AuthStatusChanged() when changed != null:
 return changed(_that);case _:
   return orElse();
 
@@ -80,12 +80,12 @@ return changed(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult map<TResult extends Object?>({required TResult Function( _AuthStatusStarted value)  started,required TResult Function( _AuthStatusLoggedOut value)  loggedOut,required TResult Function( _AuthStatusChanged value)  changed,}){
+@optionalTypeArgs TResult map<TResult extends Object?>({required TResult Function( _AuthStatusRestored value)  restored,required TResult Function( _AuthLockedStatusSet value)  lockedStatusSet,required TResult Function( _AuthStatusChanged value)  changed,}){
 final _that = this;
 switch (_that) {
-case _AuthStatusStarted():
-return started(_that);case _AuthStatusLoggedOut():
-return loggedOut(_that);case _AuthStatusChanged():
+case _AuthStatusRestored():
+return restored(_that);case _AuthLockedStatusSet():
+return lockedStatusSet(_that);case _AuthStatusChanged():
 return changed(_that);}
 }
 /// A variant of `map` that fallback to returning `null`.
@@ -100,12 +100,12 @@ return changed(_that);}
 /// }
 /// ```
 
-@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>({TResult? Function( _AuthStatusStarted value)?  started,TResult? Function( _AuthStatusLoggedOut value)?  loggedOut,TResult? Function( _AuthStatusChanged value)?  changed,}){
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>({TResult? Function( _AuthStatusRestored value)?  restored,TResult? Function( _AuthLockedStatusSet value)?  lockedStatusSet,TResult? Function( _AuthStatusChanged value)?  changed,}){
 final _that = this;
 switch (_that) {
-case _AuthStatusStarted() when started != null:
-return started(_that);case _AuthStatusLoggedOut() when loggedOut != null:
-return loggedOut(_that);case _AuthStatusChanged() when changed != null:
+case _AuthStatusRestored() when restored != null:
+return restored(_that);case _AuthLockedStatusSet() when lockedStatusSet != null:
+return lockedStatusSet(_that);case _AuthStatusChanged() when changed != null:
 return changed(_that);case _:
   return null;
 
@@ -123,12 +123,12 @@ return changed(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function()?  started,TResult Function()?  loggedOut,TResult Function( AuthStatus status)?  changed,required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function()?  restored,TResult Function( UserLockedStatus status)?  lockedStatusSet,TResult Function( UserAuthInfo info)?  changed,required TResult orElse(),}) {final _that = this;
 switch (_that) {
-case _AuthStatusStarted() when started != null:
-return started();case _AuthStatusLoggedOut() when loggedOut != null:
-return loggedOut();case _AuthStatusChanged() when changed != null:
-return changed(_that.status);case _:
+case _AuthStatusRestored() when restored != null:
+return restored();case _AuthLockedStatusSet() when lockedStatusSet != null:
+return lockedStatusSet(_that.status);case _AuthStatusChanged() when changed != null:
+return changed(_that.info);case _:
   return orElse();
 
 }
@@ -146,12 +146,12 @@ return changed(_that.status);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function()  started,required TResult Function()  loggedOut,required TResult Function( AuthStatus status)  changed,}) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function()  restored,required TResult Function( UserLockedStatus status)  lockedStatusSet,required TResult Function( UserAuthInfo info)  changed,}) {final _that = this;
 switch (_that) {
-case _AuthStatusStarted():
-return started();case _AuthStatusLoggedOut():
-return loggedOut();case _AuthStatusChanged():
-return changed(_that.status);}
+case _AuthStatusRestored():
+return restored();case _AuthLockedStatusSet():
+return lockedStatusSet(_that.status);case _AuthStatusChanged():
+return changed(_that.info);}
 }
 /// A variant of `when` that fallback to returning `null`
 ///
@@ -165,12 +165,12 @@ return changed(_that.status);}
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function()?  started,TResult? Function()?  loggedOut,TResult? Function( AuthStatus status)?  changed,}) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function()?  restored,TResult? Function( UserLockedStatus status)?  lockedStatusSet,TResult? Function( UserAuthInfo info)?  changed,}) {final _that = this;
 switch (_that) {
-case _AuthStatusStarted() when started != null:
-return started();case _AuthStatusLoggedOut() when loggedOut != null:
-return loggedOut();case _AuthStatusChanged() when changed != null:
-return changed(_that.status);case _:
+case _AuthStatusRestored() when restored != null:
+return restored();case _AuthLockedStatusSet() when lockedStatusSet != null:
+return lockedStatusSet(_that.status);case _AuthStatusChanged() when changed != null:
+return changed(_that.info);case _:
   return null;
 
 }
@@ -181,8 +181,8 @@ return changed(_that.status);case _:
 /// @nodoc
 
 
-class _AuthStatusStarted implements AuthStatusEvent {
-  const _AuthStatusStarted();
+class _AuthStatusRestored implements AuthStatusEvent {
+  const _AuthStatusRestored();
   
 
 
@@ -192,7 +192,7 @@ class _AuthStatusStarted implements AuthStatusEvent {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _AuthStatusStarted);
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _AuthStatusRestored);
 }
 
 
@@ -201,7 +201,7 @@ int get hashCode => runtimeType.hashCode;
 
 @override
 String toString() {
-  return 'AuthStatusEvent.started()';
+  return 'AuthStatusEvent.restored()';
 }
 
 
@@ -213,43 +213,77 @@ String toString() {
 /// @nodoc
 
 
-class _AuthStatusLoggedOut implements AuthStatusEvent {
-  const _AuthStatusLoggedOut();
+class _AuthLockedStatusSet implements AuthStatusEvent {
+  const _AuthLockedStatusSet(this.status);
   
 
+ final  UserLockedStatus status;
 
-
+/// Create a copy of AuthStatusEvent
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+_$AuthLockedStatusSetCopyWith<_AuthLockedStatusSet> get copyWith => __$AuthLockedStatusSetCopyWithImpl<_AuthLockedStatusSet>(this, _$identity);
 
 
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _AuthStatusLoggedOut);
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _AuthLockedStatusSet&&(identical(other.status, status) || other.status == status));
 }
 
 
 @override
-int get hashCode => runtimeType.hashCode;
+int get hashCode => Object.hash(runtimeType,status);
 
 @override
 String toString() {
-  return 'AuthStatusEvent.loggedOut()';
+  return 'AuthStatusEvent.lockedStatusSet(status: $status)';
 }
 
 
 }
 
+/// @nodoc
+abstract mixin class _$AuthLockedStatusSetCopyWith<$Res> implements $AuthStatusEventCopyWith<$Res> {
+  factory _$AuthLockedStatusSetCopyWith(_AuthLockedStatusSet value, $Res Function(_AuthLockedStatusSet) _then) = __$AuthLockedStatusSetCopyWithImpl;
+@useResult
+$Res call({
+ UserLockedStatus status
+});
 
 
+
+
+}
+/// @nodoc
+class __$AuthLockedStatusSetCopyWithImpl<$Res>
+    implements _$AuthLockedStatusSetCopyWith<$Res> {
+  __$AuthLockedStatusSetCopyWithImpl(this._self, this._then);
+
+  final _AuthLockedStatusSet _self;
+  final $Res Function(_AuthLockedStatusSet) _then;
+
+/// Create a copy of AuthStatusEvent
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') $Res call({Object? status = null,}) {
+  return _then(_AuthLockedStatusSet(
+null == status ? _self.status : status // ignore: cast_nullable_to_non_nullable
+as UserLockedStatus,
+  ));
+}
+
+
+}
 
 /// @nodoc
 
 
 class _AuthStatusChanged implements AuthStatusEvent {
-  const _AuthStatusChanged(this.status);
+  const _AuthStatusChanged(this.info);
   
 
- final  AuthStatus status;
+ final  UserAuthInfo info;
 
 /// Create a copy of AuthStatusEvent
 /// with the given fields replaced by the non-null parameter values.
@@ -261,16 +295,16 @@ _$AuthStatusChangedCopyWith<_AuthStatusChanged> get copyWith => __$AuthStatusCha
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _AuthStatusChanged&&(identical(other.status, status) || other.status == status));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _AuthStatusChanged&&(identical(other.info, info) || other.info == info));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,status);
+int get hashCode => Object.hash(runtimeType,info);
 
 @override
 String toString() {
-  return 'AuthStatusEvent.changed(status: $status)';
+  return 'AuthStatusEvent.changed(info: $info)';
 }
 
 
@@ -281,7 +315,7 @@ abstract mixin class _$AuthStatusChangedCopyWith<$Res> implements $AuthStatusEve
   factory _$AuthStatusChangedCopyWith(_AuthStatusChanged value, $Res Function(_AuthStatusChanged) _then) = __$AuthStatusChangedCopyWithImpl;
 @useResult
 $Res call({
- AuthStatus status
+ UserAuthInfo info
 });
 
 
@@ -298,10 +332,10 @@ class __$AuthStatusChangedCopyWithImpl<$Res>
 
 /// Create a copy of AuthStatusEvent
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') $Res call({Object? status = null,}) {
+@pragma('vm:prefer-inline') $Res call({Object? info = null,}) {
   return _then(_AuthStatusChanged(
-null == status ? _self.status : status // ignore: cast_nullable_to_non_nullable
-as AuthStatus,
+null == info ? _self.info : info // ignore: cast_nullable_to_non_nullable
+as UserAuthInfo,
   ));
 }
 
@@ -419,11 +453,11 @@ return unauthenticated(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function()?  restoring,TResult Function()?  authenticated,TResult Function()?  unauthenticated,required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function()?  restoring,TResult Function( UserAuthInfo info)?  authenticated,TResult Function()?  unauthenticated,required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _AuthStatusRestoring() when restoring != null:
 return restoring();case _AuthStatusAuthenticated() when authenticated != null:
-return authenticated();case _AuthStatusUnauthenticated() when unauthenticated != null:
+return authenticated(_that.info);case _AuthStatusUnauthenticated() when unauthenticated != null:
 return unauthenticated();case _:
   return orElse();
 
@@ -442,11 +476,11 @@ return unauthenticated();case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function()  restoring,required TResult Function()  authenticated,required TResult Function()  unauthenticated,}) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function()  restoring,required TResult Function( UserAuthInfo info)  authenticated,required TResult Function()  unauthenticated,}) {final _that = this;
 switch (_that) {
 case _AuthStatusRestoring():
 return restoring();case _AuthStatusAuthenticated():
-return authenticated();case _AuthStatusUnauthenticated():
+return authenticated(_that.info);case _AuthStatusUnauthenticated():
 return unauthenticated();}
 }
 /// A variant of `when` that fallback to returning `null`
@@ -461,11 +495,11 @@ return unauthenticated();}
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function()?  restoring,TResult? Function()?  authenticated,TResult? Function()?  unauthenticated,}) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function()?  restoring,TResult? Function( UserAuthInfo info)?  authenticated,TResult? Function()?  unauthenticated,}) {final _that = this;
 switch (_that) {
 case _AuthStatusRestoring() when restoring != null:
 return restoring();case _AuthStatusAuthenticated() when authenticated != null:
-return authenticated();case _AuthStatusUnauthenticated() when unauthenticated != null:
+return authenticated(_that.info);case _AuthStatusUnauthenticated() when unauthenticated != null:
 return unauthenticated();case _:
   return null;
 
@@ -477,8 +511,8 @@ return unauthenticated();case _:
 /// @nodoc
 
 
-class _AuthStatusRestoring implements AuthStatusState {
-  const _AuthStatusRestoring();
+class _AuthStatusRestoring extends AuthStatusState {
+  const _AuthStatusRestoring(): super._();
   
 
 
@@ -509,40 +543,74 @@ String toString() {
 /// @nodoc
 
 
-class _AuthStatusAuthenticated implements AuthStatusState {
-  const _AuthStatusAuthenticated();
+class _AuthStatusAuthenticated extends AuthStatusState {
+  const _AuthStatusAuthenticated(this.info): super._();
   
 
+ final  UserAuthInfo info;
 
-
+/// Create a copy of AuthStatusState
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+_$AuthStatusAuthenticatedCopyWith<_AuthStatusAuthenticated> get copyWith => __$AuthStatusAuthenticatedCopyWithImpl<_AuthStatusAuthenticated>(this, _$identity);
 
 
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _AuthStatusAuthenticated);
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _AuthStatusAuthenticated&&(identical(other.info, info) || other.info == info));
 }
 
 
 @override
-int get hashCode => runtimeType.hashCode;
+int get hashCode => Object.hash(runtimeType,info);
 
 @override
 String toString() {
-  return 'AuthStatusState.authenticated()';
+  return 'AuthStatusState.authenticated(info: $info)';
 }
 
 
 }
 
+/// @nodoc
+abstract mixin class _$AuthStatusAuthenticatedCopyWith<$Res> implements $AuthStatusStateCopyWith<$Res> {
+  factory _$AuthStatusAuthenticatedCopyWith(_AuthStatusAuthenticated value, $Res Function(_AuthStatusAuthenticated) _then) = __$AuthStatusAuthenticatedCopyWithImpl;
+@useResult
+$Res call({
+ UserAuthInfo info
+});
 
 
+
+
+}
+/// @nodoc
+class __$AuthStatusAuthenticatedCopyWithImpl<$Res>
+    implements _$AuthStatusAuthenticatedCopyWith<$Res> {
+  __$AuthStatusAuthenticatedCopyWithImpl(this._self, this._then);
+
+  final _AuthStatusAuthenticated _self;
+  final $Res Function(_AuthStatusAuthenticated) _then;
+
+/// Create a copy of AuthStatusState
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') $Res call({Object? info = null,}) {
+  return _then(_AuthStatusAuthenticated(
+null == info ? _self.info : info // ignore: cast_nullable_to_non_nullable
+as UserAuthInfo,
+  ));
+}
+
+
+}
 
 /// @nodoc
 
 
-class _AuthStatusUnauthenticated implements AuthStatusState {
-  const _AuthStatusUnauthenticated();
+class _AuthStatusUnauthenticated extends AuthStatusState {
+  const _AuthStatusUnauthenticated(): super._();
   
 
 

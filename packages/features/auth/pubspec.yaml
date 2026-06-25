@@ -11,15 +11,19 @@ dependencies:
     sdk: flutter
   cv_scan_core:
     path: ../../core
+  cv_scan_domain:
+    path: ../../domain
+  cv_scan_data:
+    path: ../../data
   shared:
     path: ../shared
   flutter_bloc: ^9.1.0
   get_it: ^9.2.1
   injectable: ^3.0.0
   local_auth: ^2.3.0
-  flutter_secure_storage: ^9.2.4
   crypto: ^3.0.6
   freezed_annotation: ^3.1.0
+  pinput: ^6.0.2
 
 dev_dependencies:
   flutter_test:

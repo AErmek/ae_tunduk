@@ -1,4 +1,6 @@
 abstract final class AppRoutes {
+  static const lock = '/lock';
+  static const setupPin = '/setup-pin';
   static const candidatesList = '/candidates';
   static const candidateDetail = '/candidates/:id';
 

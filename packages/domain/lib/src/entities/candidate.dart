@@ -1,7 +1,7 @@
-import 'package:equatable/equatable.dart';
 import 'package:cv_scan_domain/src/enums/candidate_status.dart';
 import 'package:cv_scan_domain/src/enums/candidate_verdict.dart';
 import 'package:cv_scan_domain/src/enums/verdict_color.dart';
+import 'package:equatable/equatable.dart';
 
 class Candidate extends Equatable {
   const Candidate({
@@ -52,60 +52,54 @@ class Candidate extends Equatable {
   final String? note;
   final DateTime? dateAdded;
 
-  Candidate copyWith({
-    CandidateStatus? status,
-    String? note,
-    int? version,
-  }) {
-    return Candidate(
-      id: id,
-      name: name,
-      position: position,
-      posLabel: posLabel,
-      verdict: verdict,
-      verdictColor: verdictColor,
-      status: status ?? this.status,
-      version: version ?? this.version,
-      file: file,
-      email: email,
-      phone: phone,
-      city: city,
-      tg: tg,
-      exp: exp,
-      totalExp: totalExp,
-      stack: stack,
-      edu: edu,
-      criteria: criteria,
-      summary: summary,
-      questions: questions,
-      note: note ?? this.note,
-      dateAdded: dateAdded,
-    );
-  }
+  Candidate copyWith({CandidateStatus? status, String? note, int? version}) => Candidate(
+    id: id,
+    name: name,
+    position: position,
+    posLabel: posLabel,
+    verdict: verdict,
+    verdictColor: verdictColor,
+    status: status ?? this.status,
+    version: version ?? this.version,
+    file: file,
+    email: email,
+    phone: phone,
+    city: city,
+    tg: tg,
+    exp: exp,
+    totalExp: totalExp,
+    stack: stack,
+    edu: edu,
+    criteria: criteria,
+    summary: summary,
+    questions: questions,
+    note: note ?? this.note,
+    dateAdded: dateAdded,
+  );
 
   @override
   List<Object?> get props => [
-        id,
-        name,
-        position,
-        posLabel,
-        verdict,
-        verdictColor,
-        status,
-        version,
-        file,
-        email,
-        phone,
-        city,
-        tg,
-        exp,
-        totalExp,
-        stack,
-        edu,
-        criteria,
-        summary,
-        questions,
-        note,
-        dateAdded,
-      ];
+    id,
+    name,
+    position,
+    posLabel,
+    verdict,
+    verdictColor,
+    status,
+    version,
+    file,
+    email,
+    phone,
+    city,
+    tg,
+    exp,
+    totalExp,
+    stack,
+    edu,
+    criteria,
+    summary,
+    questions,
+    note,
+    dateAdded,
+  ];
 }

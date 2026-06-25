@@ -5,5 +5,5 @@ class SetAuthenticatedUseCase {
 
   final AuthRepository _repository;
 
-  Future<void> call() => _repository.setAuthenticated();
+  Future<void> call({required String pin}) => _repository.setAuthenticated(pin: pin);
 }

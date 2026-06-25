@@ -1,9 +1,12 @@
 import 'package:cv_scan_core/cv_scan_core.dart';
+import 'package:feature_auth/feature_auth.dart';
 import 'package:feature_candidate_detail/feature_candidate_detail.dart';
 import 'package:feature_candidates_list/feature_candidates_list.dart';
 import 'package:go_router/go_router.dart';
 
-final appRoutes = <RouteBase>[
+final appRoutesMeta = <RouteBase>[
+  GoRoute(path: AppRoutes.lock, builder: (_, _) => const LockPage()),
+  GoRoute(path: AppRoutes.setupPin, builder: (_, _) => const SetupPinPage()),
   GoRoute(
     path: AppRoutes.candidatesList,
     builder: (_, _) => const CandidatesListPage(),

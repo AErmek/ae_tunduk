@@ -2,7 +2,7 @@ part of 'auth_status_bloc.dart';
 
 @freezed
 sealed class AuthStatusEvent with _$AuthStatusEvent {
-  const factory AuthStatusEvent.started() = _AuthStatusStarted;
-  const factory AuthStatusEvent.loggedOut() = _AuthStatusLoggedOut;
-  const factory AuthStatusEvent.changed(AuthStatus status) = _AuthStatusChanged;
+  const factory AuthStatusEvent.restored() = _AuthStatusRestored;
+  const factory AuthStatusEvent.lockedStatusSet(UserLockedStatus status) = _AuthLockedStatusSet;
+  const factory AuthStatusEvent.changed(UserAuthInfo info) = _AuthStatusChanged;
 }

@@ -24,6 +24,7 @@ dependencies:
     path: ../packages/features/candidates_list
   feature_candidate_detail:
     path: ../packages/features/candidate_detail
+  flutter_bloc: ^9.1.0
   go_router: ^17.3.0
   get_it: ^9.2.1
   injectable: ^3.0.0

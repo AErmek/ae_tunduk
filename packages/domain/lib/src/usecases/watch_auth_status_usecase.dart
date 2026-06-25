@@ -1,4 +1,4 @@
-import 'package:cv_scan_domain/src/enums/auth_status.dart';
+import 'package:cv_scan_domain/src/models/user_auth_info.dart';
 import 'package:cv_scan_domain/src/repositories/auth_repository.dart';
 
 class WatchAuthStatusUseCase {
@@ -6,5 +6,5 @@ class WatchAuthStatusUseCase {
 
   final AuthRepository _repository;
 
-  Stream<AuthStatus> call() => _repository.authStatus;
+  Stream<UserAuthInfo> call() => _repository.authStatus;
 }
