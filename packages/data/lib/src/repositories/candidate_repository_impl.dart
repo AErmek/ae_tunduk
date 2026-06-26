@@ -2,7 +2,7 @@ import 'dart:async';
 
 import 'package:cv_scan_data/src/datasources/candidate_local_data_source.dart';
 import 'package:cv_scan_data/src/datasources/candidate_remote_data_source.dart';
-import 'package:cv_scan_data/src/sync/sync_engine.dart';
+import 'package:cv_scan_data/src/sync/candidate_sync_engine.dart';
 import 'package:cv_scan_domain/cv_scan_domain.dart';
 
 class CandidateRepositoryImpl implements CandidateRepository {
@@ -10,7 +10,7 @@ class CandidateRepositoryImpl implements CandidateRepository {
 
   final CandidateRemoteDataSource _remote;
   final CandidateLocalDataSource _local;
-  final SyncEngine _syncEngine;
+  final CandidateSyncEngine _syncEngine;
 
   @override
   Stream<List<Candidate>> watchCandidates({

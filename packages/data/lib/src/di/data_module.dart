@@ -24,9 +24,9 @@ abstract class DataModule {
   @lazySingleton
   ApiClient apiClient(Dio dio) => ApiClient(dio);
 
-  @singleton
-  SyncEngine syncEngine(ApiClient apiClient, CandidatesDao candidatesDao, OutboxDao outboxDao) =>
-      SyncEngine(apiClient: apiClient, candidatesDao: candidatesDao, outboxDao: outboxDao);
+  @LazySingleton(as: CandidateSyncEngine)
+  CandidateSyncEngineImpl syncEngine(ApiClient apiClient, CandidatesDao candidatesDao, OutboxDao outboxDao) =>
+      CandidateSyncEngineImpl(apiClient: apiClient, candidatesDao: candidatesDao, outboxDao: outboxDao);
 
   @LazySingleton(as: CandidateRemoteDataSource)
   CandidateRemoteDataSourceImpl candidateRemoteDataSource(ApiClient apiClient) =>
@@ -44,6 +44,6 @@ abstract class DataModule {
   CandidateRepositoryImpl candidateRepository(
     CandidateRemoteDataSource remote,
     CandidateLocalDataSource local,
-    SyncEngine syncEngine,
+    CandidateSyncEngine syncEngine,
   ) => CandidateRepositoryImpl(remote: remote, local: local, syncEngine: syncEngine);
 }
