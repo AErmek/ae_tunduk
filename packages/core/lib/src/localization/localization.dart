@@ -6,14 +6,12 @@ export 'package:cv_scan_core/src/generated/l10n/l10n.dart';
 
 extension LocalizationX on BuildContext {
   Translations get t => Translations.of(this);
-  //TODO revert then
-  // Locale? get locale => SettingsScope.settingsOf(this).locale;
 }
 
 typedef S = Translations;
 
 class AppLocaleConfig {
-  // static const Map<String, String> languageLabels = { 'ru': 'Русский'};
+  static const Map<String, String> languageLabels = {'ru': 'Русский'};
 
   static const List<String> _orderedLanguages = ['ru'];
 
