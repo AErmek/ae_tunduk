@@ -1,6 +1,7 @@
 import 'package:cv_scan_app/src/routing/lock_overlay_controller.dart';
 import 'package:cv_scan_app/src/routing/router_state_mixin.dart';
 import 'package:cv_scan_app/src/view/app_builder.dart';
+import 'package:cv_scan_core/cv_scan_core.dart';
 import 'package:flutter/material.dart';
 
 class MaterialContext extends StatefulWidget {
@@ -28,6 +29,11 @@ class _MaterialContextState extends State<MaterialContext> with RouterStateMixin
   @override
   Widget build(BuildContext context) => MaterialApp.router(
     debugShowCheckedModeBanner: false,
+
+    locale: AppLocaleConfig.currentLocale,
+    supportedLocales: Translations.delegate.supportedLocales,
+    localizationsDelegates: const [Translations.delegate],
+
     routerConfig: router,
     theme: ThemeData(colorScheme: ColorScheme.fromSeed(seedColor: const Color(0xFF1A73E8)), useMaterial3: true),
     builder: (context, child) => AppBuilder(child: child ?? const SizedBox.shrink()),

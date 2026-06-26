@@ -61,7 +61,7 @@ analyzer:
     empty_catches: warning
 
     # Error
-    always_use_package_imports: error
+    always_use_package_imports: warning
     avoid_relative_lib_imports: error
     avoid_slow_async_io: error
     avoid_types_as_parameter_names: error

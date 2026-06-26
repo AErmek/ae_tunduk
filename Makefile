@@ -10,3 +10,6 @@ drift-generate:
 
 get:
 	fvm flutter pub get
+
+localize:
+	cd packages/core && fvm dart run intl_utils:generate
