@@ -1,7 +1,6 @@
 import 'package:cv_scan_app/src/routing/app_routes_meta.dart';
 import 'package:cv_scan_app/src/routing/guards/authenticated_guard.dart';
 import 'package:cv_scan_app/src/routing/guards/cold_start_guard.dart';
-import 'package:cv_scan_app/src/routing/guards/lock_overlay_guard.dart';
 import 'package:cv_scan_app/src/routing/utils/redirect_chain.dart';
 import 'package:cv_scan_core/cv_scan_core.dart';
 import 'package:flutter/material.dart';
@@ -29,7 +28,6 @@ mixin RouterStateMixin<T extends StatefulWidget> on State<T> {
       redirect: RedirectChain([
         AuthenticatedGuard(authBloc),
         ColdStartGuard(authBloc),
-        LockOverlayGuard(authBloc),
       ]).call,
     );
 

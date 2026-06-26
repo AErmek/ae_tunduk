@@ -1,8 +1,7 @@
+import 'package:cv_scan_app/src/routing/lock_overlay_controller.dart';
 import 'package:cv_scan_app/src/routing/router_state_mixin.dart';
 import 'package:cv_scan_app/src/view/app_builder.dart';
-import 'package:cv_scan_domain/cv_scan_domain.dart';
 import 'package:flutter/material.dart';
-import 'package:shared/shared.dart';
 
 class MaterialContext extends StatefulWidget {
   const MaterialContext({super.key});
@@ -11,18 +10,23 @@ class MaterialContext extends StatefulWidget {
   State<MaterialContext> createState() => _MaterialContextState();
 }
 
-class _MaterialContextState extends State<MaterialContext> with RouterStateMixin, AppLifecycleMixin {
-  @override
-  void onPaused() => _lockForOverlay();
+class _MaterialContextState extends State<MaterialContext> with RouterStateMixin {
+  late final LockOverlayController _lockOverlay;
 
   @override
-  void onHidden() => _lockForOverlay();
+  void initState() {
+    super.initState();
+    _lockOverlay = LockOverlayController(
+      router: router,
+      navigatorKey: rootNavigatorKey,
+      authBloc: authBloc,
+    )..start();
+  }
 
-  void _lockForOverlay() {
-    final info = authBloc.state.info;
-    if (info is AuthorizedUser && info.lockedStatus == UserLockedStatus.unlocked) {
-      authBloc.add(const AuthStatusEvent.lockedStatusSet(UserLockedStatus.overlay));
-    }
+  @override
+  void dispose() {
+    _lockOverlay.dispose();
+    super.dispose();
   }
 
   @override
