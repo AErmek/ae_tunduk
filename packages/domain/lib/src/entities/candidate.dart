@@ -1,6 +1,6 @@
 import 'package:cv_scan_domain/src/enums/candidate_status.dart';
 import 'package:cv_scan_domain/src/enums/candidate_verdict.dart';
-import 'package:cv_scan_domain/src/enums/verdict_color.dart';
+import 'package:cv_scan_domain/src/enums/candidate_verdict_tone.dart';
 import 'package:equatable/equatable.dart';
 
 class Candidate extends Equatable {
@@ -10,7 +10,7 @@ class Candidate extends Equatable {
     required this.position,
     required this.posLabel,
     required this.verdict,
-    required this.verdictColor,
+    required this.verdictTone,
     required this.status,
     required this.version,
     this.file,
@@ -34,7 +34,7 @@ class Candidate extends Equatable {
   final String position;
   final String posLabel;
   final CandidateVerdict verdict;
-  final VerdictColor verdictColor;
+  final CandidateVerdictTone verdictTone;
   final CandidateStatus status;
   final int version;
   final String? file;
@@ -58,7 +58,7 @@ class Candidate extends Equatable {
     position: position,
     posLabel: posLabel,
     verdict: verdict,
-    verdictColor: verdictColor,
+    verdictTone: verdictTone,
     status: status ?? this.status,
     version: version ?? this.version,
     file: file,
@@ -84,7 +84,7 @@ class Candidate extends Equatable {
     position,
     posLabel,
     verdict,
-    verdictColor,
+    verdictTone,
     status,
     version,
     file,

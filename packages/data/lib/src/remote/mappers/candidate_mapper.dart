@@ -9,7 +9,7 @@ extension CandidateDtoMapper on dto.Candidate {
     position: position,
     posLabel: posLabel,
     verdict: CandidateVerdict.byApiKey(verdict.json ?? ''),
-    verdictColor: VerdictColor.byApiKey(vc.json ?? ''),
+    verdictTone: CandidateVerdictTone.byApiKey(vc.json ?? ''),
     status: CandidateStatus.byApiKey(status.json ?? ''),
     version: version,
     file: file,
