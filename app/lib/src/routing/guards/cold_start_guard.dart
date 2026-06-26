@@ -14,7 +14,7 @@ final class ColdStartGuard extends RedirectGuard {
   final AuthStatusBloc _authBloc;
 
   @override
-  RouteMatcher get routeMatcher => const PathExcludeMatcher([AppRoutes.lockDialog]);
+  RouteMatcher get routeMatcher => const AnyRouteMatcher();
 
   @override
   GuardResult redirect(BuildContext context, GoRouterState state) {

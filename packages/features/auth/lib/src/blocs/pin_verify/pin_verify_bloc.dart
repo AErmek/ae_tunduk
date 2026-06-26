@@ -7,8 +7,7 @@ part 'pin_verify_event.dart';
 part 'pin_verify_state.dart';
 
 class PinVerifyBloc extends Bloc<PinVerifyEvent, PinVerifyState> {
-  PinVerifyBloc({required this._localAuth, required this._setLockedStatus})
-    : super(const PinVerifyState.idle()) {
+  PinVerifyBloc({required this._localAuth, required this._setLockedStatus}) : super(const PinVerifyState.idle()) {
     on<PinVerifyEvent>(
       (event, emit) => switch (event) {
         _PinSubmitted() => _onPinSubmitted(event, emit),
@@ -37,6 +36,8 @@ class PinVerifyBloc extends Bloc<PinVerifyEvent, PinVerifyState> {
       emit(const PinVerifyState.idle());
       return;
     }
+
+    await Future<void>.delayed(const Duration(seconds: 1));
     final ok = await _localAuth.authenticateWithBiometric();
     if (ok) {
       await _setLockedStatus(UserLockedStatus.unlocked);

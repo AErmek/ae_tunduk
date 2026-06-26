@@ -14,7 +14,7 @@ final class AuthenticatedGuard extends RedirectGuard {
   final AuthStatusBloc _authBloc;
 
   @override
-  RouteMatcher get routeMatcher => const PathExcludeMatcher([AppRoutes.lock, AppRoutes.lockDialog]);
+  RouteMatcher get routeMatcher => const PathExcludeMatcher([AppRoutes.lock]);
 
   @override
   GuardResult redirect(BuildContext context, GoRouterState state) {

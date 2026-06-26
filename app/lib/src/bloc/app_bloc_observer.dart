@@ -1,44 +1,41 @@
 import 'dart:developer' as developer;
 
-import 'package:cv_scan_core/cv_scan_core.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-/// [BlocObserver] which logs all bloc state changes, errors and events.
 class AppBlocObserver extends BlocObserver {
-  @override
-  void onTransition(Bloc<Object?, Object?> bloc, Transition<Object?, Object?> transition) {
-    final logMessage = StringBuffer()
-      ..writeln('Bloc: ${bloc.runtimeType}')
-      ..writeln('Event: ${transition.event.runtimeType}')
-      ..writeln(
-        'Transition: ${transition.currentState.runtimeType} => '
-        '${transition.nextState.runtimeType}',
-      )
-      ..writeln('Old State: ${transition.currentState?.toString().limit(100)}')
-      ..write('New State: ${transition.nextState?.toString().limit(100)}');
-
-    developer.log(logMessage.toString(), name: 'Bloc');
-    super.onTransition(bloc, transition);
-  }
+  final _traceIds = <int, String>{};
 
   @override
   void onEvent(Bloc<Object?, Object?> bloc, Object? event) {
-    final logMessage = StringBuffer()
-      ..writeln('Bloc: ${bloc.runtimeType}')
-      ..writeln('Event: ${event.runtimeType}')
-      ..write('Details: ${event?.toString().limit(200)}');
+    final traceId = _shortId();
+    if (event != null) _traceIds[identityHashCode(event)] = traceId;
 
-    developer.log(logMessage.toString(), name: 'Bloc');
+    developer.log('[$traceId] ${bloc.runtimeType} ← ${event.runtimeType}', name: 'Bloc');
     super.onEvent(bloc, event);
   }
 
   @override
-  void onError(BlocBase<Object?> bloc, Object error, StackTrace stackTrace) {
-    final logMessage = StringBuffer()
-      ..writeln('Bloc: ${bloc.runtimeType}')
-      ..writeln(error.toString());
+  void onTransition(Bloc<Object?, Object?> bloc, Transition<Object?, Object?> transition) {
+    final traceId = _traceIds.remove(identityHashCode(transition.event)) ?? _shortId();
 
-    developer.log(logMessage.toString(), name: 'Bloc', level: 1000, error: error, stackTrace: stackTrace);
+    developer.log(
+      '[$traceId] ${bloc.runtimeType} '
+      '${transition.currentState.runtimeType} → ${transition.nextState.runtimeType}\n'
+      '  before: ${transition.currentState}\n'
+      '  after:  ${transition.nextState}',
+      name: 'Bloc',
+    );
+    super.onTransition(bloc, transition);
+  }
+
+  @override
+  void onError(BlocBase<Object?> bloc, Object error, StackTrace stackTrace) {
+    developer.log('${bloc.runtimeType} ERROR: $error', name: 'Bloc', level: 1000, error: error, stackTrace: stackTrace);
     super.onError(bloc, error, stackTrace);
+  }
+
+  String _shortId() {
+    final now = DateTime.now().microsecondsSinceEpoch;
+    return (now & 0xFFFFFF).toRadixString(16).padLeft(6, '0');
   }
 }

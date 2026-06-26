@@ -9,7 +9,7 @@ final class LocalAuthBiometricAuthenticator implements BiometricAuthenticator {
   @override
   Future<bool> authenticate({required String localizedReason}) => _localAuth.authenticate(
     localizedReason: localizedReason,
-    options: const AuthenticationOptions(biometricOnly: true),
+    options: const AuthenticationOptions(biometricOnly: true, stickyAuth: true),
   );
 
   @override

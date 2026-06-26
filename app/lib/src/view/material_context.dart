@@ -16,11 +16,7 @@ class _MaterialContextState extends State<MaterialContext> with RouterStateMixin
   @override
   void initState() {
     super.initState();
-    _lockOverlay = LockOverlayController(
-      router: router,
-      navigatorKey: rootNavigatorKey,
-      authBloc: authBloc,
-    )..start();
+    _lockOverlay = LockOverlayController(authBloc: authBloc)..start();
   }
 
   @override
@@ -34,6 +30,6 @@ class _MaterialContextState extends State<MaterialContext> with RouterStateMixin
     debugShowCheckedModeBanner: false,
     routerConfig: router,
     theme: ThemeData(colorScheme: ColorScheme.fromSeed(seedColor: const Color(0xFF1A73E8)), useMaterial3: true),
-    builder: (context, child) => AppBuilder(router: router, child: child ?? const SizedBox.shrink()),
+    builder: (context, child) => AppBuilder(child: child ?? const SizedBox.shrink()),
   );
 }

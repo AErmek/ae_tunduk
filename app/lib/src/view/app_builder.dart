@@ -1,17 +1,16 @@
+import 'package:cv_scan_app/src/view/lock_overlay_wrapper.dart';
 import 'package:flutter/widgets.dart';
-import 'package:go_router/go_router.dart';
 
 final Key _builderKey = GlobalKey();
 
 class AppBuilder extends StatelessWidget {
-  const AppBuilder({required this.router, required this.child, super.key});
-  final GoRouter router;
+  const AppBuilder({required this.child, super.key});
   final Widget child;
 
   @override
   Widget build(BuildContext context) => MediaQuery(
     key: _builderKey,
     data: MediaQuery.of(context).copyWith(textScaler: TextScaler.noScaling),
-    child: child,
+    child: LockOverlayWrapper(child: child),
   );
 }

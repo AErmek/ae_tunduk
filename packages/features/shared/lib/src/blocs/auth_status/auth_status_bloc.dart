@@ -22,7 +22,9 @@ class AuthStatusBloc extends Bloc<AuthStatusEvent, AuthStatusState> {
       },
     );
 
-    _subscription = watchAuthStatus().listen((info) => add(AuthStatusEvent.changed(info)), cancelOnError: false);
+    _subscription = watchAuthStatus()
+        .where((event) => event != state.info)
+        .listen((info) => add(AuthStatusEvent.changed(info)), cancelOnError: false);
   }
 
   final AuthSetLockedStatusUseCase _setLockedStatus;

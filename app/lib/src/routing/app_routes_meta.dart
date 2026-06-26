@@ -8,13 +8,6 @@ import 'package:go_router/go_router.dart';
 final appRoutesMeta = <RouteBase>[
   GoRoute(path: AppRoutes.restoring, builder: (_, _) => const RestoringPage()),
   GoRoute(path: AppRoutes.lock, builder: (_, _) => const LockPage()),
-  GoRoute(
-    path: AppRoutes.lockDialog,
-    pageBuilder: (_, _) => const MaterialPage(
-      fullscreenDialog: true,
-      child: LockPage(),
-    ),
-  ),
   GoRoute(path: AppRoutes.setupPin, builder: (_, _) => const SetupPinPage()),
   GoRoute(
     path: AppRoutes.candidatesList,
