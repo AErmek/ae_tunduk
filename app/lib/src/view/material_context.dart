@@ -31,8 +31,8 @@ class _MaterialContextState extends State<MaterialContext> with RouterStateMixin
     debugShowCheckedModeBanner: false,
 
     locale: AppLocaleConfig.currentLocale,
-    supportedLocales: Translations.delegate.supportedLocales,
-    localizationsDelegates: const [Translations.delegate],
+    supportedLocales: AppLocaleConfig.supportedLocales,
+    localizationsDelegates: AppLocaleConfig.localizationDelegates,
 
     routerConfig: router,
     theme: ThemeData(colorScheme: ColorScheme.fromSeed(seedColor: const Color(0xFF1A73E8)), useMaterial3: true),
