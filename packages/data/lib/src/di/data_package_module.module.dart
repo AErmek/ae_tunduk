@@ -6,9 +6,11 @@
 import 'dart:async' as _i687;
 
 import 'package:cv_scan_data/cv_scan_data.dart' as _i755;
+import 'package:cv_scan_data/src/di/auth_module.dart' as _i85;
 import 'package:cv_scan_data/src/di/data_module.dart' as _i814;
 import 'package:cv_scan_domain/cv_scan_domain.dart' as _i490;
 import 'package:dio/dio.dart' as _i361;
+import 'package:flutter_secure_storage/flutter_secure_storage.dart' as _i558;
 import 'package:injectable/injectable.dart' as _i526;
 
 class CvScanDataPackageModule extends _i526.MicroPackageModule {
@@ -16,15 +18,23 @@ class CvScanDataPackageModule extends _i526.MicroPackageModule {
   @override
   _i687.FutureOr<void> init(_i526.GetItHelper gh) {
     final dataModule = _$DataModule();
+    final authModule = _$AuthModule();
+    gh.singleton<_i558.FlutterSecureStorage>(() => dataModule.secureStorage);
     gh.singleton<_i755.AppDatabase>(() => dataModule.database);
+    gh.singleton<_i490.BiometricAuthenticator>(
+        () => authModule.biometricAuthenticator);
     gh.singleton<_i755.CandidatesDao>(
         () => dataModule.candidatesDao(gh<_i755.AppDatabase>()));
     gh.singleton<_i755.OutboxDao>(
         () => dataModule.outboxDao(gh<_i755.AppDatabase>()));
-    gh.singleton<_i490.AuthRepository>(
-        () => dataModule.authRepository(gh<_i490.LocalAuthService>()));
+    gh.singleton<_i490.LocalAuthService>(() => authModule.authServices(
+          gh<_i558.FlutterSecureStorage>(),
+          gh<_i490.BiometricAuthenticator>(),
+        ));
     gh.lazySingleton<_i361.Dio>(
         () => dataModule.dio(gh<_i755.CandidatesDao>()));
+    gh.singleton<_i490.AuthRepository>(
+        () => dataModule.authRepository(gh<_i490.LocalAuthService>()));
     gh.lazySingleton<_i755.ApiClient>(
         () => dataModule.apiClient(gh<_i361.Dio>()));
     gh.singleton<_i755.SyncEngine>(() => dataModule.syncEngine(
@@ -43,3 +53,5 @@ class CvScanDataPackageModule extends _i526.MicroPackageModule {
 }
 
 class _$DataModule extends _i814.DataModule {}
+
+class _$AuthModule extends _i85.AuthModule {}

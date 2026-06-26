@@ -3,8 +3,8 @@ import 'dart:math';
 import 'dart:typed_data';
 
 import 'package:crypto/crypto.dart';
+import 'package:cv_scan_data/src/auth/pin_columns.dart';
 import 'package:cv_scan_domain/cv_scan_domain.dart';
-import 'package:feature_auth/src/local/pin_columns.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 
 class LocalAuthServiceImpl implements LocalAuthService {

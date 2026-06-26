@@ -1,10 +1,14 @@
 import 'package:cv_scan_data/cv_scan_data.dart';
 import 'package:cv_scan_domain/cv_scan_domain.dart';
 import 'package:dio/dio.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:injectable/injectable.dart';
 
 @module
 abstract class DataModule {
+  @singleton
+  FlutterSecureStorage get secureStorage => createSecureStorage();
+
   @singleton
   AppDatabase get database => DatabaseFactory.create();
 
