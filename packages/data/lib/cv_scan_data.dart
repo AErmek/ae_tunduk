@@ -1,3 +1,7 @@
+export 'src/datasources/candidate_local_data_source.dart';
+export 'src/datasources/candidate_local_data_source_impl.dart';
+export 'src/datasources/candidate_remote_data_source.dart';
+export 'src/datasources/candidate_remote_data_source_impl.dart';
 export 'src/di/auth_module.dart';
 export 'src/di/data_module.dart';
 export 'src/di/data_package_module.module.dart';

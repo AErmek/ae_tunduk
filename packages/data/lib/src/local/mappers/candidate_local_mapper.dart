@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'dart:isolate';
 
 import 'package:cv_scan_data/src/local/database/app_database.dart';
 import 'package:cv_scan_domain/cv_scan_domain.dart';
@@ -69,6 +68,4 @@ extension CandidateCompanionMapper on Candidate {
   );
 }
 
-Future<List<Candidate>> mapRowsAsync(List<CandidatesTableData> rows) => Isolate.run(() => _mapRows(rows));
-
-List<Candidate> _mapRows(List<CandidatesTableData> rows) => rows.map(_mapRow).toList();
+List<Candidate> mapRows(List<CandidatesTableData> rows) => rows.map(_mapRow).toList();

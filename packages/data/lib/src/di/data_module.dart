@@ -28,20 +28,22 @@ abstract class DataModule {
   SyncEngine syncEngine(ApiClient apiClient, CandidatesDao candidatesDao, OutboxDao outboxDao) =>
       SyncEngine(apiClient: apiClient, candidatesDao: candidatesDao, outboxDao: outboxDao);
 
+  @LazySingleton(as: CandidateRemoteDataSource)
+  CandidateRemoteDataSourceImpl candidateRemoteDataSource(ApiClient apiClient) =>
+      CandidateRemoteDataSourceImpl(apiClient: apiClient);
+
+  @LazySingleton(as: CandidateLocalDataSource)
+  CandidateLocalDataSourceImpl candidateLocalDataSource(CandidatesDao candidatesDao, OutboxDao outboxDao) =>
+      CandidateLocalDataSourceImpl(candidatesDao: candidatesDao, outboxDao: outboxDao);
+
   @Singleton(as: AuthRepository)
   AuthRepositoryImpl authRepository(LocalAuthService localAuthServices) =>
       AuthRepositoryImpl(pinService: localAuthServices);
 
   @LazySingleton(as: CandidateRepository)
   CandidateRepositoryImpl candidateRepository(
-    ApiClient apiClient,
-    CandidatesDao candidatesDao,
-    OutboxDao outboxDao,
+    CandidateRemoteDataSource remote,
+    CandidateLocalDataSource local,
     SyncEngine syncEngine,
-  ) => CandidateRepositoryImpl(
-    apiClient: apiClient,
-    candidatesDao: candidatesDao,
-    outboxDao: outboxDao,
-    syncEngine: syncEngine,
-  );
+  ) => CandidateRepositoryImpl(remote: remote, local: local, syncEngine: syncEngine);
 }

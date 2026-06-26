@@ -1,0 +1,25 @@
+import 'package:cv_scan_domain/cv_scan_domain.dart';
+
+/// Local source of candidates. Owns the mirror cache and the outbox, hides
+/// drift, and applies pending changes (overlay) on reads — speaks only in
+/// domain types.
+abstract interface class CandidateLocalDataSource {
+  Stream<List<Candidate>> watchCandidates();
+
+  Stream<Candidate?> watchCandidate(String id);
+
+  Future<Candidate?> getCandidate(String id);
+
+  Future<List<Candidate>> getCandidates();
+
+  Future<void> cacheCandidates(List<Candidate> candidates);
+
+  Future<void> cacheCandidate(Candidate candidate);
+
+  Future<void> enqueueUpdate({
+    required String id,
+    required int version,
+    CandidateStatus? status,
+    String? note,
+  });
+}
