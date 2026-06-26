@@ -1,8 +1,10 @@
 export 'src/di/data_module.dart';
+export 'src/di/data_package_module.module.dart';
 export 'src/local/dao/candidates_dao.dart';
 export 'src/local/dao/outbox_dao.dart';
 export 'src/local/database/app_database.dart';
 export 'src/local/database/database_factory.dart';
+export 'src/local/secure_storage/meta.dart';
 export 'src/local/secure_storage/secure_storage_column.dart';
 export 'src/remote/dio_factory.dart';
 export 'src/remote/generated/api/api_client.dart';

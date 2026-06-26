@@ -54,6 +54,10 @@ class AuthRepositoryImpl implements AuthRepository {
     final current = _current;
     if (current is! AuthorizedUser) return;
 
+    if (!current.lockedStatus.canOverride(status)) {
+      return;
+    }
+
     _current = AuthorizedUser(lockedStatus: status);
     _controller.add(_current);
   }

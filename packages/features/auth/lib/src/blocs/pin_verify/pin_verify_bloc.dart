@@ -17,7 +17,7 @@ class PinVerifyBloc extends Bloc<PinVerifyEvent, PinVerifyState> {
     );
   }
 
-  final LocalAuthServices _localAuth;
+  final LocalAuthService _localAuth;
   final AuthSetLockedStatusUseCase _setLockedStatus;
 
   Future<void> _onPinSubmitted(_PinSubmitted event, Emitter<PinVerifyState> emit) async {

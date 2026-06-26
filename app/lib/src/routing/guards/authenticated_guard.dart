@@ -19,20 +19,21 @@ final class AuthenticatedGuard extends RedirectGuard {
   @override
   GuardResult redirect(BuildContext context, GoRouterState state) {
     final path = state.matchedLocation;
+    final info = _authBloc.state.info;
 
-    return _authBloc.state.map(
-      restoring: (_) =>
-          path == AppRoutes.restoring ? const GuardStop() : const GuardRedirect(AppRoutes.restoring),
-      unauthenticated: (_) =>
-          path == AppRoutes.setupPin ? const GuardStop() : const GuardRedirect(AppRoutes.setupPin),
-      authenticated: (s) {
-        final info = s.info;
-        final unlocked = info is AuthorizedUser && info.lockedStatus == UserLockedStatus.unlocked;
-        if (!unlocked) return const GuardNext();
+    return switch (info) {
+      RestoringUser() =>
+        path == AppRoutes.restoring ? const GuardStop() : const GuardRedirect(AppRoutes.restoring),
+      UnauthorizedUser() =>
+        path == AppRoutes.setupPin ? const GuardStop() : const GuardRedirect(AppRoutes.setupPin),
+      AuthorizedUser(:final lockedStatus) => _onAuthorized(lockedStatus, path),
+    };
+  }
 
-        final onEntryScreen = path == AppRoutes.restoring || path == AppRoutes.setupPin;
-        return onEntryScreen ? const GuardRedirect(AppRoutes.candidatesList) : const GuardNext();
-      },
-    );
+  GuardResult _onAuthorized(UserLockedStatus lockedStatus, String path) {
+    if (lockedStatus != UserLockedStatus.unlocked) return const GuardNext();
+
+    final onEntryScreen = path == AppRoutes.restoring || path == AppRoutes.setupPin;
+    return onEntryScreen ? const GuardRedirect(AppRoutes.candidatesList) : const GuardNext();
   }
 }

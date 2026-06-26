@@ -34,6 +34,8 @@ class _AuthScopeState extends State<AuthScope> {
   void initState() {
     super.initState();
 
+    _repository = GetIt.I.get<AuthRepository>();
+
     _bloc = AuthStatusBloc(
       watchAuthStatus: GetIt.I.get<WatchAuthStatusUseCase>(),
       setLockedStatus: GetIt.I.get<AuthSetLockedStatusUseCase>(),

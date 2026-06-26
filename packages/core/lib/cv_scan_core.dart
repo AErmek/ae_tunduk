@@ -7,6 +7,7 @@ export 'src/contracts/has_api_key.dart';
 export 'src/contracts/persisted_column.dart';
 export 'src/errors/failure.dart';
 export 'src/exceptions/app_exception.dart';
+export 'src/extensions/string_extension.dart';
 export 'src/routing/routing.dart';
 export 'src/utils/exponential_backoff.dart';
 export 'src/utils/stream_combine.dart';

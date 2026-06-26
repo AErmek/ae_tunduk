@@ -13,7 +13,7 @@ class AuthStatusBloc extends Bloc<AuthStatusEvent, AuthStatusState> {
     required WatchAuthStatusUseCase watchAuthStatus,
     required this._setLockedStatus,
     required this._restoreStatus,
-  }) : super(const AuthStatusState.restoring()) {
+  }) : super(const AuthStatusState(RestoringUser())) {
     on<AuthStatusEvent>(
       (event, emit) => switch (event) {
         _AuthStatusRestored() => _onRestored(event, emit),
@@ -38,11 +38,7 @@ class AuthStatusBloc extends Bloc<AuthStatusEvent, AuthStatusState> {
       _setLockedStatus(event.status);
 
   void _onChanged(_AuthStatusChanged event, Emitter<AuthStatusState> emit) {
-    emit(switch (event.info) {
-      RestoringUser() => const AuthStatusState.restoring(),
-      AuthorizedUser() => AuthStatusState.authenticated(event.info),
-      UnauthorizedUser() => const AuthStatusState.unauthenticated(),
-    });
+    emit(AuthStatusState(event.info));
   }
 
   @override

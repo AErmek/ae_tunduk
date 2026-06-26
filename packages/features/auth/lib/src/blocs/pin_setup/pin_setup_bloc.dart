@@ -17,7 +17,7 @@ class PinSetupBloc extends Bloc<PinSetupEvent, PinSetupState> {
     );
   }
 
-  final LocalAuthServices _localAuth;
+  final LocalAuthService _localAuth;
   final SetAuthenticatedUseCase _setAuthenticated;
 
   String? _firstPin;

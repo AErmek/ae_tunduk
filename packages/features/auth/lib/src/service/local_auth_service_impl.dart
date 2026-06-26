@@ -6,10 +6,9 @@ import 'package:crypto/crypto.dart';
 import 'package:cv_scan_domain/cv_scan_domain.dart';
 import 'package:feature_auth/src/local/pin_columns.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
-import 'package:local_auth/local_auth.dart';
 
-class LocalAuthServiceImpl implements LocalAuthServices {
-  LocalAuthServiceImpl({required FlutterSecureStorage secureStorage, required this._localAuth})
+class LocalAuthServiceImpl implements LocalAuthService {
+  LocalAuthServiceImpl({required FlutterSecureStorage secureStorage, required this._bioAuthenticator})
     : _pinHash = PinHashColumn(secureStorage: secureStorage),
       _pinSalt = PinSaltColumn(secureStorage: secureStorage),
       _biometricEnabled = BiometricEnabledColumn(secureStorage: secureStorage);
@@ -17,7 +16,7 @@ class LocalAuthServiceImpl implements LocalAuthServices {
   final PinHashColumn _pinHash;
   final PinSaltColumn _pinSalt;
   final BiometricEnabledColumn _biometricEnabled;
-  final LocalAuthentication _localAuth;
+  final BiometricAuthenticator _bioAuthenticator;
 
   @override
   Future<bool> hasPin() async => (await _pinHash.read()) != null;
@@ -39,8 +38,8 @@ class LocalAuthServiceImpl implements LocalAuthServices {
 
   @override
   Future<bool> canUseBiometric() async {
-    final available = await _localAuth.canCheckBiometrics;
-    final supported = await _localAuth.isDeviceSupported();
+    final available = await _bioAuthenticator.canCheckBiometrics;
+    final supported = await _bioAuthenticator.isDeviceSupported();
     return available && supported;
   }
 
@@ -51,10 +50,8 @@ class LocalAuthServiceImpl implements LocalAuthServices {
   Future<bool> isBiometricEnabled() async => (await _biometricEnabled.read()) == 'true';
 
   @override
-  Future<bool> authenticateWithBiometric() => _localAuth.authenticate(
-    localizedReason: 'Войдите для доступа к CV-Scan',
-    options: const AuthenticationOptions(biometricOnly: true),
-  );
+  Future<bool> authenticateWithBiometric() =>
+      _bioAuthenticator.authenticate(localizedReason: 'Войдите для доступа к CV-Scan');
 
   String _generateSalt() {
     final bytes = Uint8List(16);

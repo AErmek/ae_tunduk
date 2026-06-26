@@ -1,4 +1,5 @@
 export 'src/di/domain_module.dart';
+export 'src/di/domain_package_module.module.dart';
 export 'src/entities/candidate.dart';
 export 'src/entities/candidate_change.dart';
 export 'src/entities/page.dart';
@@ -13,8 +14,9 @@ export 'src/errors/server_failure.dart';
 export 'src/models/user_auth_info.dart';
 export 'src/repositories/auth_repository.dart';
 export 'src/repositories/candidate_repository.dart';
+export 'src/services/biometric_authenticator.dart';
 export 'src/services/biometric_service.dart';
-export 'src/services/local_auth_services.dart';
+export 'src/services/local_auth_service.dart';
 export 'src/services/pin_service.dart';
 export 'src/usecases/auth/auth_restore_usecase.dart';
 export 'src/usecases/auth/auth_set_locked_status_usecase.dart';
