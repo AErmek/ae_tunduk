@@ -19,9 +19,7 @@ mixin RouterStateMixin<T extends StatefulWidget> on State<T> {
   void initState() {
     authBloc = AuthScope.blocOf(context);
 
-    _authListenable = StreamToListenable(
-      authBloc.stream.distinct((previous, next) => next.routerDistinct(previous)),
-    );
+    _authListenable = StreamToListenable(authBloc.stream.distinct((previous, next) => next.routerDistinct(previous)));
 
     router = GoRouter(
       navigatorKey: rootNavigatorKey,

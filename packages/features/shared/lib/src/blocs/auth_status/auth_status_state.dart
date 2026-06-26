@@ -6,5 +6,5 @@ abstract class AuthStatusState with _$AuthStatusState {
 
   const AuthStatusState._();
 
-  bool routerDistinct(AuthStatusState previous) => info != previous.info;
+  bool routerDistinct(AuthStatusState previous) => info == previous.info;
 }
