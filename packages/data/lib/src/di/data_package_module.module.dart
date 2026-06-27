@@ -21,6 +21,7 @@ class CvScanDataPackageModule extends _i526.MicroPackageModule {
     final authModule = _$AuthModule();
     gh.singleton<_i558.FlutterSecureStorage>(() => dataModule.secureStorage);
     gh.singleton<_i755.AppDatabase>(() => dataModule.database);
+    gh.singleton<_i490.NetworkMonitor>(() => dataModule.networkMonitor());
     gh.singleton<_i490.BiometricAuthenticator>(
         () => authModule.biometricAuthenticator);
     gh.singleton<_i755.CandidatesDao>(
@@ -31,8 +32,10 @@ class CvScanDataPackageModule extends _i526.MicroPackageModule {
           gh<_i558.FlutterSecureStorage>(),
           gh<_i490.BiometricAuthenticator>(),
         ));
-    gh.lazySingleton<_i361.Dio>(
-        () => dataModule.dio(gh<_i755.CandidatesDao>()));
+    gh.lazySingleton<_i361.Dio>(() => dataModule.dio(
+          gh<_i755.CandidatesDao>(),
+          gh<_i490.NetworkMonitor>(),
+        ));
     gh.lazySingleton<_i755.CandidateLocalDataSource>(
         () => dataModule.candidateLocalDataSource(
               gh<_i755.CandidatesDao>(),

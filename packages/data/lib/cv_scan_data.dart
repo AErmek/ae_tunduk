@@ -11,6 +11,7 @@ export 'src/local/database/app_database.dart';
 export 'src/local/database/database_factory.dart';
 export 'src/local/secure_storage/meta.dart';
 // export 'src/local/secure_storage/secure_storage_column.dart';
+export 'src/network/network_monitor_impl.dart';
 export 'src/remote/dio_factory.dart';
 export 'src/remote/generated/api/api_client.dart';
 export 'src/repositories/auth_repository_impl.dart';

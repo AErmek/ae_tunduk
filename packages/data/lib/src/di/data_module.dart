@@ -18,8 +18,12 @@ abstract class DataModule {
   @singleton
   OutboxDao outboxDao(AppDatabase db) => db.outboxDao;
 
+  @Singleton(as: NetworkMonitor)
+  NetworkMonitorImpl networkMonitor() => NetworkMonitorImpl();
+
   @lazySingleton
-  Dio dio(CandidatesDao candidatesDao) => DioFactory.create(candidatesDao: candidatesDao);
+  Dio dio(CandidatesDao candidatesDao, NetworkMonitor networkMonitor) =>
+      DioFactory.create(candidatesDao: candidatesDao, networkMonitor: networkMonitor);
 
   @lazySingleton
   ApiClient apiClient(Dio dio) => ApiClient(dio);

@@ -17,6 +17,7 @@ export 'src/repositories/candidate_repository.dart';
 export 'src/services/biometric_authenticator.dart';
 export 'src/services/biometric_service.dart';
 export 'src/services/local_auth_service.dart';
+export 'src/services/network_monitor.dart';
 export 'src/services/pin_service.dart';
 export 'src/usecases/auth/auth_restore_usecase.dart';
 export 'src/usecases/auth/auth_set_locked_status_usecase.dart';
