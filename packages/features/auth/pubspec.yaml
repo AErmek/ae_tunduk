@@ -13,6 +13,8 @@ dependencies:
     path: ../../domain
   shared:
     path: ../shared
+  cv_scan_ui_kit:
+    path: ../../ui_kit
   flutter_bloc: ^9.1.0
   get_it: ^9.2.1
   freezed_annotation: ^3.1.0

@@ -5,8 +5,8 @@ import 'package:shared/src/widget/main/main_navigation_bar.dart';
 import 'package:shared/src/widget/main/main_navigation_bar_item.dart';
 
 final _items = <MainNavigationBarItemParam>[
-  MainNavigationBarItemParam(icon: AppIcons.candidates, label: (s) => s.mainScreen_tabCandidates),
-  MainNavigationBarItemParam(icon: AppIcons.settings, label: (s) => s.mainScreen_tabSettings),
+  MainNavigationBarItemParam(icon: AppIcons.candidates, label: (s) => s.navCandidates),
+  MainNavigationBarItemParam(icon: AppIcons.settings, label: (s) => s.navSettings),
 ];
 
 class MainScreen extends StatefulWidget {

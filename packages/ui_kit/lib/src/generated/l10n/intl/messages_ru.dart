@@ -26,10 +26,16 @@ class MessageLookup extends MessageLookupByLibrary {
     "authBiometricPrompt": MessageLookupByLibrary.simpleMessage(
       "Войдите с помощью биометрии",
     ),
+    "authBiometricSubtitle": MessageLookupByLibrary.simpleMessage(
+      "Использовать биометрию для входа?",
+    ),
+    "authBiometricTitle": MessageLookupByLibrary.simpleMessage(
+      "Биометрическая аутентификация",
+    ),
     "authPinSubtitle": MessageLookupByLibrary.simpleMessage(
       "Для входа в приложение",
     ),
-    "authPinTitle": MessageLookupByLibrary.simpleMessage("Введите PIN"),
+    "authPinTitle": MessageLookupByLibrary.simpleMessage("Введите PIN-код"),
     "candidateDetailContacts": MessageLookupByLibrary.simpleMessage("Контакты"),
     "candidateDetailExperience": MessageLookupByLibrary.simpleMessage(
       "Опыт работы",
@@ -51,17 +57,21 @@ class MessageLookup extends MessageLookupByLibrary {
       "Поиск по имени...",
     ),
     "candidatesTitle": MessageLookupByLibrary.simpleMessage("Кандидаты"),
+    "confirmPinTitle": MessageLookupByLibrary.simpleMessage(
+      "Подтвердите PIN-код",
+    ),
+    "createPinTitle": MessageLookupByLibrary.simpleMessage("Создайте PIN-код"),
     "errorGeneral": MessageLookupByLibrary.simpleMessage("Что-то пошло не так"),
     "errorNetwork": MessageLookupByLibrary.simpleMessage(
       "Нет подключения к сети",
     ),
     "errorRetry": MessageLookupByLibrary.simpleMessage("Повторить"),
-    "mainScreen_tabCandidates": MessageLookupByLibrary.simpleMessage(
-      "Кандидаты",
-    ),
-    "mainScreen_tabSettings": MessageLookupByLibrary.simpleMessage("Настройки"),
     "navCandidates": MessageLookupByLibrary.simpleMessage("Кандидаты"),
     "navSettings": MessageLookupByLibrary.simpleMessage("Настройки"),
+    "no": MessageLookupByLibrary.simpleMessage("Нет"),
+    "pinMismatchError": MessageLookupByLibrary.simpleMessage(
+      "PIN не совпадает, попробуйте снова",
+    ),
     "settingsLogout": MessageLookupByLibrary.simpleMessage("Выйти"),
     "settingsLogoutConfirmCancel": MessageLookupByLibrary.simpleMessage(
       "Отмена",
@@ -74,5 +84,6 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "settingsLogoutConfirmTitle": MessageLookupByLibrary.simpleMessage("Выход"),
     "settingsTitle": MessageLookupByLibrary.simpleMessage("Настройки"),
+    "yes": MessageLookupByLibrary.simpleMessage("Да"),
   };
 }

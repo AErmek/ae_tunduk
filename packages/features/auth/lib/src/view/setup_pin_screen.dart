@@ -1,3 +1,4 @@
+import 'package:cv_scan_ui_kit/ui_kit.dart';
 import 'package:feature_auth/src/blocs/pin_setup/pin_setup_bloc.dart';
 import 'package:feature_auth/src/widgets/pin_body.dart';
 import 'package:flutter/material.dart';
@@ -28,15 +29,13 @@ class _SetupPinView extends StatelessWidget {
     },
     builder: (context, state) => Scaffold(
       body: PinBody(
-        title: 'CV-Scan',
+        title: context.t.appTitle,
         autofocus: true,
-        subtitle: state.when(
-          awaitingFirst: () => 'Создайте PIN-код',
-          awaitingConfirmation: () => 'Повторите PIN-код',
-          mismatch: () => 'Создайте PIN-код',
-          biometricPrompt: () => 'Создайте PIN-код',
+        subtitle: state.maybeWhen(
+          awaitingConfirmation: () => context.t.confirmPinTitle,
+          orElse: () => context.t.createPinTitle,
         ),
-        errorText: state.maybeWhen(mismatch: () => 'PIN не совпадает, попробуйте снова', orElse: () => null),
+        errorText: state.maybeWhen(mismatch: () => context.t.pinMismatchError, orElse: () => null),
         onCompleted: (pin) => context.read<PinSetupBloc>().add(PinSetupEvent.pinSubmitted(pin)),
       ),
     ),
@@ -46,11 +45,11 @@ class _SetupPinView extends StatelessWidget {
       await showDialog<bool>(
         context: context,
         builder: (ctx) => AlertDialog(
-          title: const Text('Биометрия'),
-          content: const Text('Использовать биометрию для входа?'),
+          title: Text(context.t.authBiometricTitle),
+          content: Text(context.t.authBiometricSubtitle),
           actions: [
-            TextButton(onPressed: () => Navigator.of(ctx).pop(false), child: const Text('Нет')),
-            FilledButton(onPressed: () => Navigator.of(ctx).pop(true), child: const Text('Да')),
+            TextButton(onPressed: () => Navigator.of(ctx).pop(false), child: Text(context.t.no)),
+            FilledButton(onPressed: () => Navigator.of(ctx).pop(true), child: Text(context.t.yes)),
           ],
         ),
       ) ??

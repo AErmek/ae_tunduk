@@ -23,9 +23,14 @@
   "errorGeneral": "Что-то пошло не так",
   "errorNetwork": "Нет подключения к сети",
   "errorRetry": "Повторить",
-  "authPinTitle": "Введите PIN",
+  "authPinTitle": "Введите PIN-код",
   "authPinSubtitle": "Для входа в приложение",
   "authBiometricPrompt": "Войдите с помощью биометрии",
-  "mainScreen_tabCandidates": "Кандидаты",
-  "mainScreen_tabSettings": "Настройки"
+  "createPinTitle": "Создайте PIN-код",
+  "confirmPinTitle": "Подтвердите PIN-код",
+  "pinMismatchError": "PIN не совпадает, попробуйте снова",
+  "authBiometricTitle": "Биометрическая аутентификация",
+  "authBiometricSubtitle": "Использовать биометрию для входа?",
+  "yes": "Да",
+  "no": "Нет"
 }

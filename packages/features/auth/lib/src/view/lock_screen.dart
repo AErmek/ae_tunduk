@@ -1,3 +1,4 @@
+import 'package:cv_scan_ui_kit/ui_kit.dart';
 import 'package:feature_auth/src/blocs/pin_verify/pin_verify_bloc.dart';
 import 'package:feature_auth/src/widgets/pin_body.dart';
 import 'package:flutter/material.dart';
@@ -24,15 +25,15 @@ class _LockView extends StatelessWidget {
     child: Scaffold(
       body: BlocBuilder<PinVerifyBloc, PinVerifyState>(
         builder: (context, state) => PinBody(
-          title: 'CV-Scan',
-          subtitle: 'Введите PIN-код',
+          title: context.t.authPinTitle,
+          subtitle: context.t.authPinSubtitle,
           autofocus: false,
           errorText: state.maybeWhen(error: (message) => message, orElse: () => null),
           onCompleted: (pin) => context.read<PinVerifyBloc>().add(PinVerifyEvent.pinSubmitted(pin)),
           footer: TextButton.icon(
             onPressed: () => context.read<PinVerifyBloc>().add(const PinVerifyEvent.biometricRequested()),
             icon: const Icon(Icons.fingerprint),
-            label: const Text('Войти по биометрии'),
+            label: Text(context.t.authBiometricPrompt),
           ),
         ),
       ),

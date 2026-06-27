@@ -254,10 +254,10 @@ class Translations {
     return Intl.message('Повторить', name: 'errorRetry', desc: '', args: []);
   }
 
-  /// `Введите PIN`
+  /// `Введите PIN-код`
   String get authPinTitle {
     return Intl.message(
-      'Введите PIN',
+      'Введите PIN-код',
       name: 'authPinTitle',
       desc: '',
       args: [],
@@ -284,24 +284,64 @@ class Translations {
     );
   }
 
-  /// `Кандидаты`
-  String get mainScreen_tabCandidates {
+  /// `Создайте PIN-код`
+  String get createPinTitle {
     return Intl.message(
-      'Кандидаты',
-      name: 'mainScreen_tabCandidates',
+      'Создайте PIN-код',
+      name: 'createPinTitle',
       desc: '',
       args: [],
     );
   }
 
-  /// `Настройки`
-  String get mainScreen_tabSettings {
+  /// `Подтвердите PIN-код`
+  String get confirmPinTitle {
     return Intl.message(
-      'Настройки',
-      name: 'mainScreen_tabSettings',
+      'Подтвердите PIN-код',
+      name: 'confirmPinTitle',
       desc: '',
       args: [],
     );
+  }
+
+  /// `PIN не совпадает, попробуйте снова`
+  String get pinMismatchError {
+    return Intl.message(
+      'PIN не совпадает, попробуйте снова',
+      name: 'pinMismatchError',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Биометрическая аутентификация`
+  String get authBiometricTitle {
+    return Intl.message(
+      'Биометрическая аутентификация',
+      name: 'authBiometricTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Использовать биометрию для входа?`
+  String get authBiometricSubtitle {
+    return Intl.message(
+      'Использовать биометрию для входа?',
+      name: 'authBiometricSubtitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Да`
+  String get yes {
+    return Intl.message('Да', name: 'yes', desc: '', args: []);
+  }
+
+  /// `Нет`
+  String get no {
+    return Intl.message('Нет', name: 'no', desc: '', args: []);
   }
 }
 
