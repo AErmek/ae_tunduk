@@ -19,5 +19,5 @@ class CandidateDetailRoute extends GoRouteData with $CandidateDetailRoute {
   final String id;
 
   @override
-  Widget build(BuildContext context, GoRouterState state) => CandidateDetailPage(id: id);
+  Widget build(BuildContext context, GoRouterState state) => CandidateDetailScreen(id: id);
 }
