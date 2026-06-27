@@ -102,7 +102,7 @@ class SyncSchedulerImpl implements SyncScheduler {
       }
       _attempt = 0;
       _emit(const SyncIdle());
-    } catch (error) {
+    } on Object catch (error) {
       _emit(SyncFailed(_asFailure(error)));
       _scheduleRetry();
     } finally {
