@@ -7,20 +7,20 @@ class BottomLoader extends StatelessWidget {
   final bool loading;
   final bool hasMore;
 
+  static const double height = _height + 8;
+
+  static const double _height = 24;
+
   @override
   Widget build(BuildContext context) {
     if (loading) {
-      return const Padding(
-        padding: EdgeInsets.all(16),
-        child: Center(child: CircularProgressIndicator()),
+      return const Center(
+        child: SizedBox(width: BottomLoader._height, height: BottomLoader._height, child: CircularProgressIndicator()),
       );
     }
     if (!hasMore) {
-      return Padding(
-        padding: const EdgeInsets.all(16),
-        child: Center(child: Text(context.t.candidatesListNoMoreCandidates)),
-      );
+      return Center(child: Text(context.t.candidatesListNoMoreCandidates));
     }
-    return const SizedBox(height: 24);
+    return const SizedBox(height: BottomLoader.height);
   }
 }

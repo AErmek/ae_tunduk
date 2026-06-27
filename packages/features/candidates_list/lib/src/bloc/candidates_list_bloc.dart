@@ -91,19 +91,19 @@ class CandidatesListBloc extends Bloc<CandidatesListEvent, CandidatesListState> 
 
   void _onVerdictChanged(_VerdictChanged event, Emitter<CandidatesListState> emit) {
     final filter = state.filter.copyWith(verdict: event.verdict, resetVerdict: event.verdict == null).firstPage();
-    emit(state.copyWith(filter: filter));
+    emit(state.copyWith(filter: filter, hasMore: true));
     _resubscribe(filter);
   }
 
   Future<void> _onQueryChanged(_QueryChanged event, Emitter<CandidatesListState> emit) async {
     final filter = state.filter.copyWith(query: event.query).firstPage();
-    emit(state.copyWith(filter: filter));
+    emit(state.copyWith(filter: filter, hasMore: true));
     _resubscribe(filter);
   }
 
   void _onSortChanged(_SortChanged event, Emitter<CandidatesListState> emit) {
     final filter = state.filter.copyWith(sort: event.sort).firstPage();
-    emit(state.copyWith(filter: filter));
+    emit(state.copyWith(filter: filter, hasMore: true));
     _resubscribe(filter);
   }
 

@@ -6,3 +6,4 @@ export 'src/view/main_screen.dart';
 export 'src/view/settings_screen.dart';
 export 'src/widget/app_lifecycle_mixin.dart';
 export 'src/widget/auth_scope.dart';
+export 'src/widget/scroll/infinite_scroll_observer_mixin.dart';
