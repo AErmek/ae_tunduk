@@ -4,6 +4,7 @@ import 'package:feature_candidates_list/src/widgets/bottom_loader.dart';
 import 'package:feature_candidates_list/src/widgets/candidate_tile.dart';
 import 'package:feature_candidates_list/src/widgets/offline_banner.dart';
 import 'package:feature_candidates_list/src/widgets/search_field.dart';
+import 'package:feature_candidates_list/src/widgets/sort_menu.dart';
 import 'package:feature_candidates_list/src/widgets/verdict_filter.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -43,7 +44,10 @@ class _CandidatesListViewState extends State<_CandidatesListView> with InfiniteS
 
   @override
   Widget build(BuildContext context) => Scaffold(
-    appBar: AppBar(title: Text(context.t.candidatesTitle)),
+    appBar: AppBar(
+      title: Text(context.t.candidatesTitle),
+      actions: [SortMenu(onChanged: (sort) => _bloc.add(CandidatesListEvent.sortChanged(sort)))],
+    ),
     body: SafeArea(
       child: Column(
         children: [

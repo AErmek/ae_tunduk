@@ -159,6 +159,46 @@ class Translations {
     );
   }
 
+  /// `Сортировка`
+  String get candidatesSortLabel {
+    return Intl.message(
+      'Сортировка',
+      name: 'candidatesSortLabel',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `По имени`
+  String get candidatesSortByName {
+    return Intl.message(
+      'По имени',
+      name: 'candidatesSortByName',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `По опыту`
+  String get candidatesSortByExperience {
+    return Intl.message(
+      'По опыту',
+      name: 'candidatesSortByExperience',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `По дате добавления`
+  String get candidatesSortByDateAdded {
+    return Intl.message(
+      'По дате добавления',
+      name: 'candidatesSortByDateAdded',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Новый`
   String get candidateVerdictNew {
     return Intl.message(

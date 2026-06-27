@@ -93,6 +93,14 @@ class MessageLookup extends MessageLookupByLibrary {
     "candidatesSearchHint": MessageLookupByLibrary.simpleMessage(
       "Поиск по имени или позиции",
     ),
+    "candidatesSortByDateAdded": MessageLookupByLibrary.simpleMessage(
+      "По дате добавления",
+    ),
+    "candidatesSortByExperience": MessageLookupByLibrary.simpleMessage(
+      "По опыту",
+    ),
+    "candidatesSortByName": MessageLookupByLibrary.simpleMessage("По имени"),
+    "candidatesSortLabel": MessageLookupByLibrary.simpleMessage("Сортировка"),
     "candidatesTitle": MessageLookupByLibrary.simpleMessage("Кандидаты"),
     "confirmPinTitle": MessageLookupByLibrary.simpleMessage(
       "Подтвердите PIN-код",
