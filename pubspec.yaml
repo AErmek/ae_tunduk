@@ -16,7 +16,7 @@ workspace:
   - packages/features/candidate_detail
 
 dev_dependencies:
-  melos: ^7.8.2
+  melos: 7.8.1
 
 melos:
   scripts:
