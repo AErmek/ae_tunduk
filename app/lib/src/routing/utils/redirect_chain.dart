@@ -9,15 +9,13 @@ final class RedirectChain {
 
   String? call(BuildContext context, GoRouterState state) {
     for (final guard in _guards) {
-      if (!guard.routeMatcher.matches(state.matchedLocation)) {
+      if (!guard.routeMatcher.matches(state)) {
         continue;
       }
 
-      final result = guard.redirect(context, state);
-
-      switch (result) {
+      switch (guard.redirect(state)) {
         case GuardRedirect(:final location):
-          return location;
+          return location == state.uri.toString() ? null : location;
         case GuardStop():
           return null;
         case GuardNext():
@@ -30,6 +28,19 @@ final class RedirectChain {
 
 abstract base class RedirectGuard {
   const RedirectGuard();
+
   RouteMatcher get routeMatcher;
-  GuardResult redirect(BuildContext context, GoRouterState state);
+
+  GuardResult redirect(GoRouterState state);
+
+  /// Redirects to [to] while stashing the requested location, so a deep link
+  /// can be resumed once the gate clears.
+  GuardResult redirectPreserving(String to, GoRouterState state) =>
+      GuardRedirect('$to?from=${Uri.encodeComponent(state.uri.toString())}');
+
+  /// The location stashed by [redirectPreserving], if any.
+  String? resumeTarget(GoRouterState state) {
+    final from = state.uri.queryParameters['from'];
+    return from == null || from.isEmpty ? null : from;
+  }
 }

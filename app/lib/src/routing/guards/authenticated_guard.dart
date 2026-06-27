@@ -1,37 +1,39 @@
+import 'package:cv_scan_app/src/routing/routes/app_routes_meta.dart';
 import 'package:cv_scan_app/src/routing/utils/redirect_chain.dart';
 import 'package:cv_scan_domain/cv_scan_domain.dart';
 import 'package:cv_scan_ui_kit/ui_kit.dart';
-import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:shared/shared.dart';
 
 /// Session gate: keeps unauthenticated users on the entry screens and bounces
-/// them back into the app once a session exists. Lock screens are excluded —
-/// they belong to the downstream lock guards.
+/// them back into the app once a session exists. The lock screen is excluded —
+/// it belongs to the downstream lock guards.
 final class AuthenticatedGuard extends RedirectGuard {
   const AuthenticatedGuard(this._authBloc);
 
   final AuthStatusBloc _authBloc;
 
   @override
-  RouteMatcher get routeMatcher => const PathExcludeMatcher([AppRoutes.lock]);
+  RouteMatcher get routeMatcher => ~PathMatcher([const LockRoute().location]);
 
   @override
-  GuardResult redirect(BuildContext context, GoRouterState state) {
+  GuardResult redirect(GoRouterState state) {
     final path = state.matchedLocation;
-    final info = _authBloc.state.info;
 
-    return switch (info) {
-      RestoringUser() => path == AppRoutes.restoring ? const GuardStop() : const GuardRedirect(AppRoutes.restoring),
-      UnauthorizedUser() => path == AppRoutes.setupPin ? const GuardStop() : const GuardRedirect(AppRoutes.setupPin),
+    return switch (_authBloc.state.info) {
+      RestoringUser() => _pinTo(const RestoringRoute().location, path),
+      UnauthorizedUser() => _pinTo(const SetupPinRoute().location, path),
       AuthorizedUser(:final lockedStatus) => _onAuthorized(lockedStatus, path),
     };
   }
 
+  GuardResult _pinTo(String target, String path) =>
+      path == target ? const GuardStop() : GuardRedirect(target);
+
   GuardResult _onAuthorized(UserLockedStatus lockedStatus, String path) {
     if (lockedStatus != UserLockedStatus.unlocked) return const GuardNext();
 
-    final onEntryScreen = path == AppRoutes.restoring || path == AppRoutes.setupPin;
-    return onEntryScreen ? const GuardRedirect(AppRoutes.candidatesList) : const GuardNext();
+    final onEntryScreen = path == const RestoringRoute().location || path == const SetupPinRoute().location;
+    return onEntryScreen ? GuardRedirect(const CandidatesRoute().location) : const GuardNext();
   }
 }

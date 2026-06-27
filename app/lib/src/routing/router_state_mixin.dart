@@ -1,3 +1,4 @@
+import 'package:cv_scan_app/src/routing/app_router_impl.dart';
 import 'package:cv_scan_app/src/routing/guards/authenticated_guard.dart';
 import 'package:cv_scan_app/src/routing/guards/cold_start_guard.dart';
 import 'package:cv_scan_app/src/routing/navigator_keys.dart';
@@ -10,6 +11,7 @@ import 'package:shared/shared.dart';
 
 mixin RouterStateMixin<T extends StatefulWidget> on State<T> {
   late final GoRouter router;
+  late final AppRouter appRouter;
   late final AuthStatusBloc authBloc;
   late StreamToListenable<AuthStatusState> _authListenable;
 
@@ -26,6 +28,8 @@ mixin RouterStateMixin<T extends StatefulWidget> on State<T> {
       refreshListenable: _authListenable,
       redirect: RedirectChain([AuthenticatedGuard(authBloc), ColdStartGuard(authBloc)]).call,
     );
+
+    appRouter = AppRouterImpl(router);
 
     super.initState();
   }
