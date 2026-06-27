@@ -3,7 +3,7 @@ import 'dart:math';
 import 'dart:typed_data';
 
 import 'package:crypto/crypto.dart';
-import 'package:cv_scan_data/src/auth/pin_columns.dart';
+import 'package:cv_scan_data/src/services/auth/pin_columns.dart';
 import 'package:cv_scan_domain/cv_scan_domain.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 

@@ -1,6 +1,6 @@
 import 'package:cv_scan_domain/cv_scan_domain.dart';
-import 'package:feature_candidates_list/src/widget/status_badge.dart';
-import 'package:feature_candidates_list/src/widget/verdict_badge.dart';
+import 'package:feature_candidates_list/src/widgets/status_badge.dart';
+import 'package:feature_candidates_list/src/widgets/verdict_badge.dart';
 import 'package:flutter/material.dart';
 
 class CandidateTile extends StatelessWidget {

@@ -8,8 +8,8 @@ import 'package:cv_scan_data/src/remote/generated/models/sync_request_changes.da
 import 'package:cv_scan_data/src/remote/generated/models/sync_request_changes_status_status.dart';
 import 'package:cv_scan_data/src/remote/generated/models/sync_response.dart';
 import 'package:cv_scan_data/src/remote/mappers/candidate_mapper.dart';
-import 'package:cv_scan_data/src/sync/conflict_resolution.dart';
-import 'package:cv_scan_data/src/sync/conflict_resolver.dart';
+import 'package:cv_scan_data/src/services/sync/conflict_resolution.dart';
+import 'package:cv_scan_data/src/services/sync/conflict_resolver.dart';
 import 'package:cv_scan_domain/cv_scan_domain.dart';
 import 'package:dio/dio.dart';
 import 'package:drift/drift.dart';

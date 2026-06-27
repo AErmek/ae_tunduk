@@ -1,10 +1,10 @@
 import 'package:cv_scan_ui_kit/ui_kit.dart';
 import 'package:feature_candidates_list/src/bloc/candidates_list_bloc.dart';
-import 'package:feature_candidates_list/src/widget/bottom_loader.dart';
-import 'package:feature_candidates_list/src/widget/candidate_tile.dart';
-import 'package:feature_candidates_list/src/widget/offline_banner.dart';
-import 'package:feature_candidates_list/src/widget/search_field.dart';
-import 'package:feature_candidates_list/src/widget/verdict_filter.dart';
+import 'package:feature_candidates_list/src/widgets/bottom_loader.dart';
+import 'package:feature_candidates_list/src/widgets/candidate_tile.dart';
+import 'package:feature_candidates_list/src/widgets/offline_banner.dart';
+import 'package:feature_candidates_list/src/widgets/search_field.dart';
+import 'package:feature_candidates_list/src/widgets/verdict_filter.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';

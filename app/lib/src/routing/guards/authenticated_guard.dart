@@ -1,5 +1,4 @@
 import 'package:cv_scan_app/src/routing/routes/app_routes_meta.dart';
-import 'package:cv_scan_app/src/routing/utils/redirect_chain.dart';
 import 'package:cv_scan_domain/cv_scan_domain.dart';
 import 'package:cv_scan_ui_kit/ui_kit.dart';
 import 'package:go_router/go_router.dart';
@@ -27,8 +26,7 @@ final class AuthenticatedGuard extends RedirectGuard {
     };
   }
 
-  GuardResult _pinTo(String target, String path) =>
-      path == target ? const GuardStop() : GuardRedirect(target);
+  GuardResult _pinTo(String target, String path) => path == target ? const GuardStop() : GuardRedirect(target);
 
   GuardResult _onAuthorized(UserLockedStatus lockedStatus, String path) {
     if (lockedStatus != UserLockedStatus.unlocked) return const GuardNext();

@@ -1,10 +1,10 @@
 import 'package:cv_scan_domain/cv_scan_domain.dart';
 import 'package:cv_scan_ui_kit/ui_kit.dart';
 import 'package:feature_candidate_detail/src/bloc/candidate_detail_bloc.dart';
-import 'package:feature_candidate_detail/src/widget/contacts_section.dart';
-import 'package:feature_candidate_detail/src/widget/info_section.dart';
-import 'package:feature_candidate_detail/src/widget/note_editor.dart';
-import 'package:feature_candidate_detail/src/widget/status_selector.dart';
+import 'package:feature_candidate_detail/src/widgets/contacts_section.dart';
+import 'package:feature_candidate_detail/src/widgets/info_section.dart';
+import 'package:feature_candidate_detail/src/widgets/note_editor.dart';
+import 'package:feature_candidate_detail/src/widgets/status_selector.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
@@ -34,9 +34,9 @@ class _CandidateDetailView extends StatelessWidget {
 
   void _onState(BuildContext context, CandidateDetailState state) {
     if (state.save.isFailTriggered) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text(state.save.failure?.message ?? context.t.candidateDetailSaveError)),
-      );
+      ScaffoldMessenger.of(
+        context,
+      ).showSnackBar(SnackBar(content: Text(state.save.failure?.message ?? context.t.candidateDetailSaveError)));
     }
     if (state.share.isDoneTriggered) {
       final link = state.share.data;
@@ -105,7 +105,10 @@ class _Content extends StatelessWidget {
                 child: Text(summary, style: theme.textTheme.bodyMedium),
               ),
             if (candidate.exp case final exp? when exp.isNotEmpty)
-              InfoSection(title: context.t.candidateDetailExperience, child: _Rows(rows: exp)),
+              InfoSection(
+                title: context.t.candidateDetailExperience,
+                child: _Rows(rows: exp),
+              ),
             if (candidate.stack case final stack?)
               InfoSection(
                 title: context.t.candidateDetailSkills,
@@ -117,9 +120,15 @@ class _Content extends StatelessWidget {
                 child: Text(edu, style: theme.textTheme.bodyMedium),
               ),
             if (candidate.criteria case final criteria? when criteria.isNotEmpty)
-              InfoSection(title: context.t.candidateDetailCriteria, child: _Rows(rows: criteria)),
+              InfoSection(
+                title: context.t.candidateDetailCriteria,
+                child: _Rows(rows: criteria),
+              ),
             if (candidate.questions case final questions? when questions.isNotEmpty)
-              InfoSection(title: context.t.candidateDetailQuestions, child: _Bullets(items: questions)),
+              InfoSection(
+                title: context.t.candidateDetailQuestions,
+                child: _Bullets(items: questions),
+              ),
             ContactsSection(candidate: candidate),
             NoteEditor(
               note: candidate.note,

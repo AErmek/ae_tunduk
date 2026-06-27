@@ -1,6 +1,6 @@
 import 'package:cv_scan_domain/cv_scan_domain.dart';
 import 'package:cv_scan_ui_kit/ui_kit.dart';
-import 'package:feature_candidate_detail/src/widget/info_section.dart';
+import 'package:feature_candidate_detail/src/widgets/info_section.dart';
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -13,7 +13,8 @@ class ContactsSection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final rows = <Widget>[
-      if (candidate.email case final email?) _ContactRow(icon: Icons.email_outlined, value: email, uri: 'mailto:$email'),
+      if (candidate.email case final email?)
+        _ContactRow(icon: Icons.email_outlined, value: email, uri: 'mailto:$email'),
       if (candidate.phone case final phone?) _ContactRow(icon: Icons.phone_outlined, value: phone, uri: 'tel:$phone'),
       if (candidate.tg case final tg?)
         _ContactRow(icon: Icons.send_outlined, value: tg, uri: 'https://t.me/${tg.replaceFirst('@', '')}'),

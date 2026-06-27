@@ -1,4 +1,4 @@
-import 'package:cv_scan_domain/src/services/sync_scheduler.dart';
+import 'package:cv_scan_domain/src/services/sync/sync_scheduler.dart';
 
 /// Requests an immediate sync (manual pull-to-sync). Orchestration — passes,
 /// retries, deduplication — is the scheduler's responsibility.

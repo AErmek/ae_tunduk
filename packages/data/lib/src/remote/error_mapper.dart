@@ -2,6 +2,7 @@ import 'package:cv_scan_core/cv_scan_core.dart';
 import 'package:cv_scan_domain/cv_scan_domain.dart';
 import 'package:dio/dio.dart';
 
+//TODO recheck
 /// Translates Dio transport/HTTP failures into domain [Failure]s so Dio never
 /// leaks past the data layer.
 Failure mapDioError(Object error) {

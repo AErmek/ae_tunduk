@@ -1,5 +1,5 @@
 import 'package:cv_scan_ui_kit/ui_kit.dart';
-import 'package:feature_candidate_detail/src/widget/info_section.dart';
+import 'package:feature_candidate_detail/src/widgets/info_section.dart';
 import 'package:flutter/material.dart';
 
 /// Free-form reviewer note. Submits only when the text actually changed, so an
@@ -55,10 +55,7 @@ class _NoteEditorState extends State<NoteEditor> {
           minLines: 3,
           maxLines: 6,
           onChanged: (_) => setState(() {}),
-          decoration: InputDecoration(
-            hintText: context.t.candidateDetailNoteHint,
-            border: const OutlineInputBorder(),
-          ),
+          decoration: InputDecoration(hintText: context.t.candidateDetailNoteHint, border: const OutlineInputBorder()),
         ),
         const SizedBox(height: 8),
         FilledButton.tonalIcon(

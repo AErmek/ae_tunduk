@@ -1,4 +1,4 @@
-import 'package:cv_scan_data/src/sync/conflict_resolution.dart';
+import 'package:cv_scan_data/src/services/sync/conflict_resolution.dart';
 import 'package:cv_scan_domain/cv_scan_domain.dart';
 
 class ConflictResolver {

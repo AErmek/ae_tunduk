@@ -1,5 +1,5 @@
 import 'package:cv_scan_domain/src/entities/sync_snapshot.dart';
-import 'package:cv_scan_domain/src/services/sync_scheduler.dart';
+import 'package:cv_scan_domain/src/services/sync/sync_scheduler.dart';
 
 class WatchSyncSnapshotUseCase {
   const WatchSyncSnapshotUseCase(this._scheduler);
