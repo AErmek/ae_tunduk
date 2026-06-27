@@ -11,7 +11,8 @@
   "settingsLogoutConfirmConfirm": "Выйти",
   "candidatesTitle": "Кандидаты",
   "candidatesEmpty": "Кандидаты не найдены",
-  "candidatesSearchHint": "Поиск по имени...",
+  "candidatesListNoMoreCandidates": "Это все кандидаты",
+  "candidatesSearchHint": "Поиск по имени или позиции",
   "candidateVerdictNew": "Новый",
   "candidateVerdictShortlisted": "В шортлисте",
   "candidateVerdictRejected": "Отказ",
@@ -32,5 +33,6 @@
   "authBiometricTitle": "Биометрическая аутентификация",
   "authBiometricSubtitle": "Использовать биометрию для входа?",
   "yes": "Да",
-  "no": "Нет"
+  "no": "Нет",
+  "noNetworkShownSavedData": "Нет сети — показаны сохранённые данные"
 }

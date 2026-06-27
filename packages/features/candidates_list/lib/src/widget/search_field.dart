@@ -1,3 +1,4 @@
+import 'package:cv_scan_ui_kit/ui_kit.dart';
 import 'package:flutter/material.dart';
 
 class SearchField extends StatelessWidget {
@@ -10,10 +11,10 @@ class SearchField extends StatelessWidget {
     padding: const EdgeInsets.fromLTRB(16, 12, 16, 4),
     child: TextField(
       onChanged: onChanged,
-      decoration: const InputDecoration(
-        prefixIcon: Icon(Icons.search),
-        hintText: 'Поиск по имени или позиции',
-        border: OutlineInputBorder(),
+      decoration: InputDecoration(
+        prefixIcon: const Icon(Icons.search),
+        hintText: context.t.candidatesSearchHint,
+        border: const OutlineInputBorder(),
         isDense: true,
       ),
     ),

@@ -1,3 +1,4 @@
+import 'package:cv_scan_ui_kit/ui_kit.dart';
 import 'package:flutter/material.dart';
 
 class BottomLoader extends StatelessWidget {
@@ -15,9 +16,9 @@ class BottomLoader extends StatelessWidget {
       );
     }
     if (!hasMore) {
-      return const Padding(
-        padding: EdgeInsets.all(16),
-        child: Center(child: Text('Это все кандидаты')),
+      return Padding(
+        padding: const EdgeInsets.all(16),
+        child: Center(child: Text(context.t.candidatesListNoMoreCandidates)),
       );
     }
     return const SizedBox(height: 24);

@@ -54,7 +54,7 @@ class _CandidatesListViewState extends State<_CandidatesListView> {
 
   @override
   Widget build(BuildContext context) => Scaffold(
-    appBar: AppBar(title: const Text('Кандидаты')),
+    appBar: AppBar(title: Text(context.t.candidatesTitle)),
     body: Column(
       children: [
         SearchField(onChanged: (q) => _bloc.add(CandidatesListEvent.queryChanged(q))),
@@ -74,7 +74,7 @@ class _CandidatesListViewState extends State<_CandidatesListView> {
                 return const Center(child: CircularProgressIndicator());
               }
               if (state.items.isEmpty) {
-                return const Center(child: Text('Кандидатов нет'));
+                return Center(child: Text(context.t.candidatesEmpty));
               }
               return RefreshIndicator(
                 onRefresh: () async {

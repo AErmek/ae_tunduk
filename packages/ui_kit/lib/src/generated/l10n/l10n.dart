@@ -139,6 +139,16 @@ class Translations {
     );
   }
 
+  /// `Это все кандидаты`
+  String get candidatesListNoMoreCandidates {
+    return Intl.message(
+      'Это все кандидаты',
+      name: 'candidatesListNoMoreCandidates',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Поиск по имени...`
   String get candidatesSearchHint {
     return Intl.message(
@@ -342,6 +352,16 @@ class Translations {
   /// `Нет`
   String get no {
     return Intl.message('Нет', name: 'no', desc: '', args: []);
+  }
+
+  /// `Нет сети — показаны сохранённые данные`
+  String get noNetworkShownSavedData {
+    return Intl.message(
+      'Нет сети — показаны сохранённые данные',
+      name: 'noNetworkShownSavedData',
+      desc: '',
+      args: [],
+    );
   }
 }
 

@@ -53,6 +53,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "candidatesEmpty": MessageLookupByLibrary.simpleMessage(
       "Кандидаты не найдены",
     ),
+    "candidatesListNoMoreCandidates": MessageLookupByLibrary.simpleMessage(
+      "Это все кандидаты",
+    ),
     "candidatesSearchHint": MessageLookupByLibrary.simpleMessage(
       "Поиск по имени...",
     ),
@@ -69,6 +72,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "navCandidates": MessageLookupByLibrary.simpleMessage("Кандидаты"),
     "navSettings": MessageLookupByLibrary.simpleMessage("Настройки"),
     "no": MessageLookupByLibrary.simpleMessage("Нет"),
+    "noNetworkShownSavedData": MessageLookupByLibrary.simpleMessage(
+      "Нет сети — показаны сохранённые данные",
+    ),
     "pinMismatchError": MessageLookupByLibrary.simpleMessage(
       "PIN не совпадает, попробуйте снова",
     ),
