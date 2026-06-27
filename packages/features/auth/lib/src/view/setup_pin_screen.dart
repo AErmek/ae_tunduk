@@ -1,3 +1,4 @@
+import 'package:cv_scan_core/cv_scan_core.dart';
 import 'package:cv_scan_ui_kit/ui_kit.dart';
 import 'package:feature_auth/src/blocs/pin_setup/pin_setup_bloc.dart';
 import 'package:feature_auth/src/widgets/pin_body.dart';
@@ -31,6 +32,7 @@ class _SetupPinView extends StatelessWidget {
       body: PinBody(
         title: context.t.appTitle,
         autofocus: true,
+        pinLength: Config.i.app.pinCodeLength,
         subtitle: state.maybeWhen(
           awaitingConfirmation: () => context.t.confirmPinTitle,
           orElse: () => context.t.createPinTitle,

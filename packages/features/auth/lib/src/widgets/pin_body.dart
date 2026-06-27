@@ -6,10 +6,10 @@ class PinBody extends StatefulWidget {
     required this.title,
     required this.subtitle,
     required this.onCompleted,
+    required this.pinLength,
     super.key,
     this.errorText,
     this.footer,
-    this.pinLength = 4,
     this.autofocus = true,
   });
 

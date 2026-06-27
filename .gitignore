@@ -56,3 +56,6 @@ app.*.map.json
 
 # AI assistant config
 CLAUDE.md
+# Environment config (dart-define-from-file) — keep only *.example.json
+/app/config/*.json
+!/app/config/*.example.json

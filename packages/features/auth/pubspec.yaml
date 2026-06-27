@@ -9,6 +9,8 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  cv_scan_core:
+    path: ../../core
   cv_scan_domain:
     path: ../../domain
   shared:

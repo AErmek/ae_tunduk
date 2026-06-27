@@ -1,3 +1,4 @@
+import 'package:cv_scan_core/cv_scan_core.dart';
 import 'package:cv_scan_ui_kit/ui_kit.dart';
 import 'package:feature_auth/src/blocs/pin_verify/pin_verify_bloc.dart';
 import 'package:feature_auth/src/widgets/pin_body.dart';
@@ -27,6 +28,7 @@ class _LockView extends StatelessWidget {
         builder: (context, state) => PinBody(
           title: context.t.authPinTitle,
           subtitle: context.t.authPinSubtitle,
+          pinLength: Config.i.app.pinCodeLength,
           autofocus: false,
           errorText: state.maybeWhen(error: (message) => message, orElse: () => null),
           onCompleted: (pin) => context.read<PinVerifyBloc>().add(PinVerifyEvent.pinSubmitted(pin)),
