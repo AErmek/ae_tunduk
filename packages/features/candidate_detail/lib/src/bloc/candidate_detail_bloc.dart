@@ -64,8 +64,10 @@ class CandidateDetailBloc extends Bloc<CandidateDetailEvent, CandidateDetailStat
         await _fetchCandidate(_id);
       } on Failure catch (failure) {
         if (state.candidate == null) emit(state.copyWith(load: RequestStatus<int>.failTrigger(failure)));
-      } catch (_) {
+      } on Object catch (_) {
         if (state.candidate == null) emit(state.copyWith(load: const RequestStatus<int>.failTrigger(UnknownFailure())));
+      } finally {
+        if (state.candidate == null) emit(state.copyWith(load: const RequestStatus<int>.idle()));
       }
     }
   }
@@ -93,8 +95,10 @@ class CandidateDetailBloc extends Bloc<CandidateDetailEvent, CandidateDetailStat
       emit(state.copyWith(save: const RequestStatus<int>.done()));
     } on Failure catch (failure) {
       emit(state.copyWith(save: RequestStatus<int>.failTrigger(failure)));
-    } catch (_) {
+    } on Object catch (_) {
       emit(state.copyWith(save: const RequestStatus<int>.failTrigger(UnknownFailure())));
+    } finally {
+      emit(state.copyWith(save: const RequestStatus<int>.idle()));
     }
   }
 
@@ -109,5 +113,6 @@ class CandidateDetailBloc extends Bloc<CandidateDetailEvent, CandidateDetailStat
     if (candidate == null) return;
     final link = Config.i.app.shareCandidateUrl(candidate.id);
     emit(state.copyWith(share: RequestStatus<String>.doneTrigger(link)));
+    emit(state.copyWith(share: const RequestStatus<String>.idle()));
   }
 }

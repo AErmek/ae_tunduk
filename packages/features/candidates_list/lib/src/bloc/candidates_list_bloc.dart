@@ -80,8 +80,15 @@ class CandidatesListBloc extends Bloc<CandidatesListEvent, CandidatesListState> 
       );
     } on Failure catch (failure) {
       emit(_withOpFailure(refresh: refresh, failure: failure));
-    } catch (_) {
+    } on Object catch (_) {
       emit(_withOpFailure(refresh: refresh, failure: const UnknownFailure()));
+    } finally {
+      emit(
+        state.copyWith(
+          loadMore: refresh ? state.loadMore : const RequestStatus<int>.idle(),
+          refresh: refresh ? const RequestStatus<int>.idle() : state.refresh,
+        ),
+      );
     }
   }
 
