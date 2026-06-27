@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class CandidatesListScreen extends StatelessWidget {
-  const CandidatesListScreen({super.key});
+class SettingsScreen extends StatelessWidget {
+  const SettingsScreen({super.key});
 
   @override
   Widget build(BuildContext context) => Scaffold(
@@ -10,7 +10,7 @@ class CandidatesListScreen extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         mainAxisSize: MainAxisSize.min,
         spacing: 8,
-        children: [const Text('Candidates'), TextFormField()],
+        children: [const Text('Settings'), TextFormField()],
       ),
     ),
   );

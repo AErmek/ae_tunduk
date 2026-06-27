@@ -17,19 +17,13 @@ class LockOverlayWrapper extends StatelessWidget {
       final curr = current.info;
       if (prev is! AuthorizedUser || curr is! AuthorizedUser) return false;
       return prev.lockedStatus != curr.lockedStatus &&
-          (prev.lockedStatus == UserLockedStatus.overlay ||
-              curr.lockedStatus == UserLockedStatus.overlay);
+          (prev.lockedStatus == UserLockedStatus.overlay || curr.lockedStatus == UserLockedStatus.overlay);
     },
     builder: (context, state) {
       final info = state.info;
       final isOverlay = info is AuthorizedUser && info.lockedStatus == UserLockedStatus.overlay;
 
-      return Stack(
-        children: [
-          child,
-          if (isOverlay) const _LockNavigator(),
-        ],
-      );
+      return Stack(children: [child, if (isOverlay) const _LockNavigator()]);
     },
   );
 }
@@ -40,6 +34,6 @@ class _LockNavigator extends StatelessWidget {
   @override
   Widget build(BuildContext context) => Navigator(
     onDidRemovePage: (_) {},
-    pages: const [MaterialPage(child: LockPage())],
+    pages: const [MaterialPage(child: LockScreen())],
   );
 }

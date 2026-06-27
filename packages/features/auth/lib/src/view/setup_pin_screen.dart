@@ -4,8 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
 
-class SetupPinPage extends StatelessWidget {
-  const SetupPinPage({super.key});
+class SetupPinScreen extends StatelessWidget {
+  const SetupPinScreen({super.key});
 
   @override
   Widget build(BuildContext context) => BlocProvider(
@@ -35,10 +35,7 @@ class _SetupPinView extends StatelessWidget {
           mismatch: () => 'Создайте PIN-код',
           biometricPrompt: () => 'Создайте PIN-код',
         ),
-        errorText: state.maybeWhen(
-          mismatch: () => 'PIN не совпадает, попробуйте снова',
-          orElse: () => null,
-        ),
+        errorText: state.maybeWhen(mismatch: () => 'PIN не совпадает, попробуйте снова', orElse: () => null),
         onCompleted: (pin) => context.read<PinSetupBloc>().add(PinSetupEvent.pinSubmitted(pin)),
       ),
     ),
