@@ -4,7 +4,7 @@ import 'package:cv_scan_domain/cv_scan_domain.dart';
 /// drift, and applies pending changes (overlay) on reads — speaks only in
 /// domain types.
 abstract interface class CandidateLocalDataSource {
-  Stream<List<Candidate>> watchCandidates({
+  Stream<List<CandidateLight>> watchCandidates({
     required int limit,
     CandidateVerdict? verdict,
     String? query,

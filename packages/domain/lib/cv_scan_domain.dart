@@ -2,6 +2,7 @@ export 'src/di/domain_module.dart';
 export 'src/di/domain_package_module.module.dart';
 export 'src/entities/candidate.dart';
 export 'src/entities/candidate_change.dart';
+export 'src/entities/candidate_light.dart';
 export 'src/entities/candidates_filter.dart';
 export 'src/entities/page.dart';
 export 'src/entities/sync_conflict.dart';

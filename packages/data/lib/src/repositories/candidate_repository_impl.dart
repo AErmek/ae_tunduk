@@ -13,7 +13,7 @@ class CandidateRepositoryImpl implements CandidateRepository {
   final CandidateSyncEngine _syncEngine;
 
   @override
-  Stream<List<Candidate>> watchCandidates(CandidatesFilter filter) => _local.watchCandidates(
+  Stream<List<CandidateLight>> watchCandidates(CandidatesFilter filter) => _local.watchCandidates(
     limit: filter.limit,
     verdict: filter.verdict,
     query: filter.query,
@@ -24,12 +24,16 @@ class CandidateRepositoryImpl implements CandidateRepository {
   Stream<Candidate?> watchCandidate(String id) => _local.watchCandidate(id);
 
   @override
-  Future<Page<Candidate>> fetchCandidates(CandidatesFilter filter) async {
+  Future<Page<CandidateLight>> fetchCandidates(CandidatesFilter filter) async {
     final remotePage = await _remote.fetchCandidates(page: filter.page, size: filter.size);
     await _local.cacheCandidates(remotePage.items);
 
-    final cached = await _local.getCandidates();
-    return Page(items: cached, page: remotePage.page, size: remotePage.size, total: remotePage.total);
+    return Page(
+      items: remotePage.items.map((c) => c.toLight()).toList(),
+      page: remotePage.page,
+      size: remotePage.size,
+      total: remotePage.total,
+    );
   }
 
   @override

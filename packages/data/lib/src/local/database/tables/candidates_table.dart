@@ -27,6 +27,10 @@ class CandidatesTable extends Table {
   TextColumn get note => text().nullable()();
   DateTimeColumn get dateAdded => dateTime().named('date_added').nullable()();
 
+  /// Lowercased name + position for Unicode-aware, case-insensitive search
+  /// (SQLite LIKE only folds ASCII; names are Cyrillic). Filled in Dart.
+  TextColumn get searchIndex => text().named('search_index').withDefault(const Constant(''))();
+
   @override
   Set<Column> get primaryKey => {id};
 }

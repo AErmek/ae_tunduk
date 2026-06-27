@@ -14,7 +14,7 @@ class CandidateLocalDataSourceImpl implements CandidateLocalDataSource {
   final OutboxDao _outboxDao;
 
   @override
-  Stream<List<Candidate>> watchCandidates({
+  Stream<List<CandidateLight>> watchCandidates({
     required int limit,
     CandidateVerdict? verdict,
     String? query,
@@ -25,7 +25,7 @@ class CandidateLocalDataSourceImpl implements CandidateLocalDataSource {
       _outboxDao.watchPending(),
       _applyOverlay,
     );
-    return overlaid.map(mapRows);
+    return overlaid.map(mapLightRows);
   }
 
   @override

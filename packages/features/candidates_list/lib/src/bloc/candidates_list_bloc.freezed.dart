@@ -137,7 +137,7 @@ return onlineChanged(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function()?  started,TResult Function()?  nextPageRequested,TResult Function()?  refreshed,TResult Function( CandidateVerdict? verdict)?  verdictChanged,TResult Function( String query)?  queryChanged,TResult Function( SortField sort)?  sortChanged,TResult Function( List<Candidate> items)?  candidatesUpdated,TResult Function( bool isOnline)?  onlineChanged,required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function()?  started,TResult Function()?  nextPageRequested,TResult Function()?  refreshed,TResult Function( CandidateVerdict? verdict)?  verdictChanged,TResult Function( String query)?  queryChanged,TResult Function( SortField sort)?  sortChanged,TResult Function( List<CandidateLight> items)?  candidatesUpdated,TResult Function( bool isOnline)?  onlineChanged,required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _Started() when started != null:
 return started();case _NextPageRequested() when nextPageRequested != null:
@@ -165,7 +165,7 @@ return onlineChanged(_that.isOnline);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function()  started,required TResult Function()  nextPageRequested,required TResult Function()  refreshed,required TResult Function( CandidateVerdict? verdict)  verdictChanged,required TResult Function( String query)  queryChanged,required TResult Function( SortField sort)  sortChanged,required TResult Function( List<Candidate> items)  candidatesUpdated,required TResult Function( bool isOnline)  onlineChanged,}) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function()  started,required TResult Function()  nextPageRequested,required TResult Function()  refreshed,required TResult Function( CandidateVerdict? verdict)  verdictChanged,required TResult Function( String query)  queryChanged,required TResult Function( SortField sort)  sortChanged,required TResult Function( List<CandidateLight> items)  candidatesUpdated,required TResult Function( bool isOnline)  onlineChanged,}) {final _that = this;
 switch (_that) {
 case _Started():
 return started();case _NextPageRequested():
@@ -189,7 +189,7 @@ return onlineChanged(_that.isOnline);}
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function()?  started,TResult? Function()?  nextPageRequested,TResult? Function()?  refreshed,TResult? Function( CandidateVerdict? verdict)?  verdictChanged,TResult? Function( String query)?  queryChanged,TResult? Function( SortField sort)?  sortChanged,TResult? Function( List<Candidate> items)?  candidatesUpdated,TResult? Function( bool isOnline)?  onlineChanged,}) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function()?  started,TResult? Function()?  nextPageRequested,TResult? Function()?  refreshed,TResult? Function( CandidateVerdict? verdict)?  verdictChanged,TResult? Function( String query)?  queryChanged,TResult? Function( SortField sort)?  sortChanged,TResult? Function( List<CandidateLight> items)?  candidatesUpdated,TResult? Function( bool isOnline)?  onlineChanged,}) {final _that = this;
 switch (_that) {
 case _Started() when started != null:
 return started();case _NextPageRequested() when nextPageRequested != null:
@@ -505,11 +505,11 @@ as SortField,
 
 
 class _CandidatesUpdated implements CandidatesListEvent {
-  const _CandidatesUpdated(final  List<Candidate> items): _items = items;
+  const _CandidatesUpdated(final  List<CandidateLight> items): _items = items;
   
 
- final  List<Candidate> _items;
- List<Candidate> get items {
+ final  List<CandidateLight> _items;
+ List<CandidateLight> get items {
   if (_items is EqualUnmodifiableListView) return _items;
   // ignore: implicit_dynamic_type
   return EqualUnmodifiableListView(_items);
@@ -546,7 +546,7 @@ abstract mixin class _$CandidatesUpdatedCopyWith<$Res> implements $CandidatesLis
   factory _$CandidatesUpdatedCopyWith(_CandidatesUpdated value, $Res Function(_CandidatesUpdated) _then) = __$CandidatesUpdatedCopyWithImpl;
 @useResult
 $Res call({
- List<Candidate> items
+ List<CandidateLight> items
 });
 
 
@@ -566,7 +566,7 @@ class __$CandidatesUpdatedCopyWithImpl<$Res>
 @pragma('vm:prefer-inline') $Res call({Object? items = null,}) {
   return _then(_CandidatesUpdated(
 null == items ? _self._items : items // ignore: cast_nullable_to_non_nullable
-as List<Candidate>,
+as List<CandidateLight>,
   ));
 }
 
@@ -642,7 +642,7 @@ as bool,
 /// @nodoc
 mixin _$CandidatesListState {
 
- List<Candidate> get items; CandidatesFilter get filter; bool get hasMore; bool get isOnline; RequestStatus<int> get loadMore; RequestStatus<int> get refresh;
+ List<CandidateLight> get items; CandidatesFilter get filter; bool get hasMore; bool get isOnline; RequestStatus<int> get loadMore; RequestStatus<int> get refresh;
 /// Create a copy of CandidatesListState
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -673,7 +673,7 @@ abstract mixin class $CandidatesListStateCopyWith<$Res>  {
   factory $CandidatesListStateCopyWith(CandidatesListState value, $Res Function(CandidatesListState) _then) = _$CandidatesListStateCopyWithImpl;
 @useResult
 $Res call({
- List<Candidate> items, CandidatesFilter filter, bool hasMore, bool isOnline, RequestStatus<int> loadMore, RequestStatus<int> refresh
+ List<CandidateLight> items, CandidatesFilter filter, bool hasMore, bool isOnline, RequestStatus<int> loadMore, RequestStatus<int> refresh
 });
 
 
@@ -693,7 +693,7 @@ class _$CandidatesListStateCopyWithImpl<$Res>
 @pragma('vm:prefer-inline') @override $Res call({Object? items = null,Object? filter = null,Object? hasMore = null,Object? isOnline = null,Object? loadMore = null,Object? refresh = null,}) {
   return _then(_self.copyWith(
 items: null == items ? _self.items : items // ignore: cast_nullable_to_non_nullable
-as List<Candidate>,filter: null == filter ? _self.filter : filter // ignore: cast_nullable_to_non_nullable
+as List<CandidateLight>,filter: null == filter ? _self.filter : filter // ignore: cast_nullable_to_non_nullable
 as CandidatesFilter,hasMore: null == hasMore ? _self.hasMore : hasMore // ignore: cast_nullable_to_non_nullable
 as bool,isOnline: null == isOnline ? _self.isOnline : isOnline // ignore: cast_nullable_to_non_nullable
 as bool,loadMore: null == loadMore ? _self.loadMore : loadMore // ignore: cast_nullable_to_non_nullable
@@ -801,7 +801,7 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( List<Candidate> items,  CandidatesFilter filter,  bool hasMore,  bool isOnline,  RequestStatus<int> loadMore,  RequestStatus<int> refresh)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( List<CandidateLight> items,  CandidatesFilter filter,  bool hasMore,  bool isOnline,  RequestStatus<int> loadMore,  RequestStatus<int> refresh)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _CandidatesListState() when $default != null:
 return $default(_that.items,_that.filter,_that.hasMore,_that.isOnline,_that.loadMore,_that.refresh);case _:
@@ -822,7 +822,7 @@ return $default(_that.items,_that.filter,_that.hasMore,_that.isOnline,_that.load
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( List<Candidate> items,  CandidatesFilter filter,  bool hasMore,  bool isOnline,  RequestStatus<int> loadMore,  RequestStatus<int> refresh)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( List<CandidateLight> items,  CandidatesFilter filter,  bool hasMore,  bool isOnline,  RequestStatus<int> loadMore,  RequestStatus<int> refresh)  $default,) {final _that = this;
 switch (_that) {
 case _CandidatesListState():
 return $default(_that.items,_that.filter,_that.hasMore,_that.isOnline,_that.loadMore,_that.refresh);case _:
@@ -842,7 +842,7 @@ return $default(_that.items,_that.filter,_that.hasMore,_that.isOnline,_that.load
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( List<Candidate> items,  CandidatesFilter filter,  bool hasMore,  bool isOnline,  RequestStatus<int> loadMore,  RequestStatus<int> refresh)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( List<CandidateLight> items,  CandidatesFilter filter,  bool hasMore,  bool isOnline,  RequestStatus<int> loadMore,  RequestStatus<int> refresh)?  $default,) {final _that = this;
 switch (_that) {
 case _CandidatesListState() when $default != null:
 return $default(_that.items,_that.filter,_that.hasMore,_that.isOnline,_that.loadMore,_that.refresh);case _:
@@ -857,11 +857,11 @@ return $default(_that.items,_that.filter,_that.hasMore,_that.isOnline,_that.load
 
 
 class _CandidatesListState implements CandidatesListState {
-  const _CandidatesListState({final  List<Candidate> items = const <Candidate>[], this.filter = const CandidatesFilter(), this.hasMore = true, this.isOnline = true, this.loadMore = const RequestStatus<int>.idle(), this.refresh = const RequestStatus<int>.idle()}): _items = items;
+  const _CandidatesListState({final  List<CandidateLight> items = const <CandidateLight>[], this.filter = const CandidatesFilter(), this.hasMore = true, this.isOnline = true, this.loadMore = const RequestStatus<int>.idle(), this.refresh = const RequestStatus<int>.idle()}): _items = items;
   
 
- final  List<Candidate> _items;
-@override@JsonKey() List<Candidate> get items {
+ final  List<CandidateLight> _items;
+@override@JsonKey() List<CandidateLight> get items {
   if (_items is EqualUnmodifiableListView) return _items;
   // ignore: implicit_dynamic_type
   return EqualUnmodifiableListView(_items);
@@ -903,7 +903,7 @@ abstract mixin class _$CandidatesListStateCopyWith<$Res> implements $CandidatesL
   factory _$CandidatesListStateCopyWith(_CandidatesListState value, $Res Function(_CandidatesListState) _then) = __$CandidatesListStateCopyWithImpl;
 @override @useResult
 $Res call({
- List<Candidate> items, CandidatesFilter filter, bool hasMore, bool isOnline, RequestStatus<int> loadMore, RequestStatus<int> refresh
+ List<CandidateLight> items, CandidatesFilter filter, bool hasMore, bool isOnline, RequestStatus<int> loadMore, RequestStatus<int> refresh
 });
 
 
@@ -923,7 +923,7 @@ class __$CandidatesListStateCopyWithImpl<$Res>
 @override @pragma('vm:prefer-inline') $Res call({Object? items = null,Object? filter = null,Object? hasMore = null,Object? isOnline = null,Object? loadMore = null,Object? refresh = null,}) {
   return _then(_CandidatesListState(
 items: null == items ? _self._items : items // ignore: cast_nullable_to_non_nullable
-as List<Candidate>,filter: null == filter ? _self.filter : filter // ignore: cast_nullable_to_non_nullable
+as List<CandidateLight>,filter: null == filter ? _self.filter : filter // ignore: cast_nullable_to_non_nullable
 as CandidatesFilter,hasMore: null == hasMore ? _self.hasMore : hasMore // ignore: cast_nullable_to_non_nullable
 as bool,isOnline: null == isOnline ? _self.isOnline : isOnline // ignore: cast_nullable_to_non_nullable
 as bool,loadMore: null == loadMore ? _self.loadMore : loadMore // ignore: cast_nullable_to_non_nullable

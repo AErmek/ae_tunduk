@@ -1,4 +1,4 @@
-import 'package:cv_scan_domain/src/entities/candidate.dart';
+import 'package:cv_scan_domain/src/entities/candidate_light.dart';
 import 'package:cv_scan_domain/src/entities/candidates_filter.dart';
 import 'package:cv_scan_domain/src/repositories/candidate_repository.dart';
 
@@ -7,5 +7,5 @@ class GetCandidatesUseCase {
 
   final CandidateRepository _repository;
 
-  Stream<List<Candidate>> call(CandidatesFilter filter) => _repository.watchCandidates(filter);
+  Stream<List<CandidateLight>> call(CandidatesFilter filter) => _repository.watchCandidates(filter);
 }

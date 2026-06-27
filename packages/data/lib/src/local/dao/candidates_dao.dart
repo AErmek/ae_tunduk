@@ -27,8 +27,7 @@ class CandidatesDao extends DatabaseAccessor<AppDatabase> with _$CandidatesDaoMi
 
     final trimmed = query?.trim();
     if (trimmed != null && trimmed.isNotEmpty) {
-      final like = '%$trimmed%';
-      statement.where((t) => t.name.like(like) | t.position.like(like));
+      statement.where((t) => t.searchIndex.like('%${trimmed.toLowerCase()}%'));
     }
 
     statement

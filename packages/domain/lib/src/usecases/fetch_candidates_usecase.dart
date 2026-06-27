@@ -1,4 +1,4 @@
-import 'package:cv_scan_domain/src/entities/candidate.dart';
+import 'package:cv_scan_domain/src/entities/candidate_light.dart';
 import 'package:cv_scan_domain/src/entities/candidates_filter.dart';
 import 'package:cv_scan_domain/src/entities/page.dart';
 import 'package:cv_scan_domain/src/repositories/candidate_repository.dart';
@@ -10,5 +10,5 @@ class FetchCandidatesUseCase {
 
   final CandidateRepository _repository;
 
-  Future<Page<Candidate>> call(CandidatesFilter filter) => _repository.fetchCandidates(filter);
+  Future<Page<CandidateLight>> call(CandidatesFilter filter) => _repository.fetchCandidates(filter);
 }

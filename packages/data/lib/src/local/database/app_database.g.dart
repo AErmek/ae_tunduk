@@ -225,6 +225,18 @@ class $CandidatesTableTable extends CandidatesTable
     type: DriftSqlType.dateTime,
     requiredDuringInsert: false,
   );
+  static const VerificationMeta _searchIndexMeta = const VerificationMeta(
+    'searchIndex',
+  );
+  @override
+  late final GeneratedColumn<String> searchIndex = GeneratedColumn<String>(
+    'search_index',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: false,
+    defaultValue: const Constant(''),
+  );
   @override
   List<GeneratedColumn> get $columns => [
     id,
@@ -249,6 +261,7 @@ class $CandidatesTableTable extends CandidatesTable
     questions,
     note,
     dateAdded,
+    searchIndex,
   ];
   @override
   String get aliasedName => _alias ?? actualTableName;
@@ -401,6 +414,15 @@ class $CandidatesTableTable extends CandidatesTable
         dateAdded.isAcceptableOrUnknown(data['date_added']!, _dateAddedMeta),
       );
     }
+    if (data.containsKey('search_index')) {
+      context.handle(
+        _searchIndexMeta,
+        searchIndex.isAcceptableOrUnknown(
+          data['search_index']!,
+          _searchIndexMeta,
+        ),
+      );
+    }
     return context;
   }
 
@@ -498,6 +520,10 @@ class $CandidatesTableTable extends CandidatesTable
         DriftSqlType.dateTime,
         data['${effectivePrefix}date_added'],
       ),
+      searchIndex: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}search_index'],
+      )!,
     );
   }
 
@@ -531,6 +557,10 @@ class CandidatesTableData extends DataClass
   final String? questions;
   final String? note;
   final DateTime? dateAdded;
+
+  /// Lowercased name + position for Unicode-aware, case-insensitive search
+  /// (SQLite LIKE only folds ASCII; names are Cyrillic). Filled in Dart.
+  final String searchIndex;
   const CandidatesTableData({
     required this.id,
     required this.name,
@@ -554,6 +584,7 @@ class CandidatesTableData extends DataClass
     this.questions,
     this.note,
     this.dateAdded,
+    required this.searchIndex,
   });
   @override
   Map<String, Expression> toColumns(bool nullToAbsent) {
@@ -608,6 +639,7 @@ class CandidatesTableData extends DataClass
     if (!nullToAbsent || dateAdded != null) {
       map['date_added'] = Variable<DateTime>(dateAdded);
     }
+    map['search_index'] = Variable<String>(searchIndex);
     return map;
   }
 
@@ -651,6 +683,7 @@ class CandidatesTableData extends DataClass
       dateAdded: dateAdded == null && nullToAbsent
           ? const Value.absent()
           : Value(dateAdded),
+      searchIndex: Value(searchIndex),
     );
   }
 
@@ -682,6 +715,7 @@ class CandidatesTableData extends DataClass
       questions: serializer.fromJson<String?>(json['questions']),
       note: serializer.fromJson<String?>(json['note']),
       dateAdded: serializer.fromJson<DateTime?>(json['dateAdded']),
+      searchIndex: serializer.fromJson<String>(json['searchIndex']),
     );
   }
   @override
@@ -710,6 +744,7 @@ class CandidatesTableData extends DataClass
       'questions': serializer.toJson<String?>(questions),
       'note': serializer.toJson<String?>(note),
       'dateAdded': serializer.toJson<DateTime?>(dateAdded),
+      'searchIndex': serializer.toJson<String>(searchIndex),
     };
   }
 
@@ -736,6 +771,7 @@ class CandidatesTableData extends DataClass
     Value<String?> questions = const Value.absent(),
     Value<String?> note = const Value.absent(),
     Value<DateTime?> dateAdded = const Value.absent(),
+    String? searchIndex,
   }) => CandidatesTableData(
     id: id ?? this.id,
     name: name ?? this.name,
@@ -759,6 +795,7 @@ class CandidatesTableData extends DataClass
     questions: questions.present ? questions.value : this.questions,
     note: note.present ? note.value : this.note,
     dateAdded: dateAdded.present ? dateAdded.value : this.dateAdded,
+    searchIndex: searchIndex ?? this.searchIndex,
   );
   CandidatesTableData copyWithCompanion(CandidatesTableCompanion data) {
     return CandidatesTableData(
@@ -784,6 +821,9 @@ class CandidatesTableData extends DataClass
       questions: data.questions.present ? data.questions.value : this.questions,
       note: data.note.present ? data.note.value : this.note,
       dateAdded: data.dateAdded.present ? data.dateAdded.value : this.dateAdded,
+      searchIndex: data.searchIndex.present
+          ? data.searchIndex.value
+          : this.searchIndex,
     );
   }
 
@@ -811,7 +851,8 @@ class CandidatesTableData extends DataClass
           ..write('summary: $summary, ')
           ..write('questions: $questions, ')
           ..write('note: $note, ')
-          ..write('dateAdded: $dateAdded')
+          ..write('dateAdded: $dateAdded, ')
+          ..write('searchIndex: $searchIndex')
           ..write(')'))
         .toString();
   }
@@ -840,6 +881,7 @@ class CandidatesTableData extends DataClass
     questions,
     note,
     dateAdded,
+    searchIndex,
   ]);
   @override
   bool operator ==(Object other) =>
@@ -866,7 +908,8 @@ class CandidatesTableData extends DataClass
           other.summary == this.summary &&
           other.questions == this.questions &&
           other.note == this.note &&
-          other.dateAdded == this.dateAdded);
+          other.dateAdded == this.dateAdded &&
+          other.searchIndex == this.searchIndex);
 }
 
 class CandidatesTableCompanion extends UpdateCompanion<CandidatesTableData> {
@@ -892,6 +935,7 @@ class CandidatesTableCompanion extends UpdateCompanion<CandidatesTableData> {
   final Value<String?> questions;
   final Value<String?> note;
   final Value<DateTime?> dateAdded;
+  final Value<String> searchIndex;
   final Value<int> rowid;
   const CandidatesTableCompanion({
     this.id = const Value.absent(),
@@ -916,6 +960,7 @@ class CandidatesTableCompanion extends UpdateCompanion<CandidatesTableData> {
     this.questions = const Value.absent(),
     this.note = const Value.absent(),
     this.dateAdded = const Value.absent(),
+    this.searchIndex = const Value.absent(),
     this.rowid = const Value.absent(),
   });
   CandidatesTableCompanion.insert({
@@ -941,6 +986,7 @@ class CandidatesTableCompanion extends UpdateCompanion<CandidatesTableData> {
     this.questions = const Value.absent(),
     this.note = const Value.absent(),
     this.dateAdded = const Value.absent(),
+    this.searchIndex = const Value.absent(),
     this.rowid = const Value.absent(),
   }) : id = Value(id),
        name = Value(name),
@@ -973,6 +1019,7 @@ class CandidatesTableCompanion extends UpdateCompanion<CandidatesTableData> {
     Expression<String>? questions,
     Expression<String>? note,
     Expression<DateTime>? dateAdded,
+    Expression<String>? searchIndex,
     Expression<int>? rowid,
   }) {
     return RawValuesInsertable({
@@ -998,6 +1045,7 @@ class CandidatesTableCompanion extends UpdateCompanion<CandidatesTableData> {
       if (questions != null) 'questions': questions,
       if (note != null) 'note': note,
       if (dateAdded != null) 'date_added': dateAdded,
+      if (searchIndex != null) 'search_index': searchIndex,
       if (rowid != null) 'rowid': rowid,
     });
   }
@@ -1025,6 +1073,7 @@ class CandidatesTableCompanion extends UpdateCompanion<CandidatesTableData> {
     Value<String?>? questions,
     Value<String?>? note,
     Value<DateTime?>? dateAdded,
+    Value<String>? searchIndex,
     Value<int>? rowid,
   }) {
     return CandidatesTableCompanion(
@@ -1050,6 +1099,7 @@ class CandidatesTableCompanion extends UpdateCompanion<CandidatesTableData> {
       questions: questions ?? this.questions,
       note: note ?? this.note,
       dateAdded: dateAdded ?? this.dateAdded,
+      searchIndex: searchIndex ?? this.searchIndex,
       rowid: rowid ?? this.rowid,
     );
   }
@@ -1123,6 +1173,9 @@ class CandidatesTableCompanion extends UpdateCompanion<CandidatesTableData> {
     if (dateAdded.present) {
       map['date_added'] = Variable<DateTime>(dateAdded.value);
     }
+    if (searchIndex.present) {
+      map['search_index'] = Variable<String>(searchIndex.value);
+    }
     if (rowid.present) {
       map['rowid'] = Variable<int>(rowid.value);
     }
@@ -1154,6 +1207,7 @@ class CandidatesTableCompanion extends UpdateCompanion<CandidatesTableData> {
           ..write('questions: $questions, ')
           ..write('note: $note, ')
           ..write('dateAdded: $dateAdded, ')
+          ..write('searchIndex: $searchIndex, ')
           ..write('rowid: $rowid')
           ..write(')'))
         .toString();
@@ -1783,6 +1837,7 @@ typedef $$CandidatesTableTableCreateCompanionBuilder =
       Value<String?> questions,
       Value<String?> note,
       Value<DateTime?> dateAdded,
+      Value<String> searchIndex,
       Value<int> rowid,
     });
 typedef $$CandidatesTableTableUpdateCompanionBuilder =
@@ -1809,6 +1864,7 @@ typedef $$CandidatesTableTableUpdateCompanionBuilder =
       Value<String?> questions,
       Value<String?> note,
       Value<DateTime?> dateAdded,
+      Value<String> searchIndex,
       Value<int> rowid,
     });
 
@@ -1928,6 +1984,11 @@ class $$CandidatesTableTableFilterComposer
 
   ColumnFilters<DateTime> get dateAdded => $composableBuilder(
     column: $table.dateAdded,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get searchIndex => $composableBuilder(
+    column: $table.searchIndex,
     builder: (column) => ColumnFilters(column),
   );
 }
@@ -2050,6 +2111,11 @@ class $$CandidatesTableTableOrderingComposer
     column: $table.dateAdded,
     builder: (column) => ColumnOrderings(column),
   );
+
+  ColumnOrderings<String> get searchIndex => $composableBuilder(
+    column: $table.searchIndex,
+    builder: (column) => ColumnOrderings(column),
+  );
 }
 
 class $$CandidatesTableTableAnnotationComposer
@@ -2126,6 +2192,11 @@ class $$CandidatesTableTableAnnotationComposer
 
   GeneratedColumn<DateTime> get dateAdded =>
       $composableBuilder(column: $table.dateAdded, builder: (column) => column);
+
+  GeneratedColumn<String> get searchIndex => $composableBuilder(
+    column: $table.searchIndex,
+    builder: (column) => column,
+  );
 }
 
 class $$CandidatesTableTableTableManager
@@ -2187,6 +2258,7 @@ class $$CandidatesTableTableTableManager
                 Value<String?> questions = const Value.absent(),
                 Value<String?> note = const Value.absent(),
                 Value<DateTime?> dateAdded = const Value.absent(),
+                Value<String> searchIndex = const Value.absent(),
                 Value<int> rowid = const Value.absent(),
               }) => CandidatesTableCompanion(
                 id: id,
@@ -2211,6 +2283,7 @@ class $$CandidatesTableTableTableManager
                 questions: questions,
                 note: note,
                 dateAdded: dateAdded,
+                searchIndex: searchIndex,
                 rowid: rowid,
               ),
           createCompanionCallback:
@@ -2237,6 +2310,7 @@ class $$CandidatesTableTableTableManager
                 Value<String?> questions = const Value.absent(),
                 Value<String?> note = const Value.absent(),
                 Value<DateTime?> dateAdded = const Value.absent(),
+                Value<String> searchIndex = const Value.absent(),
                 Value<int> rowid = const Value.absent(),
               }) => CandidatesTableCompanion.insert(
                 id: id,
@@ -2261,6 +2335,7 @@ class $$CandidatesTableTableTableManager
                 questions: questions,
                 note: note,
                 dateAdded: dateAdded,
+                searchIndex: searchIndex,
                 rowid: rowid,
               ),
           withReferenceMapper: (p0) => p0

@@ -197,7 +197,7 @@ class _BottomLoader extends StatelessWidget {
 class _CandidateTile extends StatelessWidget {
   const _CandidateTile({required this.candidate, required this.onTap});
 
-  final Candidate candidate;
+  final CandidateLight candidate;
   final VoidCallback onTap;
 
   @override

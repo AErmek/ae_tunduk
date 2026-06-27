@@ -30,7 +30,7 @@ class CandidatesListBloc extends Bloc<CandidatesListEvent, CandidatesListState> 
   final FetchCandidatesUseCase _fetchCandidates;
   final NetworkMonitor _networkMonitor;
 
-  StreamSubscription<List<Candidate>>? _candidatesSub;
+  StreamSubscription<List<CandidateLight>>? _candidatesSub;
   StreamSubscription<bool>? _onlineSub;
 
   @override

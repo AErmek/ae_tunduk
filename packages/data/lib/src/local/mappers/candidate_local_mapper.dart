@@ -65,7 +65,20 @@ extension CandidateCompanionMapper on Candidate {
     questions: Value(questions != null ? jsonEncode(questions) : null),
     note: Value(note),
     dateAdded: Value(dateAdded),
+    searchIndex: Value('$name $position $posLabel'.toLowerCase()),
   );
 }
 
 List<Candidate> mapRows(List<CandidatesTableData> rows) => rows.map(_mapRow).toList();
+
+CandidateLight _mapLightRow(CandidatesTableData row) => CandidateLight(
+  id: row.id,
+  name: row.name,
+  posLabel: row.posLabel,
+  verdict: CandidateVerdict.byApiKey(row.verdict),
+  verdictTone: CandidateVerdictTone.byApiKey(row.vc),
+  status: CandidateStatus.byApiKey(row.status),
+  version: row.version,
+);
+
+List<CandidateLight> mapLightRows(List<CandidatesTableData> rows) => rows.map(_mapLightRow).toList();

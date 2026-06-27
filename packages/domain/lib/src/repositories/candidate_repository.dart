@@ -1,13 +1,14 @@
 import 'package:cv_scan_domain/src/entities/candidate.dart';
+import 'package:cv_scan_domain/src/entities/candidate_light.dart';
 import 'package:cv_scan_domain/src/entities/candidates_filter.dart';
 import 'package:cv_scan_domain/src/entities/page.dart';
 import 'package:cv_scan_domain/src/entities/sync_result.dart';
 import 'package:cv_scan_domain/src/enums/candidate_status.dart';
 
 abstract interface class CandidateRepository {
-  Stream<List<Candidate>> watchCandidates(CandidatesFilter filter);
+  Stream<List<CandidateLight>> watchCandidates(CandidatesFilter filter);
 
-  Future<Page<Candidate>> fetchCandidates(CandidatesFilter filter);
+  Future<Page<CandidateLight>> fetchCandidates(CandidatesFilter filter);
 
   Stream<Candidate?> watchCandidate(String id);
 
