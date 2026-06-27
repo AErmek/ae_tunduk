@@ -29,13 +29,18 @@ abstract class DataModule {
   @lazySingleton
   ApiClient apiClient(Dio dio) => ApiClient(dio);
 
+  @lazySingleton
+  SyncReconciler syncReconciler(AppDatabase database, CandidatesDao candidatesDao, OutboxDao outboxDao) =>
+      SyncReconciler(
+        db: database,
+        candidatesDao: candidatesDao,
+        outboxDao: outboxDao,
+        strategy: ConflictStrategy.byName(Config.i.api.mockConflictStrategy),
+      );
+
   @LazySingleton(as: SyncEngine)
-  SyncEngineImpl syncEngine(ApiClient apiClient, CandidatesDao candidatesDao, OutboxDao outboxDao) => SyncEngineImpl(
-    apiClient: apiClient,
-    candidatesDao: candidatesDao,
-    outboxDao: outboxDao,
-    strategy: ConflictStrategy.byName(Config.i.api.mockConflictStrategy),
-  );
+  SyncEngineImpl syncEngine(ApiClient apiClient, OutboxDao outboxDao, SyncReconciler reconciler) =>
+      SyncEngineImpl(apiClient: apiClient, outboxDao: outboxDao, reconciler: reconciler);
 
   @Singleton(as: SyncScheduler)
   SyncSchedulerImpl syncScheduler(SyncEngine engine, OutboxDao outboxDao, NetworkMonitor networkMonitor) =>
