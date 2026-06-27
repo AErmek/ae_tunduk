@@ -8,11 +8,7 @@ import 'package:cv_scan_data/src/remote/mock/mock_server_store.dart';
 import 'package:flutter/services.dart';
 
 final class MockServerStoreInitializer {
-  MockServerStoreInitializer({
-    required this.store,
-    required this.candidatesDao,
-    this.assetPath = 'mock/candidates.json',
-  });
+  MockServerStoreInitializer({required this.store, required this.candidatesDao, required this.assetPath});
 
   final MockServerStore store;
   final CandidatesDao candidatesDao;

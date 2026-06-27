@@ -1,1 +1,1 @@
-export 'src/view/candidates_list_page.dart';
+export 'src/view/candidates_list_screen.dart';

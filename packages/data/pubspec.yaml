@@ -39,3 +39,8 @@ dev_dependencies:
   json_serializable: ^6.14.0
   retrofit_generator: ^10.2.7
   drift_dev: 2.34.0
+
+flutter:
+  assets:
+    - assets/mock/candidates.json
+    - assets/mock/candidates-large.json

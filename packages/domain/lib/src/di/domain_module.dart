@@ -5,6 +5,8 @@ import 'package:injectable/injectable.dart';
 abstract class DomainModule {
   GetCandidatesUseCase getCandidates(CandidateRepository repo) => GetCandidatesUseCase(repo);
 
+  FetchCandidatesUseCase fetchCandidates(CandidateRepository repo) => FetchCandidatesUseCase(repo);
+
   GetCandidateUseCase getCandidate(CandidateRepository repo) => GetCandidateUseCase(repo);
 
   UpdateCandidateUseCase updateCandidate(CandidateRepository repo) => UpdateCandidateUseCase(repo);

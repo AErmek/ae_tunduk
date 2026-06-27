@@ -13,26 +13,19 @@ class CandidateRepositoryImpl implements CandidateRepository {
   final CandidateSyncEngine _syncEngine;
 
   @override
-  Stream<List<Candidate>> watchCandidates({
-    required int page,
-    required int size,
-    CandidateVerdict? verdict,
-    String? query,
-    SortField sort = SortField.dateAdded,
-  }) => _local.watchCandidates();
+  Stream<List<Candidate>> watchCandidates(CandidatesFilter filter) => _local.watchCandidates(
+    limit: filter.limit,
+    verdict: filter.verdict,
+    query: filter.query,
+    sort: filter.sort,
+  );
 
   @override
   Stream<Candidate?> watchCandidate(String id) => _local.watchCandidate(id);
 
   @override
-  Future<Page<Candidate>> fetchCandidates({
-    required int page,
-    required int size,
-    CandidateVerdict? verdict,
-    String? query,
-    SortField sort = SortField.dateAdded,
-  }) async {
-    final remotePage = await _remote.fetchCandidates(page: page, size: size);
+  Future<Page<Candidate>> fetchCandidates(CandidatesFilter filter) async {
+    final remotePage = await _remote.fetchCandidates(page: filter.page, size: filter.size);
     await _local.cacheCandidates(remotePage.items);
 
     final cached = await _local.getCandidates();

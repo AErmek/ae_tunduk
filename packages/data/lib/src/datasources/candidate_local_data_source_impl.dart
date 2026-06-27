@@ -14,8 +14,17 @@ class CandidateLocalDataSourceImpl implements CandidateLocalDataSource {
   final OutboxDao _outboxDao;
 
   @override
-  Stream<List<Candidate>> watchCandidates() {
-    final overlaid = combineLatest2(_candidatesDao.watchAll(), _outboxDao.watchPending(), _applyOverlay);
+  Stream<List<Candidate>> watchCandidates({
+    required int limit,
+    CandidateVerdict? verdict,
+    String? query,
+    SortField sort = SortField.dateAdded,
+  }) {
+    final overlaid = combineLatest2(
+      _candidatesDao.watchPage(limit: limit, verdict: verdict, query: query, sort: sort),
+      _outboxDao.watchPending(),
+      _applyOverlay,
+    );
     return overlaid.map(mapRows);
   }
 

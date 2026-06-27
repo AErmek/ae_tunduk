@@ -27,6 +27,7 @@ class DioFactory {
       final initializer = MockServerStoreInitializer(
         store: store,
         candidatesDao: candidatesDao,
+        assetPath: config.mockAssetPath,
       );
       dio.interceptors.addAll([
         OfflineInterceptor(networkMonitor),

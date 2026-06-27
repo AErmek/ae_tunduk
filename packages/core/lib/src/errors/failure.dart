@@ -1,3 +1,3 @@
-abstract interface class Failure {
+abstract interface class Failure implements Exception {
   String get message;
 }

@@ -26,6 +26,8 @@ class CvScanDomainPackageModule extends _i526.MicroPackageModule {
         () => domainModule.authSetLockedStatus(gh<_i490.AuthRepository>()));
     gh.factory<_i490.GetCandidatesUseCase>(
         () => domainModule.getCandidates(gh<_i490.CandidateRepository>()));
+    gh.factory<_i490.FetchCandidatesUseCase>(
+        () => domainModule.fetchCandidates(gh<_i490.CandidateRepository>()));
     gh.factory<_i490.GetCandidateUseCase>(
         () => domainModule.getCandidate(gh<_i490.CandidateRepository>()));
     gh.factory<_i490.UpdateCandidateUseCase>(

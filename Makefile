@@ -14,6 +14,9 @@ gen-ui-kit:
 gen-app:
 	cd app &&fvm flutter pub run build_runner build --delete-conflicting-outputs
 
+gen-shared:
+	cd packages/features/shared && fvm flutter pub run build_runner build --delete-conflicting-outputs
+
 # Deep link testing. Override host/id: make deeplink-android ID=42
 DEEPLINK_HOST ?= cvscan.ae.kg
 ID ?= 1

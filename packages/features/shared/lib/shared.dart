@@ -1,4 +1,5 @@
 export 'src/blocs/auth_status/auth_status_bloc.dart';
+export 'src/state/request_status.dart';
 export 'src/utils/stream_to_listenable.dart';
 export 'src/view/main_screen.dart';
 export 'src/view/settings_screen.dart';
