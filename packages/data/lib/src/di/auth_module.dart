@@ -1,7 +1,7 @@
 import 'package:cv_scan_data/src/services/auth/local_auth_biometric_authenticator.dart';
 import 'package:cv_scan_data/src/services/auth/local_auth_service_impl.dart';
 import 'package:cv_scan_domain/cv_scan_domain.dart';
-import 'package:flutter_secure_storage/flutter_secure_storage.dart';
+import 'package:cv_scan_secure_storage/secure_storage.dart';
 import 'package:injectable/injectable.dart';
 import 'package:local_auth/local_auth.dart';
 
@@ -13,7 +13,7 @@ abstract class AuthModule {
 
   @Singleton(as: LocalAuthService)
   LocalAuthServiceImpl authServices(
-    FlutterSecureStorage secureStorage,
+    SecureStorage secureStorage,
     BiometricAuthenticator biometricAuthenticator,
   ) => LocalAuthServiceImpl(secureStorage: secureStorage, bioAuthenticator: biometricAuthenticator);
 }

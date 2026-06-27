@@ -1,8 +1,3 @@
-import 'package:flutter_secure_storage/flutter_secure_storage.dart';
+import 'package:cv_scan_secure_storage/secure_storage.dart';
 
-FlutterSecureStorage createSecureStorage() =>
-    FlutterSecureStorage(aOptions: _getAndroidOptions(), iOptions: _getIOSOptions());
-
-AndroidOptions _getAndroidOptions() => AndroidOptions.defaultOptions;
-
-IOSOptions _getIOSOptions() => const IOSOptions(accessibility: KeychainAccessibility.first_unlock_this_device);
+SecureStorage createSecureStorage() => CvScanSecureStorage();

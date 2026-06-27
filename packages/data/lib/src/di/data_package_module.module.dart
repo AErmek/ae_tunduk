@@ -9,8 +9,8 @@ import 'package:cv_scan_data/cv_scan_data.dart' as _i755;
 import 'package:cv_scan_data/src/di/auth_module.dart' as _i85;
 import 'package:cv_scan_data/src/di/data_module.dart' as _i814;
 import 'package:cv_scan_domain/cv_scan_domain.dart' as _i490;
+import 'package:cv_scan_secure_storage/secure_storage.dart' as _i642;
 import 'package:dio/dio.dart' as _i361;
-import 'package:flutter_secure_storage/flutter_secure_storage.dart' as _i558;
 import 'package:injectable/injectable.dart' as _i526;
 
 class CvScanDataPackageModule extends _i526.MicroPackageModule {
@@ -19,19 +19,19 @@ class CvScanDataPackageModule extends _i526.MicroPackageModule {
   _i687.FutureOr<void> init(_i526.GetItHelper gh) {
     final dataModule = _$DataModule();
     final authModule = _$AuthModule();
-    gh.singleton<_i558.FlutterSecureStorage>(() => dataModule.secureStorage);
+    gh.singleton<_i642.SecureStorage>(() => dataModule.secureStorage);
     gh.singleton<_i755.AppDatabase>(() => dataModule.database);
     gh.singleton<_i490.BiometricAuthenticator>(
         () => authModule.biometricAuthenticator);
     gh.singleton<_i490.NetworkMonitor>(() => dataModule.networkMonitor());
-    gh.singleton<_i490.LocalAuthService>(() => authModule.authServices(
-          gh<_i558.FlutterSecureStorage>(),
-          gh<_i490.BiometricAuthenticator>(),
-        ));
     gh.singleton<_i755.CandidatesDao>(
         () => dataModule.candidatesDao(gh<_i755.AppDatabase>()));
     gh.singleton<_i755.OutboxDao>(
         () => dataModule.outboxDao(gh<_i755.AppDatabase>()));
+    gh.singleton<_i490.LocalAuthService>(() => authModule.authServices(
+          gh<_i642.SecureStorage>(),
+          gh<_i490.BiometricAuthenticator>(),
+        ));
     gh.singleton<_i490.AuthRepository>(
         () => dataModule.authRepository(gh<_i490.LocalAuthService>()));
     gh.lazySingleton<_i755.SyncReconciler>(() => dataModule.syncReconciler(

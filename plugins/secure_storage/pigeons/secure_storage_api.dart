@@ -4,8 +4,8 @@ import 'package:pigeon/pigeon.dart';
   PigeonOptions(
     dartOut: 'lib/src/messages.g.dart',
     dartOptions: DartOptions(),
-    kotlinOut: 'android/src/main/kotlin/com/cvscan/secure_storage/Messages.g.kt',
-    kotlinOptions: KotlinOptions(package: 'com.cvscan.secure_storage'),
+    kotlinOut: 'android/src/main/kotlin/kg/ae/cv_scan/secure_storage/Messages.g.kt',
+    kotlinOptions: KotlinOptions(package: 'kg.ae.cv_scan.secure_storage'),
     swiftOut: 'ios/secure_storage/Sources/secure_storage/Messages.g.swift',
     swiftOptions: SwiftOptions(),
     dartPackageName: 'cv_scan_secure_storage',

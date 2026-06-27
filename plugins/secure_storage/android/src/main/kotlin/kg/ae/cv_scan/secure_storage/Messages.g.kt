@@ -2,7 +2,7 @@
 // See also: https://pub.dev/packages/pigeon
 @file:Suppress("UNCHECKED_CAST", "ArrayInDataClass")
 
-package com.cvscan.secure_storage
+package kg.ae.cv_scan.secure_storage
 
 import android.util.Log
 import io.flutter.plugin.common.BasicMessageChannel
