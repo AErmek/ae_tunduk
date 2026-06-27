@@ -17,6 +17,9 @@ gen-app:
 gen-shared:
 	cd packages/features/shared && fvm flutter pub run build_runner build --delete-conflicting-outputs
 
+gen-pigeon:
+	cd plugins/secure_storage && fvm dart run pigeon --input pigeons/secure_storage_api.dart
+
 # Deep link testing. Override host/id: make deeplink-android ID=42
 DEEPLINK_HOST ?= cvscan.ae.kg
 ID ?= 1
