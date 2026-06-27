@@ -31,8 +31,6 @@ class CandidateDetailBloc extends Bloc<CandidateDetailEvent, CandidateDetailStat
     on<_ShareRequested>(_onShareRequested);
   }
 
-  static const _deepLinkScheme = 'cvscan';
-
   final String _id;
   final GetCandidateUseCase _getCandidate;
   final FetchCandidateUseCase _fetchCandidate;
@@ -109,7 +107,7 @@ class CandidateDetailBloc extends Bloc<CandidateDetailEvent, CandidateDetailStat
   void _onShareRequested(_ShareRequested event, Emitter<CandidateDetailState> emit) {
     final candidate = state.candidate;
     if (candidate == null) return;
-    final link = '$_deepLinkScheme://candidates/${candidate.id}';
+    final link = Config.i.app.shareCandidateUrl(candidate.id);
     emit(state.copyWith(share: RequestStatus<String>.doneTrigger(link)));
   }
 }

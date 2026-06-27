@@ -1,1 +1,1 @@
-Tunduk test app for senior position
+Tunduk CV Scan App
