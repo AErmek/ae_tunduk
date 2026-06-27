@@ -64,6 +64,12 @@ class CandidateLocalDataSourceImpl implements CandidateLocalDataSource {
     String? note,
   }) => _outboxDao.upsertPending(candidateId: id, baseVersion: version, status: status?.apiKey, note: note);
 
+  @override
+  Future<void> clear() => _candidatesDao.transaction(() async {
+    await _outboxDao.clear();
+    await _candidatesDao.clear();
+  });
+
   /// Overlays the latest pending outbox change per candidate onto mirror rows.
   List<CandidatesTableData> _applyOverlay(List<CandidatesTableData> rows, List<OutboxTableData> pending) {
     if (pending.isEmpty) return rows;

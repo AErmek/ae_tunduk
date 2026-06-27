@@ -53,12 +53,5 @@ class CandidatesDao extends DatabaseAccessor<AppDatabase> with _$CandidatesDaoMi
 
   Future<void> upsert(CandidatesTableCompanion row) => into(candidatesTable).insertOnConflictUpdate(row);
 
-  // Future<void> updateStatusAndNote({required CandidateChange change}) =>
-  //     (update(candidatesTable)..where((t) => t.id.equals(change.id))).write(
-  //       CandidatesTableCompanion(
-  //         status: Value(change.status.apiKey),
-  //         note: Value(change.note),
-  //         version: Value(change.version),
-  //       ),
-  //     );
+  Future<void> clear() => delete(candidatesTable).go();
 }

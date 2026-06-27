@@ -92,6 +92,8 @@ class OutboxDao extends DatabaseAccessor<AppDatabase> with _$OutboxDaoMixin {
   Future<void> deleteForCandidate(String candidateId) =>
       (delete(outboxTable)..where((t) => t.candidateId.equals(candidateId))).go();
 
+  Future<void> clear() => delete(outboxTable).go();
+
   Stream<bool> watchHasPending() => watchPending().map((rows) => rows.isNotEmpty);
 
   Stream<bool> watchHasPendingForCandidate(String candidateId) =>

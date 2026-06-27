@@ -29,6 +29,7 @@ export 'src/services/sync/sync_engine.dart';
 export 'src/services/sync/sync_scheduler.dart';
 export 'src/usecases/auth/auth_restore_usecase.dart';
 export 'src/usecases/auth/auth_set_locked_status_usecase.dart';
+export 'src/usecases/auth/logout_usecase.dart';
 export 'src/usecases/auth/set_authenticated_usecase.dart';
 export 'src/usecases/auth/set_unauthenticated_usecase.dart';
 export 'src/usecases/fetch_candidate_usecase.dart';

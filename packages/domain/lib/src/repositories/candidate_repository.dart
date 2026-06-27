@@ -22,4 +22,7 @@ abstract interface class CandidateRepository {
     CandidateStatus? status,
     String? note,
   });
+
+  /// Drops all locally cached candidates and pending changes (e.g. on logout).
+  Future<void> clearLocalData();
 }

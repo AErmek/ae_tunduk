@@ -29,4 +29,8 @@ abstract interface class CandidateLocalDataSource {
     CandidateStatus? status,
     String? note,
   });
+
+  /// Wipes the mirror and the outbox — used on logout so no candidate data or
+  /// pending change outlives the session.
+  Future<void> clear();
 }

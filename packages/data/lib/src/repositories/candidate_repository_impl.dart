@@ -59,4 +59,7 @@ class CandidateRepositoryImpl implements CandidateRepository {
     if (candidate == null) throw StateError('Candidate $id not found');
     return candidate;
   }
+
+  @override
+  Future<void> clearLocalData() => _local.clear();
 }

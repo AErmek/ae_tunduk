@@ -26,6 +26,8 @@ abstract class DomainModule {
 
   SetUnauthenticatedUseCase setUnauthenticated(AuthRepository repo) => SetUnauthenticatedUseCase(repo);
 
+  LogoutUseCase logout(AuthRepository auth, CandidateRepository candidates) => LogoutUseCase(auth, candidates);
+
   AuthRestoreStatusUseCase authRestoreStatus(AuthRepository repo) => AuthRestoreStatusUseCase(repo);
 
   AuthSetLockedStatusUseCase authSetLockedStatus(AuthRepository repo) => AuthSetLockedStatusUseCase(repo);

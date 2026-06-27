@@ -14,6 +14,10 @@ class CvScanDomainPackageModule extends _i526.MicroPackageModule {
   @override
   _i687.FutureOr<void> init(_i526.GetItHelper gh) {
     final domainModule = _$DomainModule();
+    gh.factory<_i490.LogoutUseCase>(() => domainModule.logout(
+          gh<_i490.AuthRepository>(),
+          gh<_i490.CandidateRepository>(),
+        ));
     gh.factory<_i490.WatchAuthStatusUseCase>(
         () => domainModule.watchAuthStatus(gh<_i490.AuthRepository>()));
     gh.factory<_i490.SetAuthenticatedUseCase>(
