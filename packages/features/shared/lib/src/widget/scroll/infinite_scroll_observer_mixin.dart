@@ -49,6 +49,10 @@ mixin InfiniteScrollObserverMixin<T extends StatefulWidget> on State<T> {
     }
   }
 
+  void jumpToTop() {
+    if (scrollController.hasClients) scrollController.jumpTo(0);
+  }
+
   @override
   void initState() {
     super.initState();

@@ -1,3 +1,4 @@
+import 'package:cv_scan_domain/cv_scan_domain.dart';
 import 'package:cv_scan_ui_kit/ui_kit.dart';
 import 'package:feature_candidates_list/src/bloc/candidates_list_bloc.dart';
 import 'package:feature_candidates_list/src/widgets/bottom_loader.dart';
@@ -42,17 +43,27 @@ class _CandidatesListViewState extends State<_CandidatesListView> with InfiniteS
 
   CandidatesListBloc get _bloc => context.read<CandidatesListBloc>();
 
+  void _onSortChanged(SortField sort) {
+    _bloc.add(CandidatesListEvent.sortChanged(sort));
+    jumpToTop();
+  }
+
+  void _onVerdictChanged(CandidateVerdict? verdict) {
+    _bloc.add(CandidatesListEvent.verdictChanged(verdict));
+    jumpToTop();
+  }
+
   @override
   Widget build(BuildContext context) => Scaffold(
     appBar: AppBar(
       title: Text(context.t.candidatesTitle),
-      actions: [SortMenu(onChanged: (sort) => _bloc.add(CandidatesListEvent.sortChanged(sort)))],
+      actions: [SortMenu(onChanged: _onSortChanged)],
     ),
     body: SafeArea(
       child: Column(
         children: [
           SearchField(onChanged: (q) => _bloc.add(CandidatesListEvent.queryChanged(q))),
-          VerdictFilter(onChanged: (v) => _bloc.add(CandidatesListEvent.verdictChanged(v))),
+          VerdictFilter(onChanged: _onVerdictChanged),
           const OfflineBanner(),
           Expanded(
             child: BlocConsumer<CandidatesListBloc, CandidatesListState>(
