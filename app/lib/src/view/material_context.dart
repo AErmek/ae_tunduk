@@ -1,7 +1,7 @@
 import 'package:cv_scan_app/src/routing/lock_overlay_controller.dart';
 import 'package:cv_scan_app/src/routing/router_state_mixin.dart';
 import 'package:cv_scan_app/src/view/app_builder.dart';
-import 'package:cv_scan_core/cv_scan_core.dart';
+import 'package:cv_scan_ui_kit/ui_kit.dart';
 import 'package:flutter/material.dart';
 
 class MaterialContext extends StatefulWidget {

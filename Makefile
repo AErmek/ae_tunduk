@@ -12,4 +12,4 @@ get:
 	fvm flutter pub get
 
 localize:
-	cd packages/core && fvm dart run intl_utils:generate
+	cd packages/ui_kit && fvm dart run intl_utils:generate

@@ -1,8 +1,7 @@
-import 'package:cv_scan_core/cv_scan_core.dart';
+import 'package:cv_scan_ui_kit/ui_kit.dart';
 import 'package:feature_auth/feature_auth.dart';
 import 'package:feature_candidate_detail/feature_candidate_detail.dart';
 import 'package:feature_candidates_list/feature_candidates_list.dart';
-import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
 final appRoutesMeta = <RouteBase>[

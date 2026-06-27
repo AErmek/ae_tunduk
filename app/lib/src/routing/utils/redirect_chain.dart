@@ -1,4 +1,4 @@
-import 'package:cv_scan_core/cv_scan_core.dart';
+import 'package:cv_scan_ui_kit/ui_kit.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 

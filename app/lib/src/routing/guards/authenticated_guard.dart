@@ -1,6 +1,6 @@
 import 'package:cv_scan_app/src/routing/utils/redirect_chain.dart';
-import 'package:cv_scan_core/cv_scan_core.dart';
 import 'package:cv_scan_domain/cv_scan_domain.dart';
+import 'package:cv_scan_ui_kit/ui_kit.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:shared/shared.dart';
@@ -22,10 +22,8 @@ final class AuthenticatedGuard extends RedirectGuard {
     final info = _authBloc.state.info;
 
     return switch (info) {
-      RestoringUser() =>
-        path == AppRoutes.restoring ? const GuardStop() : const GuardRedirect(AppRoutes.restoring),
-      UnauthorizedUser() =>
-        path == AppRoutes.setupPin ? const GuardStop() : const GuardRedirect(AppRoutes.setupPin),
+      RestoringUser() => path == AppRoutes.restoring ? const GuardStop() : const GuardRedirect(AppRoutes.restoring),
+      UnauthorizedUser() => path == AppRoutes.setupPin ? const GuardStop() : const GuardRedirect(AppRoutes.setupPin),
       AuthorizedUser(:final lockedStatus) => _onAuthorized(lockedStatus, path),
     };
   }

@@ -9,6 +9,7 @@ workspace:
   - packages/core
   - packages/domain
   - packages/data
+  - packages/ui_kit
   - packages/features/shared
   - packages/features/auth
   - packages/features/candidates_list

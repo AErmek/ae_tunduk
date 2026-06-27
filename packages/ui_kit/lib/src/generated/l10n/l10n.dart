@@ -283,6 +283,26 @@ class Translations {
       args: [],
     );
   }
+
+  /// `Кандидаты`
+  String get mainScreen_tabCandidates {
+    return Intl.message(
+      'Кандидаты',
+      name: 'mainScreen_tabCandidates',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Настройки`
+  String get mainScreen_tabSettings {
+    return Intl.message(
+      'Настройки',
+      name: 'mainScreen_tabSettings',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<Translations> {

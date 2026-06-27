@@ -25,5 +25,7 @@
   "errorRetry": "Повторить",
   "authPinTitle": "Введите PIN",
   "authPinSubtitle": "Для входа в приложение",
-  "authBiometricPrompt": "Войдите с помощью биометрии"
+  "authBiometricPrompt": "Войдите с помощью биометрии",
+  "mainScreen_tabCandidates": "Кандидаты",
+  "mainScreen_tabSettings": "Настройки"
 }

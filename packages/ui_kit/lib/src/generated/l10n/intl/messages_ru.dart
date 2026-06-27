@@ -56,6 +56,10 @@ class MessageLookup extends MessageLookupByLibrary {
       "Нет подключения к сети",
     ),
     "errorRetry": MessageLookupByLibrary.simpleMessage("Повторить"),
+    "mainScreen_tabCandidates": MessageLookupByLibrary.simpleMessage(
+      "Кандидаты",
+    ),
+    "mainScreen_tabSettings": MessageLookupByLibrary.simpleMessage("Настройки"),
     "navCandidates": MessageLookupByLibrary.simpleMessage("Кандидаты"),
     "navSettings": MessageLookupByLibrary.simpleMessage("Настройки"),
     "settingsLogout": MessageLookupByLibrary.simpleMessage("Выйти"),

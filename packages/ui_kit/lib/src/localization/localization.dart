@@ -1,4 +1,4 @@
-import 'package:cv_scan_core/src/generated/l10n/l10n.dart';
+import 'package:cv_scan_ui_kit/src/generated/l10n/l10n.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:intl/intl.dart';
@@ -7,7 +7,7 @@ extension LocalizationX on BuildContext {
   Translations get t => Translations.of(this);
 }
 
-// typedef S = Translations;
+typedef S = Translations;
 
 class AppLocaleConfig {
   static const Map<String, String> languageLabels = {'ru': 'Русский'};
