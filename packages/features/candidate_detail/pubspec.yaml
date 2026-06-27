@@ -13,12 +13,20 @@ dependencies:
     path: ../../core
   cv_scan_domain:
     path: ../../domain
+  cv_scan_ui_kit:
+    path: ../../ui_kit
   shared:
     path: ../shared
+  flutter_bloc: ^9.1.0
+  freezed_annotation: ^3.1.0
   get_it: ^9.2.1
   injectable: ^3.0.0
+  share_plus: ^10.1.4
+  url_launcher: ^6.3.1
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
   flutter_lints: ^6.0.0
+  build_runner: ^2.15.0
+  freezed: ^3.2.5

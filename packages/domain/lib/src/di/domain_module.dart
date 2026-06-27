@@ -9,9 +9,16 @@ abstract class DomainModule {
 
   GetCandidateUseCase getCandidate(CandidateRepository repo) => GetCandidateUseCase(repo);
 
+  FetchCandidateUseCase fetchCandidate(CandidateRepository repo) => FetchCandidateUseCase(repo);
+
+  WatchCandidatePendingUseCase watchCandidatePending(CandidateRepository repo) =>
+      WatchCandidatePendingUseCase(repo);
+
   UpdateCandidateUseCase updateCandidate(CandidateRepository repo) => UpdateCandidateUseCase(repo);
 
-  SyncCandidatesUseCase syncCandidates(CandidateRepository repo) => SyncCandidatesUseCase(repo);
+  WatchSyncSnapshotUseCase watchSyncSnapshot(SyncScheduler scheduler) => WatchSyncSnapshotUseCase(scheduler);
+
+  TriggerSyncUseCase triggerSync(SyncScheduler scheduler) => TriggerSyncUseCase(scheduler);
 
   WatchAuthStatusUseCase watchAuthStatus(AuthRepository repo) => WatchAuthStatusUseCase(repo);
 

@@ -15,7 +15,7 @@ class ConflictResolver {
     return switch (strategy) {
       ConflictStrategy.serverWins => const AcceptServer(),
       ConflictStrategy.clientWins => Rebase(baseVersion: serverVersion, status: localStatus, note: localNote),
-      ConflictStrategy.mergeNotes => Rebase(
+      ConflictStrategy.merge => Rebase(
         baseVersion: serverVersion,
         status: localStatus,
         note: _mergeNotes(conflict.current.note, localNote),

@@ -13,6 +13,8 @@ abstract interface class CandidateLocalDataSource {
 
   Stream<Candidate?> watchCandidate(String id);
 
+  Stream<bool> watchCandidatePending(String id);
+
   Future<Candidate?> getCandidate(String id);
 
   Future<List<Candidate>> getCandidates();

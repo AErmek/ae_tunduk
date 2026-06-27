@@ -17,6 +17,6 @@ SyncResponse _$SyncResponseFromJson(Map<String, dynamic> json) => SyncResponse(
 
 Map<String, dynamic> _$SyncResponseToJson(SyncResponse instance) =>
     <String, dynamic>{
-      'applied': instance.applied,
-      'conflicts': instance.conflicts,
+      'applied': instance.applied.map((e) => e.toJson()).toList(),
+      'conflicts': instance.conflicts.map((e) => e.toJson()).toList(),
     };

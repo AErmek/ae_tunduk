@@ -2,15 +2,13 @@ import 'dart:async';
 
 import 'package:cv_scan_data/src/datasources/candidate_local_data_source.dart';
 import 'package:cv_scan_data/src/datasources/candidate_remote_data_source.dart';
-import 'package:cv_scan_data/src/sync/candidate_sync_engine.dart';
 import 'package:cv_scan_domain/cv_scan_domain.dart';
 
 class CandidateRepositoryImpl implements CandidateRepository {
-  CandidateRepositoryImpl({required this._remote, required this._local, required this._syncEngine});
+  CandidateRepositoryImpl({required this._remote, required this._local});
 
   final CandidateRemoteDataSource _remote;
   final CandidateLocalDataSource _local;
-  final CandidateSyncEngine _syncEngine;
 
   @override
   Stream<List<CandidateLight>> watchCandidates(CandidatesFilter filter) => _local.watchCandidates(
@@ -22,6 +20,9 @@ class CandidateRepositoryImpl implements CandidateRepository {
 
   @override
   Stream<Candidate?> watchCandidate(String id) => _local.watchCandidate(id);
+
+  @override
+  Stream<bool> watchCandidatePending(String id) => _local.watchCandidatePending(id);
 
   @override
   Future<Page<CandidateLight>> fetchCandidates(CandidatesFilter filter) async {
@@ -58,7 +59,4 @@ class CandidateRepositoryImpl implements CandidateRepository {
     if (candidate == null) throw StateError('Candidate $id not found');
     return candidate;
   }
-
-  @override
-  Future<SyncResult> sync() => _syncEngine.run();
 }

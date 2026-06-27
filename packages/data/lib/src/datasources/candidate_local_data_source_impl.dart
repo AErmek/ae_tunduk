@@ -36,6 +36,9 @@ class CandidateLocalDataSourceImpl implements CandidateLocalDataSource {
       }).map((row) => row?.toDomain());
 
   @override
+  Stream<bool> watchCandidatePending(String id) => _outboxDao.watchHasPendingForCandidate(id);
+
+  @override
   Future<Candidate?> getCandidate(String id) async {
     final row = await _candidatesDao.watchById(id).first;
     if (row == null) return null;

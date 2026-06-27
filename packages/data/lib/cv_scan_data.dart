@@ -16,5 +16,5 @@ export 'src/remote/dio_factory.dart';
 export 'src/remote/generated/api/api_client.dart';
 export 'src/repositories/auth_repository_impl.dart';
 export 'src/repositories/candidate_repository_impl.dart';
-export 'src/sync/candidate_sync_engine.dart';
-export 'src/sync/candidate_sync_engine_impl.dart';
+export 'src/sync/sync_engine_impl.dart';
+export 'src/sync/sync_scheduler_impl.dart';

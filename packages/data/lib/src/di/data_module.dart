@@ -1,3 +1,4 @@
+import 'package:cv_scan_core/cv_scan_core.dart';
 import 'package:cv_scan_data/cv_scan_data.dart';
 import 'package:cv_scan_domain/cv_scan_domain.dart';
 import 'package:dio/dio.dart';
@@ -28,9 +29,17 @@ abstract class DataModule {
   @lazySingleton
   ApiClient apiClient(Dio dio) => ApiClient(dio);
 
-  @LazySingleton(as: CandidateSyncEngine)
-  CandidateSyncEngineImpl syncEngine(ApiClient apiClient, CandidatesDao candidatesDao, OutboxDao outboxDao) =>
-      CandidateSyncEngineImpl(apiClient: apiClient, candidatesDao: candidatesDao, outboxDao: outboxDao);
+  @LazySingleton(as: SyncEngine)
+  SyncEngineImpl syncEngine(ApiClient apiClient, CandidatesDao candidatesDao, OutboxDao outboxDao) => SyncEngineImpl(
+    apiClient: apiClient,
+    candidatesDao: candidatesDao,
+    outboxDao: outboxDao,
+    strategy: ConflictStrategy.byName(Config.i.api.mockConflictStrategy),
+  );
+
+  @Singleton(as: SyncScheduler)
+  SyncSchedulerImpl syncScheduler(SyncEngine engine, OutboxDao outboxDao, NetworkMonitor networkMonitor) =>
+      SyncSchedulerImpl(engine: engine, outboxDao: outboxDao, networkMonitor: networkMonitor);
 
   @LazySingleton(as: CandidateRemoteDataSource)
   CandidateRemoteDataSourceImpl candidateRemoteDataSource(ApiClient apiClient) =>
@@ -45,9 +54,6 @@ abstract class DataModule {
       AuthRepositoryImpl(pinService: localAuthServices);
 
   @LazySingleton(as: CandidateRepository)
-  CandidateRepositoryImpl candidateRepository(
-    CandidateRemoteDataSource remote,
-    CandidateLocalDataSource local,
-    CandidateSyncEngine syncEngine,
-  ) => CandidateRepositoryImpl(remote: remote, local: local, syncEngine: syncEngine);
+  CandidateRepositoryImpl candidateRepository(CandidateRemoteDataSource remote, CandidateLocalDataSource local) =>
+      CandidateRepositoryImpl(remote: remote, local: local);
 }

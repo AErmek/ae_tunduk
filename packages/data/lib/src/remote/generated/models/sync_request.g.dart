@@ -13,4 +13,6 @@ SyncRequest _$SyncRequestFromJson(Map<String, dynamic> json) => SyncRequest(
 );
 
 Map<String, dynamic> _$SyncRequestToJson(SyncRequest instance) =>
-    <String, dynamic>{'changes': instance.changes};
+    <String, dynamic>{
+      'changes': instance.changes.map((e) => e.toJson()).toList(),
+    };

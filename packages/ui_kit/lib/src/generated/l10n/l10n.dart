@@ -149,10 +149,10 @@ class Translations {
     );
   }
 
-  /// `Поиск по имени...`
+  /// `Поиск по имени или позиции`
   String get candidatesSearchHint {
     return Intl.message(
-      'Поиск по имени...',
+      'Поиск по имени или позиции',
       name: 'candidatesSearchHint',
       desc: '',
       args: [],
@@ -234,6 +234,186 @@ class Translations {
     return Intl.message(
       'Контакты',
       name: 'candidateDetailContacts',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Образование`
+  String get candidateDetailEducation {
+    return Intl.message(
+      'Образование',
+      name: 'candidateDetailEducation',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Резюме`
+  String get candidateDetailSummary {
+    return Intl.message(
+      'Резюме',
+      name: 'candidateDetailSummary',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Оценка по критериям`
+  String get candidateDetailCriteria {
+    return Intl.message(
+      'Оценка по критериям',
+      name: 'candidateDetailCriteria',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Вопросы для интервью`
+  String get candidateDetailQuestions {
+    return Intl.message(
+      'Вопросы для интервью',
+      name: 'candidateDetailQuestions',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Статус`
+  String get candidateDetailStatus {
+    return Intl.message(
+      'Статус',
+      name: 'candidateDetailStatus',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Заметка`
+  String get candidateDetailNote {
+    return Intl.message(
+      'Заметка',
+      name: 'candidateDetailNote',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Добавьте заметку о кандидате`
+  String get candidateDetailNoteHint {
+    return Intl.message(
+      'Добавьте заметку о кандидате',
+      name: 'candidateDetailNoteHint',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Сохранить заметку`
+  String get candidateDetailNoteSave {
+    return Intl.message(
+      'Сохранить заметку',
+      name: 'candidateDetailNoteSave',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Поделиться`
+  String get candidateDetailShare {
+    return Intl.message(
+      'Поделиться',
+      name: 'candidateDetailShare',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Не синхронизировано`
+  String get candidateDetailNotSynced {
+    return Intl.message(
+      'Не синхронизировано',
+      name: 'candidateDetailNotSynced',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Кандидат не найден`
+  String get candidateDetailNotFound {
+    return Intl.message(
+      'Кандидат не найден',
+      name: 'candidateDetailNotFound',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Не удалось сохранить изменение`
+  String get candidateDetailSaveError {
+    return Intl.message(
+      'Не удалось сохранить изменение',
+      name: 'candidateDetailSaveError',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Новый`
+  String get candidateStatusNew {
+    return Intl.message(
+      'Новый',
+      name: 'candidateStatusNew',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `На рассмотрении`
+  String get candidateStatusReview {
+    return Intl.message(
+      'На рассмотрении',
+      name: 'candidateStatusReview',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Приглашён`
+  String get candidateStatusInvited {
+    return Intl.message(
+      'Приглашён',
+      name: 'candidateStatusInvited',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Отклонён`
+  String get candidateStatusRejected {
+    return Intl.message(
+      'Отклонён',
+      name: 'candidateStatusRejected',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Синхронизация…`
+  String get syncInProgress {
+    return Intl.message(
+      'Синхронизация…',
+      name: 'syncInProgress',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Ошибка синхронизации`
+  String get syncFailed {
+    return Intl.message(
+      'Ошибка синхронизации',
+      name: 'syncFailed',
       desc: '',
       args: [],
     );

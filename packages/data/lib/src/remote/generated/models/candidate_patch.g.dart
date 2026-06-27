@@ -15,4 +15,7 @@ CandidatePatch _$CandidatePatchFromJson(Map<String, dynamic> json) =>
     );
 
 Map<String, dynamic> _$CandidatePatchToJson(CandidatePatch instance) =>
-    <String, dynamic>{'status': instance.status, 'note': instance.note};
+    <String, dynamic>{
+      'status': instance.status?.toJson(),
+      'note': instance.note,
+    };

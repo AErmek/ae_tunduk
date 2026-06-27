@@ -37,12 +37,46 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "authPinTitle": MessageLookupByLibrary.simpleMessage("Введите PIN-код"),
     "candidateDetailContacts": MessageLookupByLibrary.simpleMessage("Контакты"),
+    "candidateDetailCriteria": MessageLookupByLibrary.simpleMessage(
+      "Оценка по критериям",
+    ),
+    "candidateDetailEducation": MessageLookupByLibrary.simpleMessage(
+      "Образование",
+    ),
     "candidateDetailExperience": MessageLookupByLibrary.simpleMessage(
       "Опыт работы",
     ),
+    "candidateDetailNotFound": MessageLookupByLibrary.simpleMessage(
+      "Кандидат не найден",
+    ),
+    "candidateDetailNotSynced": MessageLookupByLibrary.simpleMessage(
+      "Не синхронизировано",
+    ),
+    "candidateDetailNote": MessageLookupByLibrary.simpleMessage("Заметка"),
+    "candidateDetailNoteHint": MessageLookupByLibrary.simpleMessage(
+      "Добавьте заметку о кандидате",
+    ),
+    "candidateDetailNoteSave": MessageLookupByLibrary.simpleMessage(
+      "Сохранить заметку",
+    ),
+    "candidateDetailQuestions": MessageLookupByLibrary.simpleMessage(
+      "Вопросы для интервью",
+    ),
+    "candidateDetailSaveError": MessageLookupByLibrary.simpleMessage(
+      "Не удалось сохранить изменение",
+    ),
+    "candidateDetailShare": MessageLookupByLibrary.simpleMessage("Поделиться"),
     "candidateDetailSkills": MessageLookupByLibrary.simpleMessage("Навыки"),
+    "candidateDetailStatus": MessageLookupByLibrary.simpleMessage("Статус"),
+    "candidateDetailSummary": MessageLookupByLibrary.simpleMessage("Резюме"),
     "candidateDetailTitle": MessageLookupByLibrary.simpleMessage(
       "Профиль кандидата",
+    ),
+    "candidateStatusInvited": MessageLookupByLibrary.simpleMessage("Приглашён"),
+    "candidateStatusNew": MessageLookupByLibrary.simpleMessage("Новый"),
+    "candidateStatusRejected": MessageLookupByLibrary.simpleMessage("Отклонён"),
+    "candidateStatusReview": MessageLookupByLibrary.simpleMessage(
+      "На рассмотрении",
     ),
     "candidateVerdictHired": MessageLookupByLibrary.simpleMessage("Принят"),
     "candidateVerdictNew": MessageLookupByLibrary.simpleMessage("Новый"),
@@ -57,7 +91,7 @@ class MessageLookup extends MessageLookupByLibrary {
       "Это все кандидаты",
     ),
     "candidatesSearchHint": MessageLookupByLibrary.simpleMessage(
-      "Поиск по имени...",
+      "Поиск по имени или позиции",
     ),
     "candidatesTitle": MessageLookupByLibrary.simpleMessage("Кандидаты"),
     "confirmPinTitle": MessageLookupByLibrary.simpleMessage(
@@ -90,6 +124,8 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "settingsLogoutConfirmTitle": MessageLookupByLibrary.simpleMessage("Выход"),
     "settingsTitle": MessageLookupByLibrary.simpleMessage("Настройки"),
+    "syncFailed": MessageLookupByLibrary.simpleMessage("Ошибка синхронизации"),
+    "syncInProgress": MessageLookupByLibrary.simpleMessage("Синхронизация…"),
     "yes": MessageLookupByLibrary.simpleMessage("Да"),
   };
 }

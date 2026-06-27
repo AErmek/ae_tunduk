@@ -45,10 +45,15 @@ class CvScanDataPackageModule extends _i526.MicroPackageModule {
         () => dataModule.authRepository(gh<_i490.LocalAuthService>()));
     gh.lazySingleton<_i755.ApiClient>(
         () => dataModule.apiClient(gh<_i361.Dio>()));
-    gh.lazySingleton<_i755.CandidateSyncEngine>(() => dataModule.syncEngine(
+    gh.lazySingleton<_i490.SyncEngine>(() => dataModule.syncEngine(
           gh<_i755.ApiClient>(),
           gh<_i755.CandidatesDao>(),
           gh<_i755.OutboxDao>(),
+        ));
+    gh.singleton<_i490.SyncScheduler>(() => dataModule.syncScheduler(
+          gh<_i490.SyncEngine>(),
+          gh<_i755.OutboxDao>(),
+          gh<_i490.NetworkMonitor>(),
         ));
     gh.lazySingleton<_i755.CandidateRemoteDataSource>(
         () => dataModule.candidateRemoteDataSource(gh<_i755.ApiClient>()));
@@ -56,7 +61,6 @@ class CvScanDataPackageModule extends _i526.MicroPackageModule {
         () => dataModule.candidateRepository(
               gh<_i755.CandidateRemoteDataSource>(),
               gh<_i755.CandidateLocalDataSource>(),
-              gh<_i755.CandidateSyncEngine>(),
             ));
   }
 }

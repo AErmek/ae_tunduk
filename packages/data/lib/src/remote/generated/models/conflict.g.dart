@@ -17,5 +17,5 @@ Map<String, dynamic> _$ConflictToJson(Conflict instance) => <String, dynamic>{
   'code': instance.code,
   'id': instance.id,
   'currentVersion': instance.currentVersion,
-  'current': instance.current,
+  'current': instance.current.toJson(),
 };

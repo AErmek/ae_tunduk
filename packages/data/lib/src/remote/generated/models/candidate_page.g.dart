@@ -18,7 +18,7 @@ CandidatePage _$CandidatePageFromJson(Map<String, dynamic> json) =>
 
 Map<String, dynamic> _$CandidatePageToJson(CandidatePage instance) =>
     <String, dynamic>{
-      'items': instance.items,
+      'items': instance.items.map((e) => e.toJson()).toList(),
       'page': instance.page,
       'size': instance.size,
       'total': instance.total,

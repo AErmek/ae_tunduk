@@ -1,5 +1,7 @@
 enum ConflictStrategy {
   serverWins,
   clientWins,
-  mergeNotes;
+  merge;
+
+  static ConflictStrategy byName(String name) => ConflictStrategy.values.byName(name);
 }

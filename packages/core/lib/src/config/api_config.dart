@@ -6,7 +6,9 @@ final class ApiConfig {
   static const int receiveTimeoutMs = 15000;
 
   static const String _mockAssetPath = 'packages/cv_scan_data/assets/mock/candidates.json';
+  static const String _mockConflictStrategy = String.fromEnvironment('MOCK_CONFLICT_STRATEGY', defaultValue: 'merge');
 
   String get baseUrl => _baseUrl;
   String get mockAssetPath => _mockAssetPath;
+  String get mockConflictStrategy => _mockConflictStrategy;
 }

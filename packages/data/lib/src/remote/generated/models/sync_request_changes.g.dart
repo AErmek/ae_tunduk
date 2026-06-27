@@ -23,7 +23,7 @@ Map<String, dynamic> _$SyncRequestChangesToJson(SyncRequestChanges instance) =>
     <String, dynamic>{
       'id': instance.id,
       'baseVersion': instance.baseVersion,
-      'status': instance.status,
+      'status': instance.status?.toJson(),
       'note': instance.note,
       'clientUpdatedAt': instance.clientUpdatedAt?.toIso8601String(),
     };

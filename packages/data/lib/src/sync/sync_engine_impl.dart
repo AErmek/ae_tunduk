@@ -1,5 +1,3 @@
-import 'package:cv_scan_core/cv_scan_core.dart';
-import 'package:cv_scan_data/src/exceptions/sync_fail_exception.dart';
 import 'package:cv_scan_data/src/local/dao/candidates_dao.dart';
 import 'package:cv_scan_data/src/local/dao/outbox_dao.dart';
 import 'package:cv_scan_data/src/local/database/app_database.dart';
@@ -10,52 +8,41 @@ import 'package:cv_scan_data/src/remote/generated/models/sync_request_changes.da
 import 'package:cv_scan_data/src/remote/generated/models/sync_request_changes_status_status.dart';
 import 'package:cv_scan_data/src/remote/generated/models/sync_response.dart';
 import 'package:cv_scan_data/src/remote/mappers/candidate_mapper.dart';
-import 'package:cv_scan_data/src/sync/candidate_sync_engine.dart';
 import 'package:cv_scan_data/src/sync/conflict_resolution.dart';
 import 'package:cv_scan_data/src/sync/conflict_resolver.dart';
 import 'package:cv_scan_domain/cv_scan_domain.dart';
 import 'package:dio/dio.dart';
 import 'package:drift/drift.dart';
 
-class CandidateSyncEngineImpl implements CandidateSyncEngine {
-  CandidateSyncEngineImpl({
+/// Single-pass sync engine: one POST, apply accepted, resolve conflicts. It is
+/// idempotent — pending rows survive transient failures so the scheduler can
+/// replay them — and never loops or sleeps on its own.
+class SyncEngineImpl implements SyncEngine {
+  SyncEngineImpl({
     required this.apiClient,
     required this.candidatesDao,
     required this.outboxDao,
     this.conflictResolver = const ConflictResolver(),
-    this.backoff = const ExponentialBackoff(),
-    this.strategy = ConflictStrategy.mergeNotes,
-    this.maxPasses = 5,
+    this.strategy = ConflictStrategy.serverWins,
   });
 
   final ApiClient apiClient;
   final CandidatesDao candidatesDao;
   final OutboxDao outboxDao;
   final ConflictResolver conflictResolver;
-  final ExponentialBackoff backoff;
   final ConflictStrategy strategy;
-  final int maxPasses;
 
   @override
-  Future<SyncResult> run() async {
-    final appliedAll = <Candidate>[];
-    final conflictsAll = <SyncConflict>[];
+  Future<SyncPass> runOnce() async {
+    final pending = await outboxDao.getPending();
+    if (pending.isEmpty) return SyncPass.empty;
 
-    for (var pass = 0; pass < maxPasses; pass++) {
-      final pending = await outboxDao.getPending();
-      if (pending.isEmpty) break;
+    final response = await _post(pending, _coalesce(pending));
 
-      final changes = _coalesce(pending);
-      final response = await _postWithRetry(pending, changes);
+    final applied = await _applyAccepted(response);
+    final (conflicts, rebased) = await _applyConflicts(response);
 
-      await _applyAccepted(response, appliedAll);
-      final rebased = await _applyConflicts(response, conflictsAll);
-
-      // No conflicts were rebased — nothing left that another pass could fix.
-      if (!rebased) break;
-    }
-
-    return SyncResult(applied: appliedAll, conflicts: conflictsAll);
+    return SyncPass(applied: applied, conflicts: conflicts, rebased: rebased);
   }
 
   /// One pending change per candidate (latest wins). All pending rows for a
@@ -82,36 +69,38 @@ class CandidateSyncEngineImpl implements CandidateSyncEngine {
         .toList();
   }
 
-  Future<SyncResponse> _postWithRetry(List<OutboxTableData> pending, List<SyncRequestChanges> changes) async {
-    var attempt = 0;
-    while (true) {
-      try {
-        return await apiClient.postSync(body: SyncRequest(changes: changes));
-      } on DioException catch (e) {
-        if (!_isTransient(e) || !backoff.hasAttemptsLeft(attempt)) {
-          await _markFailed(pending, e.message ?? e.type.name);
-          throw SyncFailException(attempt, e.message ?? e.type.name);
-        }
-        await Future<void>.delayed(backoff.delayFor(attempt));
-        attempt++;
-      } catch (e) {
-        await _markFailed(pending, e.toString());
-        rethrow;
-      }
+  /// Posts once. Transient errors rethrow with the outbox untouched (the
+  /// scheduler retries). A poisoned change — anything non-transient — is marked
+  /// failed so it leaves the pending set and can't loop forever.
+  Future<SyncResponse> _post(List<OutboxTableData> pending, List<SyncRequestChanges> changes) async {
+    try {
+      return await apiClient.postSync(body: SyncRequest(changes: changes));
+    } on DioException catch (e) {
+      if (_isTransient(e)) rethrow;
+      await _markFailed(pending, e.message ?? e.type.name);
+      rethrow;
+    } catch (e) {
+      await _markFailed(pending, e.toString());
+      rethrow;
     }
   }
 
-  Future<void> _applyAccepted(SyncResponse response, List<Candidate> out) async {
+  Future<List<Candidate>> _applyAccepted(SyncResponse response) async {
+    final applied = <Candidate>[];
     for (final dto in response.applied) {
       final candidate = dto.toDomain();
       await candidatesDao.upsert(candidate.toCompanion());
       await outboxDao.deleteForCandidate(candidate.id);
-      out.add(candidate);
+      applied.add(candidate);
     }
+    return applied;
   }
 
-  /// Returns true if any conflict was rebased (re-enqueued for another pass).
-  Future<bool> _applyConflicts(SyncResponse response, List<SyncConflict> out) async {
+  /// Converges the mirror to server truth and applies the conflict strategy.
+  /// Returns the conflicts plus whether any was rebased (re-enqueued), which
+  /// signals that another pass could still make progress.
+  Future<(List<SyncConflict>, bool)> _applyConflicts(SyncResponse response) async {
+    final conflicts = <SyncConflict>[];
     var rebasedAny = false;
 
     for (final dtoConflict in response.conflicts) {
@@ -145,10 +134,10 @@ class CandidateSyncEngineImpl implements CandidateSyncEngine {
           rebasedAny = true;
       }
 
-      out.add(conflict);
+      conflicts.add(conflict);
     }
 
-    return rebasedAny;
+    return (conflicts, rebasedAny);
   }
 
   Future<OutboxTableData?> _latestPendingFor(String candidateId) async {
