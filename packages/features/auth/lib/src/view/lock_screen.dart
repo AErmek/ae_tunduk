@@ -26,6 +26,7 @@ class _LockView extends StatelessWidget {
         builder: (context, state) => PinBody(
           title: 'CV-Scan',
           subtitle: 'Введите PIN-код',
+          autofocus: false,
           errorText: state.maybeWhen(error: (message) => message, orElse: () => null),
           onCompleted: (pin) => context.read<PinVerifyBloc>().add(PinVerifyEvent.pinSubmitted(pin)),
           footer: TextButton.icon(

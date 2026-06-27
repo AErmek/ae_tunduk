@@ -10,6 +10,7 @@ class PinBody extends StatefulWidget {
     this.errorText,
     this.footer,
     this.pinLength = 4,
+    this.autofocus = true,
   });
 
   final String title;
@@ -18,7 +19,7 @@ class PinBody extends StatefulWidget {
   final void Function(String pin) onCompleted;
   final Widget? footer;
   final int pinLength;
-
+  final bool autofocus;
   @override
   State<PinBody> createState() => _PinBodyState();
 }
@@ -32,7 +33,7 @@ class _PinBodyState extends State<PinBody> {
     super.didUpdateWidget(oldWidget);
     if (oldWidget.errorText != widget.errorText && widget.errorText != null) {
       _controller.clear();
-      _focusNode.requestFocus();
+      if (widget.autofocus) _focusNode.requestFocus();
     }
   }
 
@@ -76,7 +77,7 @@ class _PinBodyState extends State<PinBody> {
                 length: widget.pinLength,
                 controller: _controller,
                 focusNode: _focusNode,
-                autofocus: true,
+                autofocus: widget.autofocus,
                 obscureText: true,
                 defaultPinTheme: basePinTheme,
                 focusedPinTheme: basePinTheme.copyWith(

@@ -20,7 +20,7 @@ class CandidatesListBloc extends Bloc<CandidatesListEvent, CandidatesListState> 
     on<_NextPageRequested>(_onNextPage, transformer: droppable());
     on<_Refreshed>(_onRefreshed, transformer: droppable());
     on<_VerdictChanged>(_onVerdictChanged);
-    on<_QueryChanged>(_onQueryChanged, transformer: restartable());
+    on<_QueryChanged>(_onQueryChanged, transformer: debounceRestartable(const Duration(milliseconds: 300)));
     on<_SortChanged>(_onSortChanged);
     on<_CandidatesUpdated>(_onCandidatesUpdated);
     on<_OnlineChanged>(_onOnlineChanged);
@@ -96,7 +96,6 @@ class CandidatesListBloc extends Bloc<CandidatesListEvent, CandidatesListState> 
   }
 
   Future<void> _onQueryChanged(_QueryChanged event, Emitter<CandidatesListState> emit) async {
-    await Future<void>.delayed(const Duration(milliseconds: 300));
     final filter = state.filter.copyWith(query: event.query).firstPage();
     emit(state.copyWith(filter: filter));
     _resubscribe(filter);

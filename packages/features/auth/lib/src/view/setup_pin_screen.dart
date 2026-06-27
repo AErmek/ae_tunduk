@@ -29,6 +29,7 @@ class _SetupPinView extends StatelessWidget {
     builder: (context, state) => Scaffold(
       body: PinBody(
         title: 'CV-Scan',
+        autofocus: true,
         subtitle: state.when(
           awaitingFirst: () => 'Создайте PIN-код',
           awaitingConfirmation: () => 'Повторите PIN-код',
