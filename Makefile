@@ -13,3 +13,14 @@ gen-ui-kit:
 
 gen-app:
 	cd app &&fvm flutter pub run build_runner build --delete-conflicting-outputs
+
+# Deep link testing. Override host/id: make deeplink-android ID=42
+DEEPLINK_HOST ?= cvscan.ae.kg
+ID ?= 1
+
+deeplink-android:
+	adb shell am start -a android.intent.action.VIEW \
+		-d "https://$(DEEPLINK_HOST)/candidates/$(ID)" kg.ae.cv_scan
+
+deeplink-ios:
+	xcrun simctl openurl booted "https://$(DEEPLINK_HOST)/candidates/$(ID)"
