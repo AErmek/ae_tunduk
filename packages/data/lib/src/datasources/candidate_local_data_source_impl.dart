@@ -62,15 +62,7 @@ class CandidateLocalDataSourceImpl implements CandidateLocalDataSource {
     required int version,
     CandidateStatus? status,
     String? note,
-  }) => _outboxDao.insert(
-    OutboxTableCompanion(
-      candidateId: Value(id),
-      baseVersion: Value(version),
-      status: Value(status?.apiKey),
-      note: Value(note),
-      clientUpdatedAt: Value(DateTime.now()),
-    ),
-  );
+  }) => _outboxDao.upsertPending(candidateId: id, baseVersion: version, status: status?.apiKey, note: note);
 
   /// Overlays the latest pending outbox change per candidate onto mirror rows.
   List<CandidatesTableData> _applyOverlay(List<CandidatesTableData> rows, List<OutboxTableData> pending) {
