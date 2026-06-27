@@ -3,10 +3,10 @@ import 'package:pinput/pinput.dart';
 
 class PinBody extends StatefulWidget {
   const PinBody({
-    super.key,
     required this.title,
     required this.subtitle,
     required this.onCompleted,
+    super.key,
     this.errorText,
     this.footer,
     this.pinLength = 4,
@@ -69,10 +69,7 @@ class _PinBodyState extends State<PinBody> {
               Text(widget.subtitle, style: theme.textTheme.bodyMedium),
               if (widget.errorText != null) ...[
                 const SizedBox(height: 8),
-                Text(
-                  widget.errorText!,
-                  style: TextStyle(color: theme.colorScheme.error),
-                ),
+                Text(widget.errorText!, style: TextStyle(color: theme.colorScheme.error)),
               ],
               const SizedBox(height: 40),
               Pinput(
@@ -97,10 +94,7 @@ class _PinBodyState extends State<PinBody> {
                   widget.onCompleted(pin);
                 },
               ),
-              if (widget.footer != null) ...[
-                const SizedBox(height: 24),
-                widget.footer!,
-              ],
+              if (widget.footer != null) ...[const SizedBox(height: 24), widget.footer!],
             ],
           ),
         ),

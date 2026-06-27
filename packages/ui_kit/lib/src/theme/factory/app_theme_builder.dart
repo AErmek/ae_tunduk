@@ -1,8 +1,6 @@
 import 'package:cv_scan_ui_kit/src/theme/config/space_padding.dart';
-import 'package:cv_scan_ui_kit/src/theme/config/spacing.dart';
 import 'package:cv_scan_ui_kit/src/theme/factory/app_colors_factory.dart';
 import 'package:cv_scan_ui_kit/src/theme/factory/app_typography_factory.dart';
-import 'package:cv_scan_ui_kit/src/theme/meta.dart';
 import 'package:cv_scan_ui_kit/ui_kit.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -123,7 +121,7 @@ class LightAppThemeBuilder implements AppThemeBuilder {
           // padding: WidgetStateProperty.all(const EdgeInsets.symmetric(vertical: 8, horizontal: 16)),
           padding: WidgetStateProperty.all(EdgeInsets.zero),
           shape: WidgetStateProperty.all(RoundedRectangleBorder(side: BorderSide(width: 0.5, color: colors.divider))),
-          visualDensity: const VisualDensity(),
+          visualDensity: VisualDensity.standard,
           elevation: WidgetStateProperty.all(0),
           backgroundColor: WidgetStateProperty.all(colors.card),
         ),

@@ -1,3 +1,5 @@
+// ignore_for_file: use_to_and_as_if_applicable
+
 import 'package:go_router/go_router.dart';
 
 /// Type-safe route matching over the full router state — no raw regex.

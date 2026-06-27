@@ -43,7 +43,7 @@ class _MainNavigationBarState extends State<MainNavigationBar> {
       ),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-        spacing: Spacing(2).value,
+        spacing: const Spacing(2).value,
         children: widget.items
             .mapIndexed(
               (i, e) => Flexible(

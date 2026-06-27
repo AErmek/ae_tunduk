@@ -13,9 +13,8 @@ analyzer:
     # Assets
     - "assets/**"
     # Generated
-    - "lib/src/core/constant/localization/generated/**"
-    - "lib/src/core/constant/config/pubspec.yaml.g.dart"
-    - "lib/src/core/constant/generated/**"
+    - "**/generated/**"
+    - "**.tailor.dart"
     - "**.g.dart"
     - "**.gql.dart"
     - "**.freezed.dart"

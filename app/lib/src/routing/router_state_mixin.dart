@@ -24,7 +24,7 @@ mixin RouterStateMixin<T extends StatefulWidget> on State<T> {
     router = GoRouter(
       navigatorKey: rootNavigatorKey,
       routes: $appRoutes,
-      initialLocation: AppRoutes.candidatesList,
+      initialLocation: const CandidatesRoute().location,
       refreshListenable: _authListenable,
       redirect: RedirectChain([AuthenticatedGuard(authBloc), ColdStartGuard(authBloc)]).call,
     );
