@@ -55,10 +55,11 @@ extension PinVerifyEventPatterns on PinVerifyEvent {
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeMap<TResult extends Object?>({TResult Function( _PinSubmitted value)?  pinSubmitted,TResult Function( _BiometricRequested value)?  biometricRequested,required TResult orElse(),}){
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>({TResult Function( _Started value)?  started,TResult Function( _PinSubmitted value)?  pinSubmitted,TResult Function( _BiometricRequested value)?  biometricRequested,required TResult orElse(),}){
 final _that = this;
 switch (_that) {
-case _PinSubmitted() when pinSubmitted != null:
+case _Started() when started != null:
+return started(_that);case _PinSubmitted() when pinSubmitted != null:
 return pinSubmitted(_that);case _BiometricRequested() when biometricRequested != null:
 return biometricRequested(_that);case _:
   return orElse();
@@ -78,10 +79,11 @@ return biometricRequested(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult map<TResult extends Object?>({required TResult Function( _PinSubmitted value)  pinSubmitted,required TResult Function( _BiometricRequested value)  biometricRequested,}){
+@optionalTypeArgs TResult map<TResult extends Object?>({required TResult Function( _Started value)  started,required TResult Function( _PinSubmitted value)  pinSubmitted,required TResult Function( _BiometricRequested value)  biometricRequested,}){
 final _that = this;
 switch (_that) {
-case _PinSubmitted():
+case _Started():
+return started(_that);case _PinSubmitted():
 return pinSubmitted(_that);case _BiometricRequested():
 return biometricRequested(_that);}
 }
@@ -97,10 +99,11 @@ return biometricRequested(_that);}
 /// }
 /// ```
 
-@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>({TResult? Function( _PinSubmitted value)?  pinSubmitted,TResult? Function( _BiometricRequested value)?  biometricRequested,}){
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>({TResult? Function( _Started value)?  started,TResult? Function( _PinSubmitted value)?  pinSubmitted,TResult? Function( _BiometricRequested value)?  biometricRequested,}){
 final _that = this;
 switch (_that) {
-case _PinSubmitted() when pinSubmitted != null:
+case _Started() when started != null:
+return started(_that);case _PinSubmitted() when pinSubmitted != null:
 return pinSubmitted(_that);case _BiometricRequested() when biometricRequested != null:
 return biometricRequested(_that);case _:
   return null;
@@ -119,9 +122,10 @@ return biometricRequested(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function( String pin)?  pinSubmitted,TResult Function()?  biometricRequested,required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function()?  started,TResult Function( String pin)?  pinSubmitted,TResult Function()?  biometricRequested,required TResult orElse(),}) {final _that = this;
 switch (_that) {
-case _PinSubmitted() when pinSubmitted != null:
+case _Started() when started != null:
+return started();case _PinSubmitted() when pinSubmitted != null:
 return pinSubmitted(_that.pin);case _BiometricRequested() when biometricRequested != null:
 return biometricRequested();case _:
   return orElse();
@@ -141,9 +145,10 @@ return biometricRequested();case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function( String pin)  pinSubmitted,required TResult Function()  biometricRequested,}) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function()  started,required TResult Function( String pin)  pinSubmitted,required TResult Function()  biometricRequested,}) {final _that = this;
 switch (_that) {
-case _PinSubmitted():
+case _Started():
+return started();case _PinSubmitted():
 return pinSubmitted(_that.pin);case _BiometricRequested():
 return biometricRequested();}
 }
@@ -159,9 +164,10 @@ return biometricRequested();}
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function( String pin)?  pinSubmitted,TResult? Function()?  biometricRequested,}) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function()?  started,TResult? Function( String pin)?  pinSubmitted,TResult? Function()?  biometricRequested,}) {final _that = this;
 switch (_that) {
-case _PinSubmitted() when pinSubmitted != null:
+case _Started() when started != null:
+return started();case _PinSubmitted() when pinSubmitted != null:
 return pinSubmitted(_that.pin);case _BiometricRequested() when biometricRequested != null:
 return biometricRequested();case _:
   return null;
@@ -170,6 +176,38 @@ return biometricRequested();case _:
 }
 
 }
+
+/// @nodoc
+
+
+class _Started implements PinVerifyEvent {
+  const _Started();
+  
+
+
+
+
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _Started);
+}
+
+
+@override
+int get hashCode => runtimeType.hashCode;
+
+@override
+String toString() {
+  return 'PinVerifyEvent.started()';
+}
+
+
+}
+
+
+
 
 /// @nodoc
 
@@ -272,30 +310,71 @@ String toString() {
 /// @nodoc
 mixin _$PinVerifyState {
 
-
+ bool get biometricEnabled; RequestStatus<int> get verify;
+/// Create a copy of PinVerifyState
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$PinVerifyStateCopyWith<PinVerifyState> get copyWith => _$PinVerifyStateCopyWithImpl<PinVerifyState>(this as PinVerifyState, _$identity);
 
 
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is PinVerifyState);
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is PinVerifyState&&(identical(other.biometricEnabled, biometricEnabled) || other.biometricEnabled == biometricEnabled)&&(identical(other.verify, verify) || other.verify == verify));
 }
 
 
 @override
-int get hashCode => runtimeType.hashCode;
+int get hashCode => Object.hash(runtimeType,biometricEnabled,verify);
 
 @override
 String toString() {
-  return 'PinVerifyState()';
+  return 'PinVerifyState(biometricEnabled: $biometricEnabled, verify: $verify)';
 }
 
 
 }
 
 /// @nodoc
-class $PinVerifyStateCopyWith<$Res>  {
-$PinVerifyStateCopyWith(PinVerifyState _, $Res Function(PinVerifyState) __);
+abstract mixin class $PinVerifyStateCopyWith<$Res>  {
+  factory $PinVerifyStateCopyWith(PinVerifyState value, $Res Function(PinVerifyState) _then) = _$PinVerifyStateCopyWithImpl;
+@useResult
+$Res call({
+ bool biometricEnabled, RequestStatus<int> verify
+});
+
+
+$RequestStatusCopyWith<int, $Res> get verify;
+
+}
+/// @nodoc
+class _$PinVerifyStateCopyWithImpl<$Res>
+    implements $PinVerifyStateCopyWith<$Res> {
+  _$PinVerifyStateCopyWithImpl(this._self, this._then);
+
+  final PinVerifyState _self;
+  final $Res Function(PinVerifyState) _then;
+
+/// Create a copy of PinVerifyState
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') @override $Res call({Object? biometricEnabled = null,Object? verify = null,}) {
+  return _then(_self.copyWith(
+biometricEnabled: null == biometricEnabled ? _self.biometricEnabled : biometricEnabled // ignore: cast_nullable_to_non_nullable
+as bool,verify: null == verify ? _self.verify : verify // ignore: cast_nullable_to_non_nullable
+as RequestStatus<int>,
+  ));
+}
+/// Create a copy of PinVerifyState
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$RequestStatusCopyWith<int, $Res> get verify {
+  
+  return $RequestStatusCopyWith<int, $Res>(_self.verify, (value) {
+    return _then(_self.copyWith(verify: value));
+  });
+}
 }
 
 
@@ -313,13 +392,11 @@ extension PinVerifyStatePatterns on PinVerifyState {
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeMap<TResult extends Object?>({TResult Function( _Idle value)?  idle,TResult Function( _Loading value)?  loading,TResult Function( _Error value)?  error,required TResult orElse(),}){
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>(TResult Function( _PinVerifyState value)?  $default,{required TResult orElse(),}){
 final _that = this;
 switch (_that) {
-case _Idle() when idle != null:
-return idle(_that);case _Loading() when loading != null:
-return loading(_that);case _Error() when error != null:
-return error(_that);case _:
+case _PinVerifyState() when $default != null:
+return $default(_that);case _:
   return orElse();
 
 }
@@ -337,13 +414,14 @@ return error(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult map<TResult extends Object?>({required TResult Function( _Idle value)  idle,required TResult Function( _Loading value)  loading,required TResult Function( _Error value)  error,}){
+@optionalTypeArgs TResult map<TResult extends Object?>(TResult Function( _PinVerifyState value)  $default,){
 final _that = this;
 switch (_that) {
-case _Idle():
-return idle(_that);case _Loading():
-return loading(_that);case _Error():
-return error(_that);}
+case _PinVerifyState():
+return $default(_that);case _:
+  throw StateError('Unexpected subclass');
+
+}
 }
 /// A variant of `map` that fallback to returning `null`.
 ///
@@ -357,13 +435,11 @@ return error(_that);}
 /// }
 /// ```
 
-@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>({TResult? Function( _Idle value)?  idle,TResult? Function( _Loading value)?  loading,TResult? Function( _Error value)?  error,}){
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>(TResult? Function( _PinVerifyState value)?  $default,){
 final _that = this;
 switch (_that) {
-case _Idle() when idle != null:
-return idle(_that);case _Loading() when loading != null:
-return loading(_that);case _Error() when error != null:
-return error(_that);case _:
+case _PinVerifyState() when $default != null:
+return $default(_that);case _:
   return null;
 
 }
@@ -380,12 +456,10 @@ return error(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function()?  idle,TResult Function()?  loading,TResult Function( String message)?  error,required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( bool biometricEnabled,  RequestStatus<int> verify)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
-case _Idle() when idle != null:
-return idle();case _Loading() when loading != null:
-return loading();case _Error() when error != null:
-return error(_that.message);case _:
+case _PinVerifyState() when $default != null:
+return $default(_that.biometricEnabled,_that.verify);case _:
   return orElse();
 
 }
@@ -403,12 +477,13 @@ return error(_that.message);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function()  idle,required TResult Function()  loading,required TResult Function( String message)  error,}) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( bool biometricEnabled,  RequestStatus<int> verify)  $default,) {final _that = this;
 switch (_that) {
-case _Idle():
-return idle();case _Loading():
-return loading();case _Error():
-return error(_that.message);}
+case _PinVerifyState():
+return $default(_that.biometricEnabled,_that.verify);case _:
+  throw StateError('Unexpected subclass');
+
+}
 }
 /// A variant of `when` that fallback to returning `null`
 ///
@@ -422,12 +497,10 @@ return error(_that.message);}
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function()?  idle,TResult? Function()?  loading,TResult? Function( String message)?  error,}) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( bool biometricEnabled,  RequestStatus<int> verify)?  $default,) {final _that = this;
 switch (_that) {
-case _Idle() when idle != null:
-return idle();case _Loading() when loading != null:
-return loading();case _Error() when error != null:
-return error(_that.message);case _:
+case _PinVerifyState() when $default != null:
+return $default(_that.biometricEnabled,_that.verify);case _:
   return null;
 
 }
@@ -438,131 +511,78 @@ return error(_that.message);case _:
 /// @nodoc
 
 
-class _Idle implements PinVerifyState {
-  const _Idle();
+class _PinVerifyState implements PinVerifyState {
+  const _PinVerifyState({this.biometricEnabled = false, this.verify = const RequestStatus<int>.idle()});
   
 
-
-
-
-
-
-@override
-bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _Idle);
-}
-
-
-@override
-int get hashCode => runtimeType.hashCode;
-
-@override
-String toString() {
-  return 'PinVerifyState.idle()';
-}
-
-
-}
-
-
-
-
-/// @nodoc
-
-
-class _Loading implements PinVerifyState {
-  const _Loading();
-  
-
-
-
-
-
-
-@override
-bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _Loading);
-}
-
-
-@override
-int get hashCode => runtimeType.hashCode;
-
-@override
-String toString() {
-  return 'PinVerifyState.loading()';
-}
-
-
-}
-
-
-
-
-/// @nodoc
-
-
-class _Error implements PinVerifyState {
-  const _Error(this.message);
-  
-
- final  String message;
+@override@JsonKey() final  bool biometricEnabled;
+@override@JsonKey() final  RequestStatus<int> verify;
 
 /// Create a copy of PinVerifyState
 /// with the given fields replaced by the non-null parameter values.
-@JsonKey(includeFromJson: false, includeToJson: false)
+@override @JsonKey(includeFromJson: false, includeToJson: false)
 @pragma('vm:prefer-inline')
-_$ErrorCopyWith<_Error> get copyWith => __$ErrorCopyWithImpl<_Error>(this, _$identity);
+_$PinVerifyStateCopyWith<_PinVerifyState> get copyWith => __$PinVerifyStateCopyWithImpl<_PinVerifyState>(this, _$identity);
 
 
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _Error&&(identical(other.message, message) || other.message == message));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _PinVerifyState&&(identical(other.biometricEnabled, biometricEnabled) || other.biometricEnabled == biometricEnabled)&&(identical(other.verify, verify) || other.verify == verify));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,message);
+int get hashCode => Object.hash(runtimeType,biometricEnabled,verify);
 
 @override
 String toString() {
-  return 'PinVerifyState.error(message: $message)';
+  return 'PinVerifyState(biometricEnabled: $biometricEnabled, verify: $verify)';
 }
 
 
 }
 
 /// @nodoc
-abstract mixin class _$ErrorCopyWith<$Res> implements $PinVerifyStateCopyWith<$Res> {
-  factory _$ErrorCopyWith(_Error value, $Res Function(_Error) _then) = __$ErrorCopyWithImpl;
-@useResult
+abstract mixin class _$PinVerifyStateCopyWith<$Res> implements $PinVerifyStateCopyWith<$Res> {
+  factory _$PinVerifyStateCopyWith(_PinVerifyState value, $Res Function(_PinVerifyState) _then) = __$PinVerifyStateCopyWithImpl;
+@override @useResult
 $Res call({
- String message
+ bool biometricEnabled, RequestStatus<int> verify
 });
 
 
-
+@override $RequestStatusCopyWith<int, $Res> get verify;
 
 }
 /// @nodoc
-class __$ErrorCopyWithImpl<$Res>
-    implements _$ErrorCopyWith<$Res> {
-  __$ErrorCopyWithImpl(this._self, this._then);
+class __$PinVerifyStateCopyWithImpl<$Res>
+    implements _$PinVerifyStateCopyWith<$Res> {
+  __$PinVerifyStateCopyWithImpl(this._self, this._then);
 
-  final _Error _self;
-  final $Res Function(_Error) _then;
+  final _PinVerifyState _self;
+  final $Res Function(_PinVerifyState) _then;
 
 /// Create a copy of PinVerifyState
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') $Res call({Object? message = null,}) {
-  return _then(_Error(
-null == message ? _self.message : message // ignore: cast_nullable_to_non_nullable
-as String,
+@override @pragma('vm:prefer-inline') $Res call({Object? biometricEnabled = null,Object? verify = null,}) {
+  return _then(_PinVerifyState(
+biometricEnabled: null == biometricEnabled ? _self.biometricEnabled : biometricEnabled // ignore: cast_nullable_to_non_nullable
+as bool,verify: null == verify ? _self.verify : verify // ignore: cast_nullable_to_non_nullable
+as RequestStatus<int>,
   ));
 }
 
-
+/// Create a copy of PinVerifyState
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$RequestStatusCopyWith<int, $Res> get verify {
+  
+  return $RequestStatusCopyWith<int, $Res>(_self.verify, (value) {
+    return _then(_self.copyWith(verify: value));
+  });
+}
 }
 
 // dart format on

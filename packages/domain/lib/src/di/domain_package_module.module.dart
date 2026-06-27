@@ -24,10 +24,6 @@ class CvScanDomainPackageModule extends _i526.MicroPackageModule {
         () => domainModule.authRestoreStatus(gh<_i490.AuthRepository>()));
     gh.factory<_i490.AuthSetLockedStatusUseCase>(
         () => domainModule.authSetLockedStatus(gh<_i490.AuthRepository>()));
-    gh.factory<_i490.WatchSyncSnapshotUseCase>(
-        () => domainModule.watchSyncSnapshot(gh<_i490.SyncScheduler>()));
-    gh.factory<_i490.TriggerSyncUseCase>(
-        () => domainModule.triggerSync(gh<_i490.SyncScheduler>()));
     gh.factory<_i490.GetCandidatesUseCase>(
         () => domainModule.getCandidates(gh<_i490.CandidateRepository>()));
     gh.factory<_i490.FetchCandidatesUseCase>(
@@ -40,6 +36,10 @@ class CvScanDomainPackageModule extends _i526.MicroPackageModule {
         domainModule.watchCandidatePending(gh<_i490.CandidateRepository>()));
     gh.factory<_i490.UpdateCandidateUseCase>(
         () => domainModule.updateCandidate(gh<_i490.CandidateRepository>()));
+    gh.factory<_i490.WatchSyncSnapshotUseCase>(
+        () => domainModule.watchSyncSnapshot(gh<_i490.SyncScheduler>()));
+    gh.factory<_i490.TriggerSyncUseCase>(
+        () => domainModule.triggerSync(gh<_i490.SyncScheduler>()));
   }
 }
 

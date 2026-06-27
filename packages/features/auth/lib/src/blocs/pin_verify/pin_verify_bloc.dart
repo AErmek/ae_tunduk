@@ -1,15 +1,17 @@
 import 'package:cv_scan_domain/cv_scan_domain.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:shared/shared.dart';
 
 part 'pin_verify_bloc.freezed.dart';
 part 'pin_verify_event.dart';
 part 'pin_verify_state.dart';
 
 class PinVerifyBloc extends Bloc<PinVerifyEvent, PinVerifyState> {
-  PinVerifyBloc({required this._localAuth, required this._setLockedStatus}) : super(const PinVerifyState.idle()) {
+  PinVerifyBloc({required this._localAuth, required this._setLockedStatus}) : super(const PinVerifyState()) {
     on<PinVerifyEvent>(
       (event, emit) => switch (event) {
+        _Started() => _onStarted(event, emit),
         _PinSubmitted() => _onPinSubmitted(event, emit),
         _BiometricRequested() => _onBiometricRequested(event, emit),
       },
@@ -19,30 +21,35 @@ class PinVerifyBloc extends Bloc<PinVerifyEvent, PinVerifyState> {
   final LocalAuthService _localAuth;
   final AuthSetLockedStatusUseCase _setLockedStatus;
 
+  Future<void> _onStarted(_Started event, Emitter<PinVerifyState> emit) async {
+    final enabled = await _localAuth.isBiometricEnabled();
+    emit(state.copyWith(biometricEnabled: enabled));
+    if (enabled) await _authenticateWithBiometric(emit);
+  }
+
   Future<void> _onPinSubmitted(_PinSubmitted event, Emitter<PinVerifyState> emit) async {
-    emit(const PinVerifyState.loading());
+    emit(state.copyWith(verify: const RequestStatus<int>.loading()));
     final ok = await _localAuth.verifyPin(event.pin);
     if (ok) {
       await _setLockedStatus(UserLockedStatus.unlocked);
     } else {
-      emit(const PinVerifyState.error('Неверный PIN'));
+      emit(state.copyWith(verify: const RequestStatus<int>.fail(InvalidPinFailure())));
     }
   }
 
   Future<void> _onBiometricRequested(_BiometricRequested event, Emitter<PinVerifyState> emit) async {
-    emit(const PinVerifyState.loading());
-    final enabled = await _localAuth.isBiometricEnabled();
-    if (!enabled) {
-      emit(const PinVerifyState.idle());
-      return;
-    }
+    if (!state.biometricEnabled) return;
+    await _authenticateWithBiometric(emit);
+  }
 
-    await Future<void>.delayed(const Duration(seconds: 1));
+  Future<void> _authenticateWithBiometric(Emitter<PinVerifyState> emit) async {
+    emit(state.copyWith(verify: const RequestStatus<int>.loading()));
+    await Future<void>.delayed(const Duration(milliseconds: 300));
     final ok = await _localAuth.authenticateWithBiometric();
     if (ok) {
       await _setLockedStatus(UserLockedStatus.unlocked);
     } else {
-      emit(const PinVerifyState.idle());
+      emit(state.copyWith(verify: const RequestStatus<int>.idle()));
     }
   }
 }

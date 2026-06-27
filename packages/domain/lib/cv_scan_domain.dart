@@ -13,6 +13,7 @@ export 'src/enums/candidate_verdict.dart';
 export 'src/enums/candidate_verdict_tone.dart';
 export 'src/enums/conflict_strategy.dart';
 export 'src/enums/sort_field.dart';
+export 'src/errors/invalid_pin_failure.dart';
 export 'src/errors/network_failure.dart';
 export 'src/errors/server_failure.dart';
 export 'src/errors/unknown_failure.dart';
