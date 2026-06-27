@@ -36,7 +36,11 @@ class _MaterialContextState extends State<MaterialContext> with RouterStateMixin
     localizationsDelegates: AppLocaleConfig.localizationDelegates,
 
     routerConfig: router,
-    theme: ThemeData(colorScheme: ColorScheme.fromSeed(seedColor: const Color(0xFF1A73E8)), useMaterial3: true),
+
+    themeMode: ThemeMode.light,
+    theme: lightAppThemeBuilder.themeData,
+    darkTheme: darkAppThemeBuilder.themeData,
+
     builder: (context, child) => AppRouterScope(
       router: appRouter,
       child: AppBuilder(child: child ?? const SizedBox.shrink()),
