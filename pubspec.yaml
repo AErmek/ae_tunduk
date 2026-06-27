@@ -26,7 +26,19 @@ melos:
 
     test:
       run: melos exec -- flutter test
-      description: Run tests on all packages
+      description: Run unit/widget tests in packages that have a test/ directory
+      packageFilters:
+        dirExists: test
+
+    test:e2e:
+      run: melos exec -- flutter test integration_test
+      description: Run integration (E2E) tests in packages that have an integration_test/ directory
+      packageFilters:
+        dirExists: integration_test
+
+    test:all:
+      run: melos run test && melos run test:e2e
+      description: Run both unit/widget and integration tests
 
     build:
       run: melos exec -- dart run build_runner build --delete-conflicting-outputs
