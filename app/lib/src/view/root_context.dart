@@ -1,3 +1,4 @@
+import 'package:cv_scan_app/src/view/environment_banner.dart';
 import 'package:cv_scan_app/src/view/material_context.dart';
 import 'package:flutter/material.dart';
 import 'package:shared/shared.dart';
@@ -7,9 +8,9 @@ class RootContext extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => const AuthScope(
-    child:
-        // TestingBannerWrapper(child: AppSystemUiOverlayConfig(child:
-        MaterialContext(),
-    // ),
+    child: EnvironmentBanner(
+      // child: AppSystemUiOverlayConfig(child:
+      child: MaterialContext(),
+    ),
   );
 }

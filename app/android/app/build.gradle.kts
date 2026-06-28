@@ -32,6 +32,39 @@ android {
             signingConfig = signingConfigs.getByName("debug")
         }
     }
+
+    buildFeatures {
+        buildConfig = true
+        resValues = true // Add this line
+    }
+
+    flavorDimensions += "default"
+    productFlavors {
+        create("dev") {
+            dimension = "default"
+            resValue(
+                type = "string",
+                name = "app_name",
+                value = "CV Scan dev")
+            applicationIdSuffix = ".dev"
+        }
+        create("stage") {
+            dimension = "default"
+            resValue(
+                type = "string",
+                name = "app_name",
+                value = "CV Scan stage")
+            applicationIdSuffix = ".stage"
+        }
+        create("prod") {
+            dimension = "default"
+            resValue(
+                type = "string",
+                name = "app_name",
+                value = "CV Scan")
+            applicationIdSuffix = ""
+        }
+    }
 }
 
 kotlin {
