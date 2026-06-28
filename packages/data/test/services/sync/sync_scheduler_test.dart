@@ -1,3 +1,5 @@
+// ignore_for_file: close_sinks
+
 import 'dart:async';
 
 import 'package:cv_scan_core/cv_scan_core.dart';
@@ -14,11 +16,17 @@ class _MockOutboxDao extends Mock implements OutboxDao {}
 
 /// Wires a scheduler with fully faked collaborators. [pending] drives the
 /// outbox's hasPending stream; the test owns its lifecycle.
-({SyncSchedulerImpl scheduler, FakeSyncEngine engine, FakeNetworkMonitor monitor, StreamController<bool> pending, List<SyncSnapshot> snaps})
+({
+  SyncSchedulerImpl scheduler,
+  FakeSyncEngine engine,
+  FakeNetworkMonitor monitor,
+  StreamController<bool> pending,
+  List<SyncSnapshot> snaps,
+})
 _build({bool online = true, ExponentialBackoff backoff = const ExponentialBackoff(jitter: false, maxAttempts: 2)}) {
   final pending = StreamController<bool>.broadcast();
   final outbox = _MockOutboxDao();
-  when(() => outbox.watchHasPending()).thenAnswer((_) => pending.stream);
+  when(outbox.watchHasPending).thenAnswer((_) => pending.stream);
 
   final engine = FakeSyncEngine();
   final monitor = FakeNetworkMonitor(online: online);
@@ -67,7 +75,7 @@ void main() {
       async.flushMicrotasks();
       expect(t.engine.calls, 0);
 
-      t.monitor.emit(true);
+      t.monitor.emit(online: true);
       async.flushMicrotasks();
 
       expect(t.engine.calls, 1);

@@ -54,8 +54,8 @@ class CandidateDetailBloc extends Bloc<CandidateDetailEvent, CandidateDetailStat
     emit(state.copyWith(load: const RequestStatus<int>.loading(), isOnline: _networkMonitor.isOnline));
 
     _candidateSub ??= _getCandidate(_id).listen((c) => add(CandidateDetailEvent.candidateUpdated(c)));
-    _pendingSub ??= _watchPending(_id).listen((p) => add(CandidateDetailEvent.pendingChanged(p)));
-    _onlineSub ??= _networkMonitor.onlineChanges.listen((o) => add(CandidateDetailEvent.onlineChanged(o)));
+    _pendingSub ??= _watchPending(_id).listen((p) => add(CandidateDetailEvent.pendingChanged(hasPending: p)));
+    _onlineSub ??= _networkMonitor.onlineChanges.listen((o) => add(CandidateDetailEvent.onlineChanged(isOnline: o)));
 
     // Mirror may not hold this candidate yet — pull it once. The overlaid stream
     // re-emits and resolves [load]; offline failures surface only on the op.
