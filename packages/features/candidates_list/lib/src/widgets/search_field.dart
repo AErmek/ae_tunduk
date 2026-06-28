@@ -7,16 +7,8 @@ class SearchField extends StatelessWidget {
   final ValueChanged<String> onChanged;
 
   @override
-  Widget build(BuildContext context) => Padding(
-    padding: const EdgeInsets.fromLTRB(16, 12, 16, 4),
-    child: TextField(
-      onChanged: onChanged,
-      decoration: InputDecoration(
-        prefixIcon: const Icon(Icons.search),
-        hintText: context.t.candidatesSearchHint,
-        border: const OutlineInputBorder(),
-        isDense: true,
-      ),
-    ),
+  Widget build(BuildContext context) => TextField(
+    onChanged: onChanged,
+    decoration: InputDecoration(prefixIcon: const Icon(Icons.search), hintText: context.t.candidatesSearchHint),
   );
 }

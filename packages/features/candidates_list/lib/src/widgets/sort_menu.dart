@@ -20,6 +20,7 @@ class SortMenu extends StatelessWidget {
     final selected = context.select<CandidatesListBloc, SortField>((b) => b.state.filter.sort);
     return PopupMenuButton<SortField>(
       icon: const Icon(Icons.sort),
+      iconColor: context.themeColors.onPrimaryContainer,
       tooltip: context.t.candidatesSortLabel,
       initialValue: selected,
       onSelected: onChanged,
@@ -29,11 +30,7 @@ class SortMenu extends StatelessWidget {
             value: field,
             child: Row(
               children: [
-                Icon(
-                  field == selected ? Icons.check : null,
-                  size: 18,
-                  color: Theme.of(context).colorScheme.primary,
-                ),
+                Icon(field == selected ? Icons.check : null, size: 18, color: Theme.of(context).colorScheme.primary),
                 const SizedBox(width: 12),
                 Text(_label(context, field)),
               ],

@@ -62,8 +62,14 @@ class _CandidatesListViewState extends State<_CandidatesListView> with InfiniteS
     body: SafeArea(
       child: Column(
         children: [
-          SearchField(onChanged: (q) => _bloc.add(CandidatesListEvent.queryChanged(q))),
-          VerdictFilter(onChanged: _onVerdictChanged),
+          const Space.v(Spacing(4)),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 16),
+            child: SearchField(onChanged: (q) => _bloc.add(CandidatesListEvent.queryChanged(q))),
+          ),
+          const Space.v(Spacing(2)),
+          VerdictFilter(padding: const EdgeInsets.symmetric(horizontal: 16), onChanged: _onVerdictChanged),
+
           const OfflineBanner(),
           Expanded(
             child: BlocConsumer<CandidatesListBloc, CandidatesListState>(

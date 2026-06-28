@@ -9,6 +9,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
 import 'package:share_plus/share_plus.dart';
+import 'package:shared/shared.dart';
 
 class CandidateDetailScreen extends StatelessWidget {
   const CandidateDetailScreen({required this.id, super.key});
@@ -149,43 +150,34 @@ class _Header extends StatelessWidget {
   final Candidate candidate;
   final bool hasPending;
 
-  Color _tone(BuildContext context) {
-    final colors = context.themeColors;
-    return switch (candidate.verdictTone) {
-      CandidateVerdictTone.green => colors.success,
-      CandidateVerdictTone.orange => colors.warning,
-      CandidateVerdictTone.red => colors.error,
-    };
-  }
-
   @override
-  Widget build(BuildContext context) {
-    final tone = _tone(context);
-    return Padding(
-      padding: const EdgeInsets.fromLTRB(16, 12, 16, 0),
-      child: Wrap(
-        spacing: 8,
-        runSpacing: 8,
-        crossAxisAlignment: WrapCrossAlignment.center,
-        children: [
-          Container(
-            padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
-            decoration: BoxDecoration(color: tone.withValues(alpha: 0.12), borderRadius: BorderRadius.circular(12)),
-            child: Text(
-              candidate.verdict.apiKey,
-              style: TextStyle(color: tone, fontWeight: FontWeight.w600, fontSize: 12),
+  Widget build(BuildContext context) => Padding(
+    padding: const EdgeInsets.fromLTRB(16, 12, 16, 0),
+    child: Wrap(
+      spacing: 8,
+      runSpacing: 8,
+      crossAxisAlignment: WrapCrossAlignment.center,
+      children: [
+        StatusBadge(
+          label: Text(context.t.verdictDisplayName(candidate.verdict.name)),
+          color: candidate.verdictTone.getColor(context.themeColors),
+        ),
+
+        if (hasPending)
+          CustomChip(
+            height: 24,
+            label: Row(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                const Icon(Icons.sync_outlined, size: 16),
+                const SizedBox(width: 4),
+                Flexible(child: Text(context.t.candidateDetailNotSynced)),
+              ],
             ),
           ),
-          if (hasPending)
-            Chip(
-              visualDensity: VisualDensity.compact,
-              avatar: const Icon(Icons.sync_problem_outlined, size: 16),
-              label: Text(context.t.candidateDetailNotSynced),
-            ),
-        ],
-      ),
-    );
-  }
+      ],
+    ),
+  );
 }
 
 class _Rows extends StatelessWidget {

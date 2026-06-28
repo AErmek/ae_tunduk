@@ -56,9 +56,9 @@ class LightAppThemeBuilder implements AppThemeBuilder {
       scaffoldBackgroundColor: colors.surface,
       appBarTheme: AppBarTheme(
         toolbarHeight: Ui.tokens.appBar.height,
-        backgroundColor: colors.surfaceContainer,
+        backgroundColor: colors.primaryContainer,
         elevation: 0,
-        titleTextStyle: typography.bL.r.copyWith(color: colors.onSurface),
+        titleTextStyle: typography.bL.r.copyWith(color: colors.onPrimaryContainer),
       ),
       bottomNavigationBarTheme: BottomNavigationBarThemeData(
         backgroundColor: colors.surfaceContainer,
@@ -94,7 +94,7 @@ class LightAppThemeBuilder implements AppThemeBuilder {
       ),
 
       popupMenuTheme: PopupMenuThemeData(
-        shape: const BeveledRectangleBorder(),
+        shape: RoundedRectangleBorder(side: BorderSide.none, borderRadius: BorderRadius.circular(Ui.tokens.radius.lg)),
         color: colors.popover,
         iconSize: Ui.tokens.appBar.iconSize,
         iconColor: colors.onSurfaceMuted,
@@ -126,12 +126,33 @@ class LightAppThemeBuilder implements AppThemeBuilder {
           backgroundColor: WidgetStateProperty.all(colors.card),
         ),
       ),
+      cardTheme: CardThemeData(
+        color: colors.card,
+        elevation: 0,
+        shadowColor: colors.shadow,
+        shape: RoundedRectangleBorder(side: BorderSide.none, borderRadius: BorderRadius.circular(Ui.tokens.radius.lg)),
+      ),
       inputDecorationTheme: InputDecorationTheme(
-        border: UnderlineInputBorder(borderSide: BorderSide(color: colors.divider)),
-        errorBorder: UnderlineInputBorder(borderSide: BorderSide(color: colors.error)),
-        enabledBorder: UnderlineInputBorder(borderSide: BorderSide(color: colors.divider)),
-        focusedBorder: UnderlineInputBorder(borderSide: BorderSide(color: colors.ring)),
-        focusedErrorBorder: UnderlineInputBorder(borderSide: BorderSide(color: colors.error)),
+        border: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(Ui.tokens.radius.lg),
+          borderSide: BorderSide(color: colors.divider),
+        ),
+        errorBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(Ui.tokens.radius.lg),
+          borderSide: BorderSide(color: colors.error),
+        ),
+        enabledBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(Ui.tokens.radius.lg),
+          borderSide: BorderSide(color: colors.divider),
+        ),
+        focusedBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(Ui.tokens.radius.lg),
+          borderSide: BorderSide(color: colors.ring),
+        ),
+        focusedErrorBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(Ui.tokens.radius.lg),
+          borderSide: BorderSide(color: colors.error),
+        ),
         labelStyle: typography.bM.r.copyWith(color: colors.onSurfaceMuted),
         errorStyle: typography.bS.r.copyWith(color: colors.error),
         errorMaxLines: 3,
@@ -143,13 +164,16 @@ class LightAppThemeBuilder implements AppThemeBuilder {
       ),
       filledButtonTheme: FilledButtonThemeData(
         style: FilledButton.styleFrom(
-          shape: const RoundedRectangleBorder(),
+          shape: RoundedRectangleBorder(
+            side: BorderSide.none,
+            borderRadius: BorderRadius.circular(Ui.tokens.radius.lg),
+          ),
           backgroundColor: colors.primary,
           disabledBackgroundColor: colors.surfaceContainerSoft,
           foregroundColor: colors.onPrimary,
           disabledForegroundColor: colors.onSurfaceMuted,
-          textStyle: typography.bL.m,
-          padding: const EdgeInsets.all(19),
+          textStyle: typography.bM.r,
+          padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 16),
         ),
       ),
       textButtonTheme: TextButtonThemeData(
@@ -157,15 +181,18 @@ class LightAppThemeBuilder implements AppThemeBuilder {
           // foregroundColor: colors.primary,
           // disabledForegroundColor: colors.onMuted,
           // textStyle: const TextStyle(fontWeight: FontWeight.w600),
-          shape: const RoundedRectangleBorder(),
+          shape: RoundedRectangleBorder(
+            side: BorderSide.none,
+            borderRadius: BorderRadius.circular(Ui.tokens.radius.lg),
+          ),
           // overlayColor: colors.accent,
 
           // backgroundColor: colors.accent,
           disabledBackgroundColor: Colors.transparent,
           // foregroundColor: colors.onPrimary,
           disabledForegroundColor: colors.onSurfaceMuted,
-          textStyle: typography.bL.m,
-          padding: const EdgeInsets.all(19),
+          textStyle: typography.bM.r,
+          padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 16),
         ),
       ),
       outlinedButtonTheme: OutlinedButtonThemeData(
@@ -183,16 +210,19 @@ class LightAppThemeBuilder implements AppThemeBuilder {
       actionIconTheme: const ActionIconThemeData(),
 
       dialogTheme: DialogThemeData(
-        shape: const BeveledRectangleBorder(),
+        shape: RoundedRectangleBorder(side: BorderSide.none, borderRadius: BorderRadius.circular(Ui.tokens.radius.lg)),
         insetPadding: const EdgeInsets.all(16),
+        backgroundColor: colors.popover,
         actionsPadding: const EdgeInsets.all(16),
-        titleTextStyle: typography.bL.sb.copyWith(color: colors.onSurface),
+        titleTextStyle: typography.bXl.m.copyWith(color: colors.onPopover),
+        contentTextStyle: typography.bS.r.copyWith(color: colors.onSurfaceMuted),
       ),
 
       listTileTheme: ListTileThemeData(
-        contentPadding: const EdgeInsets.symmetric(vertical: 12),
+        contentPadding: const EdgeInsets.symmetric(vertical: 12, horizontal: 16),
         titleTextStyle: typography.bM.r.copyWith(color: colors.onSurface),
         minTileHeight: 10,
+        shape: RoundedRectangleBorder(side: BorderSide.none, borderRadius: BorderRadius.circular(Ui.tokens.radius.lg)),
       ),
       bottomSheetTheme: BottomSheetThemeData(
         shape: const BeveledRectangleBorder(),
@@ -213,6 +243,21 @@ class LightAppThemeBuilder implements AppThemeBuilder {
         unselectedLabelStyle: typography.bM.r,
         labelColor: colors.primary,
         unselectedLabelColor: colors.onSurfaceMuted,
+      ),
+      chipTheme: ChipThemeData(
+        disabledColor: colors.surfaceContainerSoft,
+        secondarySelectedColor: colors.primaryContainer,
+        padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 2),
+        labelStyle: typography.bXs.r.copyWith(color: colors.onSurfaceVariant),
+
+        secondaryLabelStyle: typography.bXs.r.copyWith(color: colors.onPrimaryContainer),
+
+        showCheckmark: false,
+        side: BorderSide.none,
+        shape: const StadiumBorder(),
+        backgroundColor: colors.surfaceContainer,
+        selectedColor: colors.primaryContainer,
+        brightness: Brightness.light,
       ),
     );
   }

@@ -56,5 +56,23 @@
   "authBiometricSubtitle": "Использовать биометрию для входа?",
   "yes": "Да",
   "no": "Нет",
-  "noNetworkShownSavedData": "Нет сети — показаны сохранённые данные"
+  "noNetworkShownSavedData": "Нет сети — показаны сохранённые данные",
+  "verdictDisplayName": "{CandidateVerdict, select, fits{Подходит} partial{Частично} doesNotFit{Не подходит} other{Неизвестно}}",
+  "@verdictDisplayName": {
+    "description": "Localized message based on candidate verdict enum",
+    "placeholders": {
+      "CandidateVerdict": {
+        "type": "String"
+      }
+    }
+  },
+  "candidateStatusDisplayName": "{CandidateStatus, select, newCandidate{Новый} review{На рассмотрении} invited{Приглашён} rejected{Отклонён} other{Неизвестно}}",
+  "@candidateStatusDisplayName": {
+    "description": "Localized message based on candidate status enum",
+    "placeholders": {
+      "CandidateStatus": {
+        "type": "String"
+      }
+    }
+  }
 }

@@ -583,6 +583,39 @@ class Translations {
       args: [],
     );
   }
+
+  /// `{CandidateVerdict, select, fits{Подходит} partial{Частично} doesNotFit{Не подходит} other{Неизвестно}}`
+  String verdictDisplayName(String CandidateVerdict) {
+    return Intl.select(
+      CandidateVerdict,
+      {
+        'fits': 'Подходит',
+        'partial': 'Частично',
+        'doesNotFit': 'Не подходит',
+        'other': 'Неизвестно',
+      },
+      name: 'verdictDisplayName',
+      desc: 'Localized message based on candidate verdict enum',
+      args: [CandidateVerdict],
+    );
+  }
+
+  /// `{CandidateStatus, select, newCandidate{Новый} review{На рассмотрении} invited{Приглашён} rejected{Отклонён} other{Неизвестно}}`
+  String candidateStatusDisplayName(String CandidateStatus) {
+    return Intl.select(
+      CandidateStatus,
+      {
+        'newCandidate': 'Новый',
+        'review': 'На рассмотрении',
+        'invited': 'Приглашён',
+        'rejected': 'Отклонён',
+        'other': 'Неизвестно',
+      },
+      name: 'candidateStatusDisplayName',
+      desc: 'Localized message based on candidate status enum',
+      args: [CandidateStatus],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<Translations> {

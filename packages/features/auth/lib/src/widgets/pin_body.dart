@@ -55,7 +55,7 @@ class _PinBodyState extends State<PinBody> {
       textStyle: theme.style((t) => t.bM, (c) => c.onSurface),
       decoration: BoxDecoration(
         border: Border.all(color: theme.colors.divider),
-        borderRadius: BorderRadius.circular(12),
+        borderRadius: BorderRadius.circular(Ui.tokens.radius.lg),
       ),
     );
 

@@ -19,7 +19,12 @@ class BottomLoader extends StatelessWidget {
       );
     }
     if (!hasMore) {
-      return Center(child: Text(context.t.candidatesListNoMoreCandidates));
+      return Center(
+        child: Text(
+          context.t.candidatesListNoMoreCandidates,
+          style: context.theme.style((t) => t.bS.r, (c) => c.onSurfaceVariant),
+        ),
+      );
     }
     return const SizedBox(height: BottomLoader.height);
   }

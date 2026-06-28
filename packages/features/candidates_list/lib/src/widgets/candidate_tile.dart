@@ -1,7 +1,10 @@
+import 'package:cv_scan_core/cv_scan_core.dart';
 import 'package:cv_scan_domain/cv_scan_domain.dart';
+import 'package:cv_scan_ui_kit/ui_kit.dart';
 import 'package:feature_candidates_list/src/widgets/status_badge.dart';
 import 'package:feature_candidates_list/src/widgets/verdict_badge.dart';
 import 'package:flutter/material.dart';
+import 'package:shared/shared.dart';
 
 class CandidateTile extends StatelessWidget {
   const CandidateTile({required this.candidate, required this.onTap, super.key});
@@ -11,21 +14,10 @@ class CandidateTile extends StatelessWidget {
 
   static const double height = 120;
 
-  Color _toneColor() => switch (candidate.verdictTone) {
-    CandidateVerdictTone.green => Colors.green,
-    CandidateVerdictTone.orange => Colors.orange,
-    CandidateVerdictTone.red => Colors.red,
-  };
-
-  String get _initials {
-    final parts = candidate.name.trim().split(RegExp(r'\s+'));
-    return parts.take(2).map((p) => p.isEmpty ? '' : p[0]).join().toUpperCase();
-  }
-
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-    final tone = _toneColor();
+    final tone = candidate.verdictTone.getColor(context.themeColors);
 
     return Card(
       clipBehavior: Clip.antiAlias,
@@ -38,11 +30,8 @@ class CandidateTile extends StatelessWidget {
             children: [
               CircleAvatar(
                 radius: 24,
-                backgroundColor: tone.withValues(alpha: 0.15),
-                child: Text(
-                  _initials,
-                  style: theme.textTheme.titleMedium?.copyWith(color: tone, fontWeight: FontWeight.w700),
-                ),
+                backgroundColor: tone.opBadge,
+                child: Text(candidate.name.extractInitials(), style: theme.style((t) => t.bM.b, (c) => tone)),
               ),
               const SizedBox(width: 12),
               Expanded(
@@ -51,31 +40,33 @@ class CandidateTile extends StatelessWidget {
                   children: [
                     Text(
                       candidate.name,
-                      style: theme.textTheme.titleMedium?.copyWith(fontWeight: FontWeight.w600),
+                      style: theme.style((t) => t.bM.sb, (c) => c.onCard),
                       maxLines: 1,
                       overflow: TextOverflow.ellipsis,
                     ),
-                    const SizedBox(height: 2),
+                    const SizedBox(height: 6),
                     Text(
                       candidate.posLabel,
-                      style: theme.textTheme.bodySmall?.copyWith(color: theme.colorScheme.onSurfaceVariant),
+                      style: theme.style((t) => t.bXs.r, (c) => c.onSurfaceVariant),
                       maxLines: 1,
                       overflow: TextOverflow.ellipsis,
                     ),
                     const SizedBox(height: 8),
-                    Wrap(
-                      spacing: 6,
-                      runSpacing: 4,
-                      children: [
-                        VerdictBadge(verdict: candidate.verdict, tone: candidate.verdictTone),
-                        StatusBadge(status: candidate.status),
-                      ],
+                    Flexible(
+                      child: Wrap(
+                        spacing: 6,
+                        runSpacing: 4,
+                        children: [
+                          CandidateVerdictBadge(verdict: candidate.verdict, tone: candidate.verdictTone),
+                          CandidateStatusBadge(status: candidate.status),
+                        ],
+                      ),
                     ),
                   ],
                 ),
               ),
               const SizedBox(width: 4),
-              Icon(Icons.chevron_right, color: theme.colorScheme.onSurfaceVariant),
+              Icon(Icons.chevron_right, color: theme.colors.onSurfaceVariant),
             ],
           ),
         ),

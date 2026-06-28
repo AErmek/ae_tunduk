@@ -20,6 +20,12 @@ typedef String MessageIfAbsent(String messageStr, List<dynamic> args);
 class MessageLookup extends MessageLookupByLibrary {
   String get localeName => 'ru';
 
+  static String m0(CandidateStatus) =>
+      "${Intl.select(CandidateStatus, {'newCandidate': 'Новый', 'review': 'На рассмотрении', 'invited': 'Приглашён', 'rejected': 'Отклонён', 'other': 'Неизвестно'})}";
+
+  static String m1(CandidateVerdict) =>
+      "${Intl.select(CandidateVerdict, {'fits': 'Подходит', 'partial': 'Частично', 'doesNotFit': 'Не подходит', 'other': 'Неизвестно'})}";
+
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
     "appTitle": MessageLookupByLibrary.simpleMessage("CV Scan"),
@@ -72,6 +78,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "candidateDetailTitle": MessageLookupByLibrary.simpleMessage(
       "Профиль кандидата",
     ),
+    "candidateStatusDisplayName": m0,
     "candidateStatusInvited": MessageLookupByLibrary.simpleMessage("Приглашён"),
     "candidateStatusNew": MessageLookupByLibrary.simpleMessage("Новый"),
     "candidateStatusRejected": MessageLookupByLibrary.simpleMessage("Отклонён"),
@@ -134,6 +141,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "settingsTitle": MessageLookupByLibrary.simpleMessage("Настройки"),
     "syncFailed": MessageLookupByLibrary.simpleMessage("Ошибка синхронизации"),
     "syncInProgress": MessageLookupByLibrary.simpleMessage("Синхронизация…"),
+    "verdictDisplayName": m1,
     "yes": MessageLookupByLibrary.simpleMessage("Да"),
   };
 }

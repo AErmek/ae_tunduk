@@ -21,4 +21,25 @@ extension StringNullableExtension on String? {
     final self = this;
     return self == null ? '' : self * n;
   }
+
+  String extractInitials() {
+    final fullName = this;
+    if (fullName == null || fullName.trim().isEmpty) return '';
+
+    final parts = fullName
+        .trim()
+        .split(RegExp(r'\s+')) // разбить по пробелам
+        .where((part) => part.isNotEmpty)
+        .toList();
+
+    if (parts.isEmpty) return '';
+
+    final first = parts[0];
+    final second = parts.length > 1 ? parts[1] : '';
+
+    final firstInitial = first.isNotEmpty ? first[0].toUpperCase() : '';
+    final secondInitial = second.isNotEmpty ? second[0].toUpperCase() : '';
+
+    return '$firstInitial$secondInitial';
+  }
 }

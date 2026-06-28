@@ -1,8 +1,11 @@
 export 'src/blocs/auth_status/auth_status_bloc.dart';
+export 'src/extensions/enums_extension.dart';
 export 'src/state/request_status.dart';
 export 'src/utils/debounce_restartable.dart';
 export 'src/utils/stream_to_listenable.dart';
 export 'src/view/main_screen.dart';
 export 'src/view/settings_screen.dart';
 export 'src/widget/auth_scope.dart';
+export 'src/widget/custom_chip.dart';
 export 'src/widget/scroll/infinite_scroll_observer_mixin.dart';
+export 'src/widget/status_badge.dart';

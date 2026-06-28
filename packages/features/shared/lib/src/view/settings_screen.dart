@@ -33,12 +33,13 @@ class SettingsScreen extends StatelessWidget {
     appBar: AppBar(title: Text(context.t.settingsTitle)),
     body: SafeArea(
       child: ListView(
+        padding: const EdgeInsets.all(16),
         children: [
           ListTile(
             leading: const Icon(Icons.logout),
             title: Text(context.t.settingsLogout),
-            textColor: Theme.of(context).colorScheme.error,
-            iconColor: Theme.of(context).colorScheme.error,
+            textColor: context.themeColors.error,
+            iconColor: context.themeColors.error,
             onTap: () => _confirmLogout(context),
           ),
         ],
