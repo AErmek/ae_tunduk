@@ -13,6 +13,8 @@ dependencies:
     path: ../core
   cv_scan_domain:
     path: ../domain
+  cv_scan_secure_storage:
+    path: ../../plugins/secure_storage
 
   dio: ^5.9.2
   retrofit: ^4.9.2
@@ -24,10 +26,9 @@ dependencies:
   get_it: ^9.2.1
   injectable: ^3.0.0
 
-  flutter_secure_storage: ^10.3.1
   local_auth: ^2.3.0
   crypto: ^3.0.6
-  internet_connection_checker_plus: ^2.7.0
+  internet_connection_checker_plus: 2.7.0
 
 dev_dependencies:
   flutter_test:

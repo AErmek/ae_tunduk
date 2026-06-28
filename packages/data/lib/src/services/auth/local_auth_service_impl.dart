@@ -5,10 +5,10 @@ import 'dart:typed_data';
 import 'package:crypto/crypto.dart';
 import 'package:cv_scan_data/src/services/auth/pin_columns.dart';
 import 'package:cv_scan_domain/cv_scan_domain.dart';
-import 'package:flutter_secure_storage/flutter_secure_storage.dart';
+import 'package:cv_scan_secure_storage/secure_storage.dart';
 
 class LocalAuthServiceImpl implements LocalAuthService {
-  LocalAuthServiceImpl({required FlutterSecureStorage secureStorage, required this._bioAuthenticator})
+  LocalAuthServiceImpl({required SecureStorage secureStorage, required this._bioAuthenticator})
     : _pinHash = PinHashColumn(secureStorage: secureStorage),
       _pinSalt = PinSaltColumn(secureStorage: secureStorage),
       _biometricEnabled = BiometricEnabledColumn(secureStorage: secureStorage);
