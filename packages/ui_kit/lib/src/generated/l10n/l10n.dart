@@ -119,6 +119,36 @@ class Translations {
     );
   }
 
+  /// `Обновить данные на сервере`
+  String get settingsSimulateConflict {
+    return Intl.message(
+      'Обновить данные на сервере',
+      name: 'settingsSimulateConflict',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Изменено записей на сервере: {count}`
+  String settingsSimulateConflictDone(int count) {
+    return Intl.message(
+      'Изменено записей на сервере: $count',
+      name: 'settingsSimulateConflictDone',
+      desc: 'Snackbar shown after forcing server-side edits',
+      args: [count],
+    );
+  }
+
+  /// `Нет локальных изменений для конфликта`
+  String get settingsSimulateConflictNone {
+    return Intl.message(
+      'Нет локальных изменений для конфликта',
+      name: 'settingsSimulateConflictNone',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Кандидаты`
   String get candidatesTitle {
     return Intl.message(

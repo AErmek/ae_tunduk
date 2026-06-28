@@ -1,5 +1,4 @@
 import 'package:cv_scan_core/cv_scan_core.dart';
-import 'package:cv_scan_data/src/local/dao/candidates_dao.dart';
 import 'package:cv_scan_data/src/remote/interceptors/latency_interceptor.dart';
 import 'package:cv_scan_data/src/remote/interceptors/offline_interceptor.dart';
 import 'package:cv_scan_data/src/remote/interceptors/unstable_network_interceptor.dart';
@@ -12,7 +11,11 @@ import 'package:dio/dio.dart';
 class DioFactory {
   const DioFactory._();
 
-  static Dio create({required CandidatesDao candidatesDao, required NetworkMonitor networkMonitor}) {
+  static Dio create({
+    required MockServerStore store,
+    required MockServerStoreInitializer initializer,
+    required NetworkMonitor networkMonitor,
+  }) {
     final config = Config.i.api;
     final dio = Dio(
       BaseOptions(
@@ -23,12 +26,6 @@ class DioFactory {
     );
 
     if (Config.i.env.isNotProduction) {
-      final store = MockServerStore();
-      final initializer = MockServerStoreInitializer(
-        store: store,
-        candidatesDao: candidatesDao,
-        assetPath: config.mockAssetPath,
-      );
       dio.interceptors.addAll([
         OfflineInterceptor(networkMonitor),
         UnstableNetworkInterceptor(),

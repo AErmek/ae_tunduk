@@ -20,6 +20,9 @@ abstract class DomainModule {
 
   TriggerSyncUseCase triggerSync(SyncScheduler scheduler) => TriggerSyncUseCase(scheduler);
 
+  SimulateServerConflictUseCase simulateServerConflict(ServerConflictSimulator simulator) =>
+      SimulateServerConflictUseCase(simulator);
+
   WatchAuthStatusUseCase watchAuthStatus(AuthRepository repo) => WatchAuthStatusUseCase(repo);
 
   SetAuthenticatedUseCase setAuthenticated(AuthRepository repo) => SetAuthenticatedUseCase(repo);

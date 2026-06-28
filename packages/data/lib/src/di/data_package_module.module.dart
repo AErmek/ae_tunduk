@@ -21,6 +21,7 @@ class CvScanDataPackageModule extends _i526.MicroPackageModule {
     final authModule = _$AuthModule();
     gh.singleton<_i642.SecureStorage>(() => dataModule.secureStorage);
     gh.singleton<_i755.AppDatabase>(() => dataModule.database);
+    gh.lazySingleton<_i755.MockServerStore>(() => dataModule.mockServerStore());
     gh.singleton<_i490.BiometricAuthenticator>(
         () => authModule.biometricAuthenticator);
     gh.singleton<_i490.NetworkMonitor>(() => dataModule.networkMonitor());
@@ -34,20 +35,32 @@ class CvScanDataPackageModule extends _i526.MicroPackageModule {
         ));
     gh.singleton<_i490.AuthRepository>(
         () => dataModule.authRepository(gh<_i490.LocalAuthService>()));
+    gh.lazySingleton<_i755.MockServerStoreInitializer>(
+        () => dataModule.mockServerStoreInitializer(
+              gh<_i755.MockServerStore>(),
+              gh<_i755.CandidatesDao>(),
+            ));
     gh.lazySingleton<_i755.SyncReconciler>(() => dataModule.syncReconciler(
           gh<_i755.AppDatabase>(),
           gh<_i755.CandidatesDao>(),
           gh<_i755.OutboxDao>(),
-        ));
-    gh.lazySingleton<_i361.Dio>(() => dataModule.dio(
-          gh<_i755.CandidatesDao>(),
-          gh<_i490.NetworkMonitor>(),
         ));
     gh.lazySingleton<_i755.CandidateLocalDataSource>(
         () => dataModule.candidateLocalDataSource(
               gh<_i755.CandidatesDao>(),
               gh<_i755.OutboxDao>(),
             ));
+    gh.lazySingleton<_i490.ServerConflictSimulator>(
+        () => dataModule.serverConflictSimulator(
+              gh<_i755.OutboxDao>(),
+              gh<_i755.MockServerStore>(),
+              gh<_i755.MockServerStoreInitializer>(),
+            ));
+    gh.lazySingleton<_i361.Dio>(() => dataModule.dio(
+          gh<_i755.MockServerStore>(),
+          gh<_i755.MockServerStoreInitializer>(),
+          gh<_i490.NetworkMonitor>(),
+        ));
     gh.lazySingleton<_i755.ApiClient>(
         () => dataModule.apiClient(gh<_i361.Dio>()));
     gh.lazySingleton<_i490.SyncEngine>(() => dataModule.syncEngine(

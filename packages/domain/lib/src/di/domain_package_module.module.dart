@@ -40,6 +40,8 @@ class CvScanDomainPackageModule extends _i526.MicroPackageModule {
         domainModule.watchCandidatePending(gh<_i490.CandidateRepository>()));
     gh.factory<_i490.UpdateCandidateUseCase>(
         () => domainModule.updateCandidate(gh<_i490.CandidateRepository>()));
+    gh.factory<_i490.SimulateServerConflictUseCase>(() => domainModule
+        .simulateServerConflict(gh<_i490.ServerConflictSimulator>()));
     gh.factory<_i490.WatchSyncSnapshotUseCase>(
         () => domainModule.watchSyncSnapshot(gh<_i490.SyncScheduler>()));
     gh.factory<_i490.TriggerSyncUseCase>(

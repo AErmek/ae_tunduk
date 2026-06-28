@@ -6,5 +6,6 @@
   "PIN_CODE_LENGTH": 4,
   "DB_FILE_NAME": "cv_scan_dev",
   "MOCK_USE_LARGE_ASSET": false,
-  "MOCK_CONFLICT_STRATEGY": "merge"
+  "MOCK_CONFLICT_STRATEGY": "merge",
+  "TESTING_SIMULATE_SERVER_CONFLICT": true
 }

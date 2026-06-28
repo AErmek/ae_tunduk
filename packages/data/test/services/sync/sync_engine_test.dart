@@ -70,6 +70,23 @@ void main() {
     expect(captured.changes.single.note, 'mine');
   });
 
+  test('a status-only change omits note from the payload so the server keeps it', () async {
+    await db.candidatesDao.upsert(candidate(id: 'c1', version: 1).toCompanion());
+    await db.outboxDao.upsertPending(candidateId: 'c1', baseVersion: 1, status: 'invited');
+    stubPostSync(
+      syncResponse(
+        applied: [dtoCandidate(id: 'c1', version: 2, status: 'invited')],
+      ),
+    );
+
+    await engine.runOnce();
+
+    final captured = verify(() => api.postSync(body: captureAny(named: 'body'))).captured.single as SyncRequest;
+    final change = (captured.toJson()['changes'] as List).single as Map<String, Object?>;
+    expect(change['status'], 'invited');
+    expect(change.containsKey('note'), isFalse);
+  });
+
   test('applies the accepted response into the mirror and clears the outbox', () async {
     await db.candidatesDao.upsert(candidate(id: 'c1', version: 1).toCompanion());
     await db.outboxDao.upsertPending(candidateId: 'c1', baseVersion: 1, status: 'invited');

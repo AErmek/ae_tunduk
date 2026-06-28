@@ -1,3 +1,4 @@
+import 'package:cv_scan_core/cv_scan_core.dart';
 import 'package:cv_scan_domain/cv_scan_domain.dart';
 import 'package:cv_scan_ui_kit/ui_kit.dart';
 import 'package:flutter/material.dart';
@@ -28,6 +29,21 @@ class SettingsScreen extends StatelessWidget {
     if (confirmed ?? false) await GetIt.I<LogoutUseCase>()();
   }
 
+  Future<void> _simulateConflict(BuildContext context) async {
+    final messenger = ScaffoldMessenger.of(context);
+    final strings = context.t;
+
+    final changed = await GetIt.I<SimulateServerConflictUseCase>()();
+
+    messenger.showSnackBar(
+      SnackBar(
+        content: Text(
+          changed > 0 ? strings.settingsSimulateConflictDone(changed) : strings.settingsSimulateConflictNone,
+        ),
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) => Scaffold(
     appBar: AppBar(title: Text(context.t.settingsTitle)),
@@ -35,6 +51,12 @@ class SettingsScreen extends StatelessWidget {
       child: ListView(
         padding: const EdgeInsets.all(16),
         children: [
+          if (Config.i.testing.simulateServerConflict)
+            ListTile(
+              leading: const Icon(Icons.cloud_sync_outlined),
+              title: Text(context.t.settingsSimulateConflict),
+              onTap: () => _simulateConflict(context),
+            ),
           ListTile(
             leading: const Icon(Icons.logout),
             title: Text(context.t.settingsLogout),

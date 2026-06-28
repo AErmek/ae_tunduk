@@ -23,8 +23,22 @@ abstract class DataModule {
   NetworkMonitorImpl networkMonitor() => NetworkMonitorImpl();
 
   @lazySingleton
-  Dio dio(CandidatesDao candidatesDao, NetworkMonitor networkMonitor) =>
-      DioFactory.create(candidatesDao: candidatesDao, networkMonitor: networkMonitor);
+  MockServerStore mockServerStore() => MockServerStore();
+
+  @lazySingleton
+  MockServerStoreInitializer mockServerStoreInitializer(MockServerStore store, CandidatesDao candidatesDao) =>
+      MockServerStoreInitializer(store: store, candidatesDao: candidatesDao, assetPath: Config.i.api.mockAssetPath);
+
+  @lazySingleton
+  Dio dio(MockServerStore store, MockServerStoreInitializer initializer, NetworkMonitor networkMonitor) =>
+      DioFactory.create(store: store, initializer: initializer, networkMonitor: networkMonitor);
+
+  @LazySingleton(as: ServerConflictSimulator)
+  ServerConflictSimulatorImpl serverConflictSimulator(
+    OutboxDao outboxDao,
+    MockServerStore store,
+    MockServerStoreInitializer initializer,
+  ) => ServerConflictSimulatorImpl(outboxDao: outboxDao, store: store, initializer: initializer);
 
   @lazySingleton
   ApiClient apiClient(Dio dio) => ApiClient(dio);

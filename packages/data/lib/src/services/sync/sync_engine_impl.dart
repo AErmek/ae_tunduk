@@ -53,7 +53,7 @@ class SyncEngineImpl implements SyncEngine {
     }
   }
 
-  SyncRequestChanges _toChange(OutboxTableData row) => SyncRequestChanges(
+  SyncRequestChanges _toChange(OutboxTableData row) => _OutboxChange(
     id: row.candidateId,
     baseVersion: row.baseVersion,
     status: row.status != null ? SyncRequestChangesStatusStatus.fromJson(row.status!) : null,
@@ -74,4 +74,20 @@ class SyncEngineImpl implements SyncEngine {
     DioExceptionType.receiveTimeout => true,
     _ => false,
   };
+}
+
+/// Sends only the fields that actually changed: a null `status`/`note` means
+/// "left untouched", so it must be absent from the payload rather than sent as
+/// null — otherwise the server reads the present key as an intent to overwrite.
+class _OutboxChange extends SyncRequestChanges {
+  const _OutboxChange({
+    required super.id,
+    required super.baseVersion,
+    super.status,
+    super.note,
+    super.clientUpdatedAt,
+  });
+
+  @override
+  Map<String, Object?> toJson() => super.toJson()..removeWhere((_, value) => value == null);
 }

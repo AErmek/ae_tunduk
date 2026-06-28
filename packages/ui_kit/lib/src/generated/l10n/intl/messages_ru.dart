@@ -23,7 +23,9 @@ class MessageLookup extends MessageLookupByLibrary {
   static String m0(CandidateStatus) =>
       "${Intl.select(CandidateStatus, {'newCandidate': 'Новый', 'review': 'На рассмотрении', 'invited': 'Приглашён', 'rejected': 'Отклонён', 'other': 'Неизвестно'})}";
 
-  static String m1(CandidateVerdict) =>
+  static String m1(count) => "Изменено записей на сервере: ${count}";
+
+  static String m2(CandidateVerdict) =>
       "${Intl.select(CandidateVerdict, {'fits': 'Подходит', 'partial': 'Частично', 'doesNotFit': 'Не подходит', 'other': 'Неизвестно'})}";
 
   final messages = _notInlinedMessages(_notInlinedMessages);
@@ -138,10 +140,17 @@ class MessageLookup extends MessageLookupByLibrary {
       "Вы уверены, что хотите выйти?",
     ),
     "settingsLogoutConfirmTitle": MessageLookupByLibrary.simpleMessage("Выход"),
+    "settingsSimulateConflict": MessageLookupByLibrary.simpleMessage(
+      "Обновить данные на сервере",
+    ),
+    "settingsSimulateConflictDone": m1,
+    "settingsSimulateConflictNone": MessageLookupByLibrary.simpleMessage(
+      "Нет локальных изменений для конфликта",
+    ),
     "settingsTitle": MessageLookupByLibrary.simpleMessage("Настройки"),
     "syncFailed": MessageLookupByLibrary.simpleMessage("Ошибка синхронизации"),
     "syncInProgress": MessageLookupByLibrary.simpleMessage("Синхронизация…"),
-    "verdictDisplayName": m1,
+    "verdictDisplayName": m2,
     "yes": MessageLookupByLibrary.simpleMessage("Да"),
   };
 }

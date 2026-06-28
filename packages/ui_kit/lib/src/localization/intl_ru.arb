@@ -9,6 +9,17 @@
   "settingsLogoutConfirmMessage": "Вы уверены, что хотите выйти?",
   "settingsLogoutConfirmCancel": "Отмена",
   "settingsLogoutConfirmConfirm": "Выйти",
+  "settingsSimulateConflict": "Обновить данные на сервере",
+  "settingsSimulateConflictDone": "Изменено записей на сервере: {count}",
+  "@settingsSimulateConflictDone": {
+    "description": "Snackbar shown after forcing server-side edits",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "settingsSimulateConflictNone": "Нет локальных изменений для конфликта",
   "candidatesTitle": "Кандидаты",
   "candidatesEmpty": "Кандидаты не найдены",
   "candidatesListNoMoreCandidates": "Это все кандидаты",

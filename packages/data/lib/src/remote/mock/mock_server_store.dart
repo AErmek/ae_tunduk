@@ -79,6 +79,25 @@ class MockServerStore {
     return CandidatePatchResult.applied(record);
   }
 
+  /// Test helper: simulates an out-of-band server edit so a pending client
+  /// change carrying the old baseVersion collides on the next sync.
+  CandidateRecord? forceServerEdit(String id) {
+    final record = _index[id];
+    if (record == null) return null;
+
+    final nextVersion = (record['version'] as int) + 1;
+    record['version'] = nextVersion;
+    record['status'] = _nextStatus(record['status'] as String?);
+    record['note'] = 'Server-side update #$nextVersion';
+    return record;
+  }
+
+  String _nextStatus(String? current) {
+    const values = CandidateStatus.values;
+    final index = values.indexWhere((s) => s.apiKey == current);
+    return values[(index + 1) % values.length].apiKey;
+  }
+
   Map<String, dynamic> sync(List<Map<String, dynamic>> changes) {
     final applied = <CandidateRecord>[];
     final conflicts = <Map<String, dynamic>>[];
