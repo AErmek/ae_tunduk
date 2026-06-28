@@ -1,7 +1,6 @@
 import 'dart:math';
 
-/// Geometric (exponential) backoff: delay = base * factor^attempt, capped at
-/// [maxDelay], with optional jitter to avoid thundering-herd retries.
+/// Exponential backoff: delay = base * factor^attempt, capped at [maxDelay].
 class ExponentialBackoff {
   const ExponentialBackoff({
     this.base = const Duration(milliseconds: 500),

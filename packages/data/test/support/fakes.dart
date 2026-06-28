@@ -4,18 +4,17 @@ import 'dart:async';
 
 import 'package:cv_scan_domain/cv_scan_domain.dart';
 
-/// Programmable [SyncEngine] for scheduler tests. Records calls and lets a test
-/// decide each pass's outcome (a [SyncPass] or a thrown error).
+/// Fake [SyncEngine] the test can program per pass.
 class FakeSyncEngine implements SyncEngine {
   int calls = 0;
 
   /// If set, every pass throws this.
   Object? error;
 
-  /// Outcome per call (1-based). Defaults to a settled, non-rebasing pass.
+  /// Outcome per call (1-based).
   SyncPass Function(int call)? onRun;
 
-  /// Optional gate to keep a pass in-flight until the test completes it.
+  /// Keeps a pass in-flight until the test completes it.
   Completer<void>? gate;
 
   @override

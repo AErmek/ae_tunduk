@@ -2,11 +2,7 @@ import 'package:flutter/services.dart';
 
 import 'package:cv_scan_secure_storage/src/messages.g.dart';
 
-/// Encrypted key-value storage contract.
-///
-/// Values are persisted by the platform layer encrypted at rest (Android
-/// Keystore-wrapped AES-GCM, iOS Keychain). Implementations never expose
-/// ciphertext to callers.
+/// Key-value storage encrypted by the platform (Keystore/Keychain).
 abstract interface class SecureStorage {
   Future<String?> read(String key);
 
@@ -30,7 +26,7 @@ class SecureStorageException implements Exception {
   String toString() => 'SecureStorageException(${code ?? '-'}): $message';
 }
 
-/// Pigeon-backed [SecureStorage] talking to the native Keystore/Keychain host.
+/// [SecureStorage] backed by the native host over Pigeon.
 class CvScanSecureStorage implements SecureStorage {
   CvScanSecureStorage({SecureStorageApi? api}) : _api = api ?? SecureStorageApi();
 

@@ -2,8 +2,7 @@ import 'package:cv_scan_ui_kit/ui_kit.dart';
 import 'package:feature_candidate_detail/src/widgets/info_section.dart';
 import 'package:flutter/material.dart';
 
-/// Free-form reviewer note. Submits only when the text actually changed, so an
-/// untouched field never enqueues a no-op sync.
+/// Reviewer note. Submits only when the text changed.
 class NoteEditor extends StatefulWidget {
   const NoteEditor({required this.note, required this.onSubmit, this.saving = false, super.key});
 

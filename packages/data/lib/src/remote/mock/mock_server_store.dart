@@ -2,18 +2,16 @@ import 'package:cv_scan_data/src/remote/mock/candidate_patch_result.dart';
 import 'package:cv_scan_data/src/remote/mock/mock_server_response_processor.dart';
 import 'package:cv_scan_domain/cv_scan_domain.dart';
 
-/// In-memory emulation of the server's candidate storage.
-/// Holds an ordered list (source of truth for ordering) plus an index
-/// map pointing to the same record instances for O(1) lookup.
+/// In-memory candidate store for the mock server.
+/// Keeps an ordered list plus an index map for fast lookup.
 class MockServerStore {
   final List<CandidateRecord> _ordered = [];
   final Map<String, CandidateRecord> _index = {};
 
   bool get isEmpty => _ordered.isEmpty;
 
-  /// Seeds the store from the parsed mock json, then overlays the last
-  /// server-confirmed state (version/status/note) for candidates the client
-  /// already knows about — so a restart keeps version semantics consistent.
+  /// Seeds from mock json and re-applies the last confirmed changes,
+  /// so versions stay consistent across restarts.
   void seed(List<CandidateRecord> fromJson, {List<CandidateChange> restoreChanges = const []}) {
     _ordered
       ..clear()

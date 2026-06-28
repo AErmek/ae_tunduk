@@ -6,10 +6,7 @@ abstract interface class AppRouter {
   void goBack();
 }
 
-/// Delivers the [AppRouter] down the tree so features can navigate without
-/// depending on the concrete routes defined in `app`. The implementation wraps
-/// the router instance, so this scope is just a delivery channel — it carries a
-/// stable object and never triggers rebuilds.
+/// Exposes the [AppRouter] to features without depending on the app's routes.
 class AppRouterScope extends InheritedWidget {
   const AppRouterScope({required this.router, required super.child, super.key});
 

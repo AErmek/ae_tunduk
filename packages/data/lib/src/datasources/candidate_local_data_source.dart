@@ -1,8 +1,6 @@
 import 'package:cv_scan_domain/cv_scan_domain.dart';
 
-/// Local source of candidates. Owns the mirror cache and the outbox, hides
-/// drift, and applies pending changes (overlay) on reads — speaks only in
-/// domain types.
+/// Local candidates: mirror cache plus outbox, with pending edits applied on read.
 abstract interface class CandidateLocalDataSource {
   Stream<List<CandidateLight>> watchCandidates({
     required int limit,
@@ -30,7 +28,6 @@ abstract interface class CandidateLocalDataSource {
     String? note,
   });
 
-  /// Wipes the mirror and the outbox — used on logout so no candidate data or
-  /// pending change outlives the session.
+  /// Clears the mirror and the outbox (used on logout).
   Future<void> clear();
 }

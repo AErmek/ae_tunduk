@@ -13,9 +13,6 @@ import 'package:pigeon/pigeon.dart';
 )
 
 /// Host API backed by Android Keystore (AES-GCM) and iOS Keychain.
-///
-/// Every value is encrypted at rest by the platform layer; the Dart side only
-/// ever sees plaintext on read and never persists keys itself.
 @HostApi()
 abstract class SecureStorageApi {
   @async

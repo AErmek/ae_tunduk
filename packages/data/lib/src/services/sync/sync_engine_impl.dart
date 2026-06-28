@@ -9,11 +9,7 @@ import 'package:cv_scan_data/src/services/sync/sync_reconciler.dart';
 import 'package:cv_scan_domain/cv_scan_domain.dart';
 import 'package:dio/dio.dart';
 
-/// Single-pass sync engine: collect pending → POST once → hand the response to
-/// the reconciler. It owns only the network round-trip and poison handling;
-/// local persistence and atomicity live in [SyncReconciler], the rebase/retry
-/// orchestration in the scheduler. Idempotent: pending rows survive transient
-/// failures so a retry replays them.
+/// One sync pass: read pending, POST once, let the reconciler apply the result.
 class SyncEngineImpl implements SyncEngine {
   SyncEngineImpl({required this.apiClient, required this.outboxDao, required this.reconciler});
 
@@ -31,9 +27,7 @@ class SyncEngineImpl implements SyncEngine {
     return reconciler.reconcile(response, byCandidate);
   }
 
-  /// One change per candidate (latest wins). The outbox keeps a single pending
-  /// row per candidate, so this is effectively 1:1 — the fold just stays robust
-  /// if that ever changes.
+  /// Keep the latest pending change per candidate.
   Map<String, OutboxTableData> _latestByCandidate(List<OutboxTableData> pending) {
     final latest = <String, OutboxTableData>{};
     for (final row in pending) {
@@ -45,9 +39,7 @@ class SyncEngineImpl implements SyncEngine {
     return latest;
   }
 
-  /// Posts once. Transient errors rethrow with the outbox untouched (the
-  /// scheduler retries). A poisoned change — anything non-transient — is marked
-  /// failed so it leaves the pending set and can't loop forever.
+  /// Transient errors rethrow for retry; other errors mark the rows failed.
   Future<SyncResponse> _post(List<OutboxTableData> pending, Iterable<OutboxTableData> changes) async {
     try {
       return await apiClient.postSync(body: SyncRequest(changes: changes.map(_toChange).toList()));

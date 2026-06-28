@@ -4,8 +4,7 @@ import 'package:cv_scan_domain/src/enums/candidate_verdict.dart';
 import 'package:cv_scan_domain/src/enums/candidate_verdict_tone.dart';
 import 'package:equatable/equatable.dart';
 
-/// Lightweight projection for the list — only what a row renders. Skips the
-/// heavy JSON fields (exp, criteria, questions, …) the full [Candidate] carries.
+/// Trimmed candidate for the list — only the fields a row needs.
 class CandidateLight extends Equatable {
   const CandidateLight({
     required this.id,

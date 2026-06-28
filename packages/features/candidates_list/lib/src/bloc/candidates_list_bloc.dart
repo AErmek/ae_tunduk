@@ -11,8 +11,7 @@ part 'candidates_list_bloc.freezed.dart';
 part 'candidates_list_event.dart';
 part 'candidates_list_state.dart';
 
-/// Offline-first list: the visible data is a growing window over the local
-/// mirror (Drift); pulling a page just fills the mirror and the stream re-emits.
+/// Offline-first list. UI reads the local mirror; fetching a page just fills it.
 class CandidatesListBloc extends Bloc<CandidatesListEvent, CandidatesListState> {
   CandidatesListBloc({required this._getCandidates, required this._fetchCandidates, required this._networkMonitor})
     : super(const CandidatesListState()) {
@@ -49,7 +48,7 @@ class CandidatesListBloc extends Bloc<CandidatesListEvent, CandidatesListState> 
     await _pull(state.filter, emit, refresh: true);
   }
 
-  /// Re-points the local watch to the (possibly grown/refiltered) window.
+  /// Re-subscribes the local watch to the current filter.
   void _resubscribe(CandidatesFilter filter) {
     _candidatesSub?.cancel();
     _candidatesSub = _getCandidates(filter).listen((items) => add(CandidatesListEvent.candidatesUpdated(items)));
@@ -66,8 +65,7 @@ class CandidatesListBloc extends Bloc<CandidatesListEvent, CandidatesListState> 
     await _pull(state.filter.firstPage(), emit, refresh: true);
   }
 
-  /// Pulls [filter]'s remote page into the mirror and grows the window.
-  /// Offline-first: failures never touch the visible list, only the op status.
+  /// Fetches a remote page into the mirror. Errors only update the op status.
   Future<void> _pull(CandidatesFilter filter, Emitter<CandidatesListState> emit, {required bool refresh}) async {
     try {
       final page = await _fetchCandidates(filter);

@@ -4,9 +4,7 @@ import 'package:cv_scan_ui_kit/ui_kit.dart';
 import 'package:go_router/go_router.dart';
 import 'package:shared/shared.dart';
 
-/// Session gate: keeps unauthenticated users on the entry screens and bounces
-/// them back into the app once a session exists. The lock screen is excluded —
-/// it belongs to the downstream lock guards.
+/// Keeps unauthenticated users on the entry screens, lets in those with a session.
 final class AuthenticatedGuard extends RedirectGuard {
   const AuthenticatedGuard(this._authBloc);
 

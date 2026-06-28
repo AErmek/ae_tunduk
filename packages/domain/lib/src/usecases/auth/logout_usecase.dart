@@ -1,10 +1,7 @@
 import 'package:cv_scan_domain/src/repositories/auth_repository.dart';
 import 'package:cv_scan_domain/src/repositories/candidate_repository.dart';
 
-/// Ends the session: wipes locally cached candidate data and the pending-change
-/// outbox first, then clears the PIN and marks the user unauthenticated. Local
-/// data is cleared so nothing outlives the session on a shared device and no
-/// orphaned change syncs under a future login.
+/// Ends the session: clears local candidate data and the outbox, then the PIN.
 class LogoutUseCase {
   const LogoutUseCase(this._auth, this._candidates);
 

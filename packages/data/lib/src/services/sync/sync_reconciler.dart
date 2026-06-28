@@ -9,10 +9,8 @@ import 'package:cv_scan_data/src/services/sync/conflict_resolver.dart';
 import 'package:cv_scan_domain/cv_scan_domain.dart';
 import 'package:drift/drift.dart';
 
-/// Persists a sync response atomically. Accepted changes land in the mirror and
-/// leave the outbox; conflicts converge the mirror to server truth and re-enqueue
-/// the local intent per [strategy]. Everything runs in one transaction, so a
-/// crash can never leave a change half-applied (e.g. deleted but not rebased).
+/// Applies a sync response in one transaction: accepted changes leave the
+/// outbox, conflicts are resolved per [strategy] and re-enqueued.
 class SyncReconciler {
   const SyncReconciler({
     required this.db,

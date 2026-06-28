@@ -1,7 +1,6 @@
 import 'package:cv_scan_domain/cv_scan_domain.dart';
 
-/// Minimal domain [Candidate] for tests — only the fields a sync test cares
-/// about are parameterized; the rest get stable defaults.
+/// Test [Candidate] with stable defaults.
 Candidate candidate({
   String id = 'c1',
   int version = 1,

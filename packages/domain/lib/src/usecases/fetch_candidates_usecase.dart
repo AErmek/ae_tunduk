@@ -3,8 +3,7 @@ import 'package:cv_scan_domain/src/entities/candidates_filter.dart';
 import 'package:cv_scan_domain/src/entities/page.dart';
 import 'package:cv_scan_domain/src/repositories/candidate_repository.dart';
 
-/// Pulls a remote page into the local mirror. Throws a [Failure] on transport
-/// errors (mapped in the data layer).
+/// Fetches a remote page into the local mirror.
 class FetchCandidatesUseCase {
   const FetchCandidatesUseCase(this._repository);
 

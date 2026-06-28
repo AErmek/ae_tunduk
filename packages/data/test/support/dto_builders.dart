@@ -2,8 +2,7 @@ import 'package:cv_scan_data/src/remote/generated/models/candidate.dart' as dto;
 import 'package:cv_scan_data/src/remote/generated/models/conflict.dart' as dto;
 import 'package:cv_scan_data/src/remote/generated/models/sync_response.dart';
 
-/// Builds a contract [dto.Candidate] via `fromJson` so tests don't wrangle the
-/// generated enum types. Only sync-relevant fields are parameterized.
+/// Test [dto.Candidate] built via `fromJson`.
 dto.Candidate dtoCandidate({String id = 'c1', int version = 1, String status = 'new', String? note}) =>
     dto.Candidate.fromJson({
       'id': id,

@@ -1,8 +1,7 @@
 import 'package:cv_scan_domain/cv_scan_domain.dart';
 import 'package:dio/dio.dart';
 
-/// Simulates the transport layer: with no real internet, reject the request the
-/// same way an offline Dio would — before any latency/mock/server logic runs.
+/// Rejects requests when there is no real internet, before the mock runs.
 class OfflineInterceptor extends Interceptor {
   OfflineInterceptor(this._monitor);
 

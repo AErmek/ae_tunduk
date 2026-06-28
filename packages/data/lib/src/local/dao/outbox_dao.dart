@@ -22,11 +22,8 @@ class OutboxDao extends DatabaseAccessor<AppDatabase> with _$OutboxDaoMixin {
 
   Future<int> insert(OutboxTableCompanion row) => into(outboxTable).insert(row);
 
-  /// Folds a status/note edit into the candidate's open change. Edits accumulate
-  /// into one pending row (status and note kept independently) against the same
-  /// [baseVersion], so partial edits never reset each other. A null field means
-  /// "untouched" and leaves the existing value intact. Only a `pending` row is
-  /// merged into — `syncing`/`failed` rows are left alone and a new row starts.
+  /// Merges a status/note edit into the candidate's pending row.
+  /// A null field is left untouched. Only `pending` rows are merged into.
   Future<void> upsertPending({
     required String candidateId,
     required int baseVersion,

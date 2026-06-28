@@ -2,13 +2,12 @@
 
 import 'package:go_router/go_router.dart';
 
-/// Type-safe route matching over the full router state — no raw regex.
+/// Matches a route against the router state.
 abstract interface class RouteMatcher {
   bool matches(GoRouterState state);
 }
 
-/// Boolean composition so new rules are expressed by combining matchers
-/// rather than adding a class per case.
+/// Combine matchers with `~`, `&`, `|`.
 extension RouteMatcherCombinators on RouteMatcher {
   RouteMatcher operator ~() => NotMatcher(this);
   RouteMatcher operator &(RouteMatcher other) => AllOf([this, other]);

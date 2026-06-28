@@ -4,9 +4,8 @@ import 'package:cv_scan_core/cv_scan_core.dart';
 import 'package:cv_scan_data/src/local/dao/outbox_dao.dart';
 import 'package:cv_scan_domain/cv_scan_domain.dart';
 
-/// Coordinates *when* the outbox is flushed: it runs the engine whenever there
-/// are pending changes and the device is online, collapses concurrent triggers
-/// into a single pass, and retries failed passes with exponential backoff.
+/// Runs the engine when there are pending changes and the device is online,
+/// collapses concurrent triggers and retries with backoff.
 class SyncSchedulerImpl implements SyncScheduler {
   SyncSchedulerImpl({
     required this._engine,
@@ -21,8 +20,7 @@ class SyncSchedulerImpl implements SyncScheduler {
   final NetworkMonitor _networkMonitor;
   final ExponentialBackoff backoff;
 
-  /// Upper bound on conflict-rebase passes per run — guards against a server
-  /// that keeps reporting conflicts.
+  /// Max rebase passes per run, so conflicts can't loop forever.
   final int maxPasses;
 
   final StreamController<SyncSnapshot> _snapshots = StreamController<SyncSnapshot>.broadcast();

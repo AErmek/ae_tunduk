@@ -10,9 +10,8 @@ part 'candidate_detail_bloc.freezed.dart';
 part 'candidate_detail_event.dart';
 part 'candidate_detail_state.dart';
 
-/// Detail screen over the local mirror: reads are an outbox-overlaid stream, so
-/// status/note edits show optimistically the moment they're enqueued; the
-/// background scheduler reconciles them with the server.
+/// Detail screen over the local mirror. Edits show optimistically; sync runs in
+/// the background.
 class CandidateDetailBloc extends Bloc<CandidateDetailEvent, CandidateDetailState> {
   CandidateDetailBloc({
     required this._id,

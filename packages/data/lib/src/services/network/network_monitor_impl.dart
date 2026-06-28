@@ -3,8 +3,7 @@ import 'dart:async';
 import 'package:cv_scan_domain/cv_scan_domain.dart';
 import 'package:internet_connection_checker_plus/internet_connection_checker_plus.dart';
 
-/// Reachability-based [NetworkMonitor]: confirms actual internet access, so
-/// "wifi on but no internet" still reads as offline.
+/// [NetworkMonitor] that checks real internet access, not just the interface.
 class NetworkMonitorImpl implements NetworkMonitor {
   NetworkMonitorImpl({InternetConnection? connection}) : _connection = connection ?? InternetConnection() {
     _subscription = _connection.onStatusChange.listen(_onStatus);

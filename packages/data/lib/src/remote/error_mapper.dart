@@ -3,8 +3,7 @@ import 'package:cv_scan_domain/cv_scan_domain.dart';
 import 'package:dio/dio.dart';
 
 //TODO recheck
-/// Translates Dio transport/HTTP failures into domain [Failure]s so Dio never
-/// leaks past the data layer.
+/// Maps Dio errors to domain [Failure]s.
 Failure mapDioError(Object error) {
   if (error is! DioException) return const UnknownFailure();
 

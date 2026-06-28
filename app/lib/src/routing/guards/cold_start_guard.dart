@@ -4,9 +4,8 @@ import 'package:cv_scan_ui_kit/ui_kit.dart';
 import 'package:go_router/go_router.dart';
 import 'package:shared/shared.dart';
 
-/// Owns the full-screen lock: pins a cold-started session to it and releases it
-/// once unlocked. The requested location is stashed via [redirectPreserving] so
-/// a deep link survives the gate and resumes after unlock.
+/// Holds a cold-started session on the lock screen until it unlocks.
+/// Stashes the target location so a deep link resumes after unlock.
 final class ColdStartGuard extends RedirectGuard {
   const ColdStartGuard(this._authBloc);
 

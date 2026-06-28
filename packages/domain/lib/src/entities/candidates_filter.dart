@@ -2,8 +2,7 @@ import 'package:cv_scan_domain/src/enums/candidate_verdict.dart';
 import 'package:cv_scan_domain/src/enums/sort_field.dart';
 import 'package:equatable/equatable.dart';
 
-/// Single source for pagination + filter criteria, passed through the read path
-/// instead of duplicating loose parameters.
+/// Pagination and filter criteria for the candidates list.
 class CandidatesFilter extends Equatable {
   const CandidatesFilter({
     this.page = 0,
@@ -13,14 +12,14 @@ class CandidatesFilter extends Equatable {
     this.sort = SortField.dateAdded,
   });
 
-  /// 0-based index of the last loaded page; the visible window is pages 0..page.
+  /// 0-based index of the last loaded page.
   final int page;
   final int size;
   final CandidateVerdict? verdict;
   final String query;
   final SortField sort;
 
-  /// Row count for the current cumulative window.
+  /// Total rows to load for pages 0..page.
   int get limit => (page + 1) * size;
 
   CandidatesFilter copyWith({
@@ -38,7 +37,7 @@ class CandidatesFilter extends Equatable {
     sort: sort ?? this.sort,
   );
 
-  /// Resets to the first page — used whenever filter criteria change.
+  /// Back to the first page.
   CandidatesFilter firstPage() => copyWith(page: 0);
 
   @override

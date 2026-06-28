@@ -3,8 +3,7 @@ import 'package:cv_scan_ui_kit/ui_kit.dart';
 import 'package:flutter/material.dart';
 import 'package:shared/shared.dart';
 
-/// Lets the reviewer move a candidate between pipeline statuses. The selection
-/// is optimistic — it reflects the outbox-overlaid value immediately.
+/// Changes a candidate's status. The selection updates optimistically.
 class StatusSelector extends StatelessWidget {
   const StatusSelector({required this.status, required this.onChanged, this.enabled = true, super.key});
 

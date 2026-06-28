@@ -1,9 +1,6 @@
 import 'package:cv_scan_domain/cv_scan_domain.dart';
 
-/// Outcome of a single sync pass run by [SyncEngine.runOnce].
-///
-/// [rebased] tells the orchestrator whether a conflict was re-enqueued, i.e.
-/// another pass could still make progress. When false, the loop is done.
+/// Result of one sync pass. [rebased] means another pass may still help.
 class SyncPass {
   const SyncPass({this.applied = const [], this.conflicts = const [], this.rebased = false});
 

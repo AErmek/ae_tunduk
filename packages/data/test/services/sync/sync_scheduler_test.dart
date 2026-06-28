@@ -14,8 +14,7 @@ import '../../support/fakes.dart';
 
 class _MockOutboxDao extends Mock implements OutboxDao {}
 
-/// Wires a scheduler with fully faked collaborators. [pending] drives the
-/// outbox's hasPending stream; the test owns its lifecycle.
+/// Builds a scheduler with faked collaborators. [pending] drives hasPending.
 ({
   SyncSchedulerImpl scheduler,
   FakeSyncEngine engine,
