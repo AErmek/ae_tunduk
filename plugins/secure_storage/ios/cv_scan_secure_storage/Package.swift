@@ -4,32 +4,27 @@
 import PackageDescription
 
 let package = Package(
-    name: "secure_storage",
+    name: "cv_scan_secure_storage",
     platforms: [
         .iOS("13.0")
     ],
     products: [
-        .library(name: "secure-storage", targets: ["secure_storage"])
+        .library(name: "cv-scan-secure-storage", targets: ["cv_scan_secure_storage"])
     ],
     dependencies: [
         .package(name: "FlutterFramework", path: "../FlutterFramework")
     ],
     targets: [
         .target(
-            name: "secure_storage",
+            name: "cv_scan_secure_storage",
             dependencies: [
                 .product(name: "FlutterFramework", package: "FlutterFramework")
             ],
             resources: [
                 // If your plugin requires a privacy manifest, for example if it uses any required
                 // reason APIs, update the PrivacyInfo.xcprivacy file to describe your plugin's
-                // privacy impact, and then uncomment these lines. For more information, see
-                // https://developer.apple.com/documentation/bundleresources/privacy_manifest_files
+                // privacy impact, and then uncomment this line.
                 // .process("PrivacyInfo.xcprivacy"),
-
-                // If you have other resources that need to be bundled with your plugin, refer to
-                // the following instructions to add them:
-                // https://developer.apple.com/documentation/xcode/bundling-resources-with-a-swift-package
             ]
         )
     ]

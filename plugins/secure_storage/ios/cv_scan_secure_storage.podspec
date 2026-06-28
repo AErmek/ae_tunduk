@@ -1,19 +1,19 @@
 #
 # To learn more about a Podspec see http://guides.cocoapods.org/syntax/podspec.html.
-# Run `pod lib lint secure_storage.podspec` to validate before publishing.
+# Run `pod lib lint cv_scan_secure_storage.podspec` to validate before publishing.
 #
 Pod::Spec.new do |s|
-  s.name             = 'secure_storage'
+  s.name             = 'cv_scan_secure_storage'
   s.version          = '0.0.1'
-  s.summary          = 'A new Flutter plugin project.'
+  s.summary          = 'Keystore/Keychain-backed encrypted key-value storage for CV-Scan.'
   s.description      = <<-DESC
-A new Flutter plugin project.
+Keystore/Keychain-backed encrypted key-value storage for CV-Scan.
                        DESC
-  s.homepage         = 'http://example.com'
+  s.homepage         = 'https://cvscan.ae.kg'
   s.license          = { :file => '../LICENSE' }
-  s.author           = { 'Your Company' => 'email@example.com' }
+  s.author           = { 'CV-Scan' => 'dev@cvscan.ae.kg' }
   s.source           = { :path => '.' }
-  s.source_files = 'secure_storage/Sources/secure_storage/**/*'
+  s.source_files = 'cv_scan_secure_storage/Sources/cv_scan_secure_storage/**/*'
   s.dependency 'Flutter'
   s.platform = :ios, '13.0'
 
