@@ -6,9 +6,7 @@ import 'package:cv_scan_data/src/remote/generated/models/sync_request.dart';
 import 'package:cv_scan_data/src/remote/generated/models/sync_response.dart';
 import 'package:cv_scan_data/src/services/sync/sync_engine_impl.dart';
 import 'package:cv_scan_data/src/services/sync/sync_reconciler.dart';
-import 'package:cv_scan_domain/cv_scan_domain.dart';
 import 'package:dio/dio.dart';
-import 'package:drift/drift.dart';
 import 'package:drift/native.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
@@ -42,8 +40,10 @@ void main() {
   void stubPostSync(SyncResponse response) =>
       when(() => api.postSync(body: any(named: 'body'))).thenAnswer((_) async => response);
 
-  DioException dioError(DioExceptionType type) =>
-      DioException(requestOptions: RequestOptions(path: '/sync'), type: type);
+  DioException dioError(DioExceptionType type) => DioException(
+    requestOptions: RequestOptions(path: '/sync'),
+    type: type,
+  );
 
   test('no-op when the outbox is empty', () async {
     final pass = await engine.runOnce();
@@ -57,7 +57,11 @@ void main() {
     await db.candidatesDao.upsert(candidate(id: 'c1', version: 1).toCompanion());
     await db.outboxDao.upsertPending(candidateId: 'c1', baseVersion: 1, status: 'invited');
     await db.outboxDao.upsertPending(candidateId: 'c1', baseVersion: 1, note: 'mine');
-    stubPostSync(syncResponse(applied: [dtoCandidate(id: 'c1', version: 2, status: 'invited')]));
+    stubPostSync(
+      syncResponse(
+        applied: [dtoCandidate(id: 'c1', version: 2, status: 'invited')],
+      ),
+    );
 
     await engine.runOnce();
 
@@ -69,7 +73,11 @@ void main() {
   test('applies the accepted response into the mirror and clears the outbox', () async {
     await db.candidatesDao.upsert(candidate(id: 'c1', version: 1).toCompanion());
     await db.outboxDao.upsertPending(candidateId: 'c1', baseVersion: 1, status: 'invited');
-    stubPostSync(syncResponse(applied: [dtoCandidate(id: 'c1', version: 2, status: 'invited')]));
+    stubPostSync(
+      syncResponse(
+        applied: [dtoCandidate(id: 'c1', version: 2, status: 'invited')],
+      ),
+    );
 
     final pass = await engine.runOnce();
 
