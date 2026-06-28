@@ -30,3 +30,30 @@ deeplink-android:
 
 deeplink-ios:
 	xcrun simctl openurl booted "https://$(DEEPLINK_HOST)/candidates/$(ID)"
+
+
+# ── Release builds with obfuscation ──
+# Dart code is obfuscated (--obfuscate) and the symbol map is written to
+# app/build/symbols/<flavor>. KEEP these symbols: they are required to
+# de-obfuscate (symbolicate) stack traces from release crashes.
+SYMBOLS_DIR ?= build/symbols
+
+build-android-apk-stage:
+	cd app && fvm flutter build apk --release \
+		--flavor stage --dart-define-from-file=config/stage.json \
+		--obfuscate --split-debug-info=$(SYMBOLS_DIR)/stage
+
+build-android-apk-prod:
+	cd app && fvm flutter build apk --release \
+		--flavor prod --dart-define-from-file=config/prod.json \
+		--obfuscate --split-debug-info=$(SYMBOLS_DIR)/prod
+
+build-android-bundle-prod:
+	cd app && fvm flutter build appbundle --release \
+		--flavor prod --dart-define-from-file=config/prod.json \
+		--obfuscate --split-debug-info=$(SYMBOLS_DIR)/prod
+
+build-ios-prod:
+	cd app && fvm flutter build ipa --release \
+		--flavor prod --dart-define-from-file=config/prod.json \
+		--obfuscate --split-debug-info=$(SYMBOLS_DIR)/prod

@@ -73,6 +73,9 @@
   "[plist]": {
     "editor.formatOnSave": false
   },
+  "cSpell.ignorePaths": [
+    "**/*.md" // Ignore all .md files
+  ],
   "cSpell.words": [
     "daos",
     "Insertable",
