@@ -1,3 +1,4 @@
+import 'package:cv_scan_ui_kit/ui_kit.dart';
 import 'package:flutter/material.dart';
 import 'package:pinput/pinput.dart';
 
@@ -46,14 +47,14 @@ class _PinBodyState extends State<PinBody> {
 
   @override
   Widget build(BuildContext context) {
-    final theme = Theme.of(context);
+    final theme = context.theme;
 
     final basePinTheme = PinTheme(
       width: 56,
       height: 56,
-      textStyle: theme.textTheme.headlineSmall,
+      textStyle: theme.style((t) => t.bM, (c) => c.onSurface),
       decoration: BoxDecoration(
-        border: Border.all(color: theme.colorScheme.outline),
+        border: Border.all(color: theme.colors.divider),
         borderRadius: BorderRadius.circular(12),
       ),
     );
@@ -61,16 +62,16 @@ class _PinBodyState extends State<PinBody> {
     return SafeArea(
       child: Center(
         child: SingleChildScrollView(
-          padding: const EdgeInsets.symmetric(horizontal: 32),
+          padding: const EdgeInsets.symmetric(horizontal: 20),
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
-              Text(widget.title, style: theme.textTheme.headlineMedium),
+              Text(widget.title, style: theme.style((t) => t.h2, (c) => c.onSurface)),
               const SizedBox(height: 8),
-              Text(widget.subtitle, style: theme.textTheme.bodyMedium),
+              Text(widget.subtitle, style: theme.style((t) => t.bM, (c) => c.onSurfaceMuted)),
               if (widget.errorText != null) ...[
                 const SizedBox(height: 8),
-                Text(widget.errorText!, style: TextStyle(color: theme.colorScheme.error)),
+                Text(widget.errorText!, style: theme.style((t) => t.bS, (c) => c.error)),
               ],
               const SizedBox(height: 40),
               Pinput(
@@ -82,12 +83,12 @@ class _PinBodyState extends State<PinBody> {
                 defaultPinTheme: basePinTheme,
                 focusedPinTheme: basePinTheme.copyWith(
                   decoration: basePinTheme.decoration!.copyWith(
-                    border: Border.all(color: theme.colorScheme.primary, width: 2),
+                    border: Border.all(color: theme.colors.primary, width: 2),
                   ),
                 ),
                 errorPinTheme: basePinTheme.copyWith(
                   decoration: basePinTheme.decoration!.copyWith(
-                    border: Border.all(color: theme.colorScheme.error, width: 2),
+                    border: Border.all(color: theme.colors.error, width: 2),
                   ),
                 ),
                 onCompleted: (pin) {

@@ -11,8 +11,7 @@ class LockScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => BlocProvider(
-    create: (_) =>
-        PinVerifyBloc(localAuth: GetIt.I(), setLockedStatus: GetIt.I())..add(const PinVerifyEvent.started()),
+    create: (_) => PinVerifyBloc(localAuth: GetIt.I(), setLockedStatus: GetIt.I())..add(const PinVerifyEvent.started()),
     child: const _LockView(),
   );
 }
@@ -35,8 +34,8 @@ class _LockView extends StatelessWidget {
           footer: state.biometricEnabled
               ? TextButton.icon(
                   onPressed: () => context.read<PinVerifyBloc>().add(const PinVerifyEvent.biometricRequested()),
-                  icon: const Icon(Icons.fingerprint),
-                  label: Text(context.t.authBiometricPrompt),
+                  icon: Icon(AppIcons.fingerprint, size: Ui.tokens.lgIconsSize),
+                  label: Text(context.t.authBiometricPrompt, style: context.theme.style((t) => t.bS, (c) => c.primary)),
                 )
               : null,
         ),

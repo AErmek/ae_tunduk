@@ -31,6 +31,8 @@ final class Ui {
   final EdgeInsets inputContentPadding = const EdgeInsets.symmetric(vertical: 18.5, horizontal: 16);
 
   ///Icon
+  ///
+  final double lgIconsSize = 36;
   final double defaultIconSize = 24;
   final double mdIconSize = 20;
   final double smIconSize = 12;

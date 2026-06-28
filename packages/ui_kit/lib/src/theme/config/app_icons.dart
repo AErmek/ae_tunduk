@@ -11,4 +11,5 @@ class AppIcons {
   static const IconData arrowForward = Icons.chevron_right;
   static const IconData records = Icons.list_outlined;
   static const IconData map = Icons.map_outlined;
+  static const IconData fingerprint = Icons.fingerprint;
 }
