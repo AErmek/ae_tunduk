@@ -1,3 +1,5 @@
+// ignore_for_file: only_throw_errors
+
 import 'dart:async';
 
 import 'package:cv_scan_domain/cv_scan_domain.dart';
@@ -27,7 +29,7 @@ class FakeSyncEngine implements SyncEngine {
 
 /// [NetworkMonitor] backed by a broadcast controller the test drives.
 class FakeNetworkMonitor implements NetworkMonitor {
-  FakeNetworkMonitor({bool online = true}) : _online = online;
+  FakeNetworkMonitor({this._online = true});
 
   final _controller = StreamController<bool>.broadcast();
   bool _online;
@@ -38,7 +40,7 @@ class FakeNetworkMonitor implements NetworkMonitor {
   @override
   Stream<bool> get onlineChanges => _controller.stream;
 
-  void emit(bool online) {
+  void emit({required bool online}) {
     _online = online;
     _controller.add(online);
   }

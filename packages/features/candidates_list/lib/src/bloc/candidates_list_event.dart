@@ -9,5 +9,5 @@ sealed class CandidatesListEvent with _$CandidatesListEvent {
   const factory CandidatesListEvent.queryChanged(String query) = _QueryChanged;
   const factory CandidatesListEvent.sortChanged(SortField sort) = _SortChanged;
   const factory CandidatesListEvent.candidatesUpdated(List<CandidateLight> items) = _CandidatesUpdated;
-  const factory CandidatesListEvent.onlineChanged(bool isOnline) = _OnlineChanged;
+  const factory CandidatesListEvent.onlineChanged({required bool isOnline}) = _OnlineChanged;
 }

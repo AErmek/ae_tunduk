@@ -14,7 +14,7 @@ dto.Candidate dtoCandidate({String id = 'c1', int version = 1, String status = '
       'vc': 'verdict-green',
       'status': status,
       'version': version,
-      if (note != null) 'note': note,
+      'note': ?note,
     });
 
 dto.Conflict dtoConflict({String id = 'c1', int currentVersion = 5, String status = 'review', String? note}) =>

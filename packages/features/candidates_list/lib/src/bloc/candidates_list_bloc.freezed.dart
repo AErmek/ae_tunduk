@@ -577,7 +577,7 @@ as List<CandidateLight>,
 
 
 class _OnlineChanged implements CandidatesListEvent {
-  const _OnlineChanged(this.isOnline);
+  const _OnlineChanged({required this.isOnline});
   
 
  final  bool isOnline;
@@ -631,7 +631,7 @@ class __$OnlineChangedCopyWithImpl<$Res>
 /// with the given fields replaced by the non-null parameter values.
 @pragma('vm:prefer-inline') $Res call({Object? isOnline = null,}) {
   return _then(_OnlineChanged(
-null == isOnline ? _self.isOnline : isOnline // ignore: cast_nullable_to_non_nullable
+isOnline: null == isOnline ? _self.isOnline : isOnline // ignore: cast_nullable_to_non_nullable
 as bool,
   ));
 }

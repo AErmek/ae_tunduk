@@ -42,7 +42,9 @@ class CandidatesListBloc extends Bloc<CandidatesListEvent, CandidatesListState> 
 
   Future<void> _onStarted(_Started event, Emitter<CandidatesListState> emit) async {
     emit(state.copyWith(isOnline: _networkMonitor.isOnline));
-    _onlineSub ??= _networkMonitor.onlineChanges.listen((online) => add(CandidatesListEvent.onlineChanged(online)));
+    _onlineSub ??= _networkMonitor.onlineChanges.listen(
+      (online) => add(CandidatesListEvent.onlineChanged(isOnline: online)),
+    );
     _resubscribe(state.filter);
     await _pull(state.filter, emit, refresh: true);
   }
