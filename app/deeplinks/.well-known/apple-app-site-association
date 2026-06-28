@@ -1,0 +1,12 @@
+{
+  "applinks": {
+    "details": [
+      {
+        "appIDs": ["REPLACE_APPLE_TEAM_ID.kg.ae.cv_scan"],
+        "components": [
+          { "/": "/candidates/*", "comment": "Candidate card" }
+        ]
+      }
+    ]
+  }
+}

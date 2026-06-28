@@ -1,0 +1,34 @@
+name: shared
+description: Shared blocs and widgets used across features
+publish_to: none
+resolution: workspace
+
+environment:
+  sdk: ^3.12.2
+
+dependencies:
+  flutter:
+    sdk: flutter
+  cv_scan_core:
+    path: ../../core
+  cv_scan_domain:
+    path: ../../domain
+  cv_scan_ui_kit:
+    path: ../../ui_kit
+  flutter_bloc: ^9.1.0
+  get_it: ^9.2.1
+  injectable: ^3.0.0
+  freezed_annotation: ^3.1.0
+  go_router: ^17.3.0
+  collection: any
+
+  stream_transform: ^2.1.1
+  bloc_concurrency: ^0.3.0
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^6.0.0
+  injectable_generator: 3.0.2
+  build_runner: ^2.15.0
+  freezed: ^3.2.5

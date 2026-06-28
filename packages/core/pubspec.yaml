@@ -1,0 +1,15 @@
+name: cv_scan_core
+description: Core utilities — pure Dart shared kernel (config, contracts, errors, extensions, utils)
+publish_to: none
+resolution: workspace
+
+environment:
+  sdk: ^3.12.2
+
+dependencies:
+  collection: any
+  stream_transform: ^2.1.1
+
+dev_dependencies:
+  test: ^1.25.0
+  flutter_lints: ^6.0.0

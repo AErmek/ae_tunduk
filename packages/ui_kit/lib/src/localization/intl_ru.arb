@@ -1,0 +1,89 @@
+{
+  "@@locale": "ru",
+  "appTitle": "CV Scan",
+  "navCandidates": "Кандидаты",
+  "navSettings": "Настройки",
+  "settingsTitle": "Настройки",
+  "settingsLogout": "Выйти",
+  "settingsLogoutConfirmTitle": "Выход",
+  "settingsLogoutConfirmMessage": "Вы уверены, что хотите выйти?",
+  "settingsLogoutConfirmCancel": "Отмена",
+  "settingsLogoutConfirmConfirm": "Выйти",
+  "settingsSimulateConflict": "Обновить данные на сервере",
+  "settingsSimulateConflictDone": "Изменено записей на сервере: {count}",
+  "@settingsSimulateConflictDone": {
+    "description": "Snackbar shown after forcing server-side edits",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "settingsSimulateConflictNone": "Нет локальных изменений для конфликта",
+  "candidatesTitle": "Кандидаты",
+  "candidatesEmpty": "Кандидаты не найдены",
+  "candidatesListNoMoreCandidates": "Это все кандидаты",
+  "candidatesSearchHint": "Поиск по имени или позиции",
+  "candidatesSortLabel": "Сортировка",
+  "candidatesSortByName": "По имени",
+  "candidatesSortByExperience": "По опыту",
+  "candidatesSortByDateAdded": "По дате добавления",
+  "candidateVerdictNew": "Новый",
+  "candidateVerdictShortlisted": "В шортлисте",
+  "candidateVerdictRejected": "Отказ",
+  "candidateVerdictHired": "Принят",
+  "candidateDetailTitle": "Профиль кандидата",
+  "candidateDetailExperience": "Опыт работы",
+  "candidateDetailSkills": "Навыки",
+  "candidateDetailContacts": "Контакты",
+  "candidateDetailEducation": "Образование",
+  "candidateDetailSummary": "Резюме",
+  "candidateDetailCriteria": "Оценка по критериям",
+  "candidateDetailQuestions": "Вопросы для интервью",
+  "candidateDetailStatus": "Статус",
+  "candidateDetailNote": "Заметка",
+  "candidateDetailNoteHint": "Добавьте заметку о кандидате",
+  "candidateDetailNoteSave": "Сохранить заметку",
+  "candidateDetailShare": "Поделиться",
+  "candidateDetailNotSynced": "Не синхронизировано",
+  "candidateDetailNotFound": "Кандидат не найден",
+  "candidateDetailSaveError": "Не удалось сохранить изменение",
+  "candidateStatusNew": "Новый",
+  "candidateStatusReview": "На рассмотрении",
+  "candidateStatusInvited": "Приглашён",
+  "candidateStatusRejected": "Отклонён",
+  "syncInProgress": "Синхронизация…",
+  "syncFailed": "Ошибка синхронизации",
+  "errorGeneral": "Что-то пошло не так",
+  "errorNetwork": "Нет подключения к сети",
+  "errorRetry": "Повторить",
+  "authPinTitle": "Введите PIN-код",
+  "authPinSubtitle": "Для входа в приложение",
+  "authBiometricPrompt": "Войдите с помощью биометрии",
+  "createPinTitle": "Создайте PIN-код",
+  "confirmPinTitle": "Подтвердите PIN-код",
+  "pinMismatchError": "PIN не совпадает, попробуйте снова",
+  "authBiometricTitle": "Биометрическая аутентификация",
+  "authBiometricSubtitle": "Использовать биометрию для входа?",
+  "yes": "Да",
+  "no": "Нет",
+  "noNetworkShownSavedData": "Нет сети — показаны сохранённые данные",
+  "verdictDisplayName": "{CandidateVerdict, select, fits{Подходит} partial{Частично} doesNotFit{Не подходит} other{Неизвестно}}",
+  "@verdictDisplayName": {
+    "description": "Localized message based on candidate verdict enum",
+    "placeholders": {
+      "CandidateVerdict": {
+        "type": "String"
+      }
+    }
+  },
+  "candidateStatusDisplayName": "{CandidateStatus, select, newCandidate{Новый} review{На рассмотрении} invited{Приглашён} rejected{Отклонён} other{Неизвестно}}",
+  "@candidateStatusDisplayName": {
+    "description": "Localized message based on candidate status enum",
+    "placeholders": {
+      "CandidateStatus": {
+        "type": "String"
+      }
+    }
+  }
+}

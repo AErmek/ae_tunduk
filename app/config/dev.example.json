@@ -1,0 +1,11 @@
+{
+  "ENV": "dev",
+  "APP_TITLE": "CV Scan Dev",
+  "BASE_URL": "https://api.example.local/v1",
+  "SHARE_BASE_URL": "https://share.example.local",
+  "PIN_CODE_LENGTH": 4,
+  "DB_FILE_NAME": "cv_scan_dev",
+  "MOCK_USE_LARGE_ASSET": false,
+  "MOCK_CONFLICT_STRATEGY": "merge",
+  "TESTING_SIMULATE_SERVER_CONFLICT": true
+}

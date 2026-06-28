@@ -1,0 +1,1419 @@
+[
+  {
+    "id": "кузнецов_1",
+    "name": "Кузнецов Азамат",
+    "position": "flutter-senior",
+    "pos_label": "Flutter — главный программист",
+    "file": "Кузнецов_Азамат.pdf",
+    "email": "кузнецов1@email.com",
+    "phone": "+996 570 292-481",
+    "city": "Бишкек",
+    "tg": "@кузнецов_dev",
+    "exp": [
+      [
+        "2021-01 — н.в.",
+        "Devs.kg",
+        "Flutter Tech Lead",
+        "1.1 г."
+      ],
+      [
+        "2021-09 — 2020",
+        "RedMobile",
+        "Flutter Developer",
+        "1.7 г."
+      ],
+      [
+        "2025-03 — 2020",
+        "RedMobile",
+        "Cross-platform Lead",
+        "2.4 г."
+      ]
+    ],
+    "total_exp": "~7.1 г.",
+    "stack": "Flutter, Dart, Clean Architecture, melos, BLoC, Riverpod, Dio/Retrofit, REST, Drift, go_router, get_it/injectable, Freezed, platform channels, Isolate, golden/E2E tests, CI/CD",
+    "edu": "КРСУ, Программная инженерия, 2016",
+    "verdict": "ПОДХОДИТ",
+    "vc": "verdict-green",
+    "criteria": [
+      [
+        "ok",
+        "Flutter/Dart 4+ лет, Clean Architecture, модульность — есть"
+      ],
+      [
+        "ok",
+        "Нативная интеграция (platform channels), тесты (golden/E2E) — есть"
+      ],
+      [
+        "ok",
+        "Offline-first, CI/CD, менторство — есть"
+      ]
+    ],
+    "summary": "Senior Flutter-разработчик с опытом ~7.1 г.",
+    "questions": [
+      "Тестирование senior-уровня (golden/E2E) — как организовано?",
+      "Как проектировали движок синхронизации и разрешение конфликтов?"
+    ],
+    "status": "review",
+    "note": null,
+    "version": 4,
+    "date_added": "2026-06-27"
+  },
+  {
+    "id": "мырзаев_2",
+    "name": "Мырзаев Чынгыз",
+    "position": "flutter-senior",
+    "pos_label": "Flutter — главный программист",
+    "file": "Мырзаев_Чынгыз.pdf",
+    "email": "мырзаев2@email.com",
+    "phone": "+996 574 450-255",
+    "city": "Астана",
+    "tg": "@мырзаев_dev",
+    "exp": [
+      [
+        "2021-04 — н.в.",
+        "StartupHub",
+        "Cross-platform Lead",
+        "1.7 г."
+      ],
+      [
+        "2023-06 — 2025",
+        "CloudMobile",
+        "Flutter Developer",
+        "1.8 г."
+      ],
+      [
+        "2020-02 — 2024",
+        "AppFactory",
+        "Flutter Tech Lead",
+        "2.5 г."
+      ]
+    ],
+    "total_exp": "~5.6 г.",
+    "stack": "Flutter, Dart, Riverpod, Dio, REST, SQLite — offline-first частично, CI не описан",
+    "edu": "МУК, Программная инженерия, 2016",
+    "verdict": "ЧАСТИЧНО",
+    "vc": "verdict-orange",
+    "criteria": [
+      [
+        "ok",
+        "Flutter/Dart, архитектура — есть"
+      ],
+      [
+        "warn",
+        "Нативная интеграция/менторство — частично"
+      ],
+      [
+        "warn",
+        "Тестирование (golden/E2E) — не указано"
+      ]
+    ],
+    "summary": "Senior Flutter-разработчик с опытом ~5.6 г.",
+    "questions": [
+      "CI/CD и flavors — как настраивали?",
+      "Как проектировали движок синхронизации и разрешение конфликтов?",
+      "Модульность (melos) — как делили пакеты и границы?"
+    ],
+    "status": "invited",
+    "note": null,
+    "version": 3,
+    "date_added": "2026-05-25"
+  },
+  {
+    "id": "эшматов_3",
+    "name": "Эшматов Кирилл",
+    "position": "flutter-senior",
+    "pos_label": "Flutter — главный программист",
+    "file": "Эшматов_Кирилл.pdf",
+    "email": "эшматов3@email.com",
+    "phone": "+996 569 219-605",
+    "city": "Бишкек",
+    "tg": "@эшматов_dev",
+    "exp": [
+      [
+        "2025-02 — н.в.",
+        "TechCorp",
+        "Flutter Developer",
+        "2.2 г."
+      ],
+      [
+        "2025-08 — 2022",
+        "O!Bank",
+        "Mobile Architect",
+        "2.6 г."
+      ],
+      [
+        "2022-01 — 2023",
+        "SoftLine",
+        "Flutter Tech Lead",
+        "3.2 г."
+      ]
+    ],
+    "total_exp": "~6.3 г.",
+    "stack": "Flutter, Dart, Clean Architecture, melos, BLoC, Riverpod, Dio/Retrofit, REST, Drift, go_router, get_it/injectable, Freezed, platform channels, Isolate, golden/E2E tests, CI/CD",
+    "edu": "КНУ, Программная инженерия, 2018",
+    "verdict": "ПОДХОДИТ",
+    "vc": "verdict-green",
+    "criteria": [
+      [
+        "ok",
+        "Flutter/Dart 4+ лет, Clean Architecture, модульность — есть"
+      ],
+      [
+        "ok",
+        "Нативная интеграция (platform channels), тесты (golden/E2E) — есть"
+      ],
+      [
+        "ok",
+        "Offline-first, CI/CD, менторство — есть"
+      ]
+    ],
+    "summary": "Senior Flutter-разработчик с опытом ~6.3 г.",
+    "questions": [
+      "Нативная интеграция через platform channels — приведите пример.",
+      "CI/CD и flavors — как настраивали?"
+    ],
+    "status": "rejected",
+    "note": null,
+    "version": 4,
+    "date_added": "2026-04-12"
+  },
+  {
+    "id": "бакиров_4",
+    "name": "Бакиров Бакыт",
+    "position": "flutter-senior",
+    "pos_label": "Flutter — главный программист",
+    "file": "Бакиров_Бакыт.pdf",
+    "email": "бакиров4@email.com",
+    "phone": "+996 555 254-337",
+    "city": "Джалал-Абад",
+    "tg": "@бакиров_dev",
+    "exp": [
+      [
+        "2024-05 — н.в.",
+        "O!Bank",
+        "Mobile Architect",
+        "3.0 г."
+      ],
+      [
+        "2025-07 — 2021",
+        "MobileLab",
+        "Senior Flutter Developer",
+        "3.5 г."
+      ]
+    ],
+    "total_exp": "~1.9 г.",
+    "stack": "Flutter, Dart, Provider, REST, Firebase — тестов и архитектурного опыта мало",
+    "edu": "КНУ, Программная инженерия, 2016",
+    "verdict": "НЕ ПОДХОДИТ",
+    "vc": "verdict-red",
+    "criteria": [
+      [
+        "warn",
+        "Flutter — ~2 года, до senior не дотягивает"
+      ],
+      [
+        "no",
+        "Модульность/нативная интеграция/CI — нет"
+      ],
+      [
+        "no",
+        "Глубокое тестирование — отсутствует"
+      ]
+    ],
+    "summary": "Senior Flutter-разработчик с опытом ~1.9 г.",
+    "questions": [
+      "Isolate/compute — где выносили тяжёлые операции?",
+      "Тестирование senior-уровня (golden/E2E) — как организовано?"
+    ],
+    "status": "review",
+    "note": null,
+    "version": 3,
+    "date_added": "2026-03-10"
+  },
+  {
+    "id": "касымов_5",
+    "name": "Касымов Тимур",
+    "position": "flutter-senior",
+    "pos_label": "Flutter — главный программист",
+    "file": "Касымов_Тимур.pdf",
+    "email": "касымов5@email.com",
+    "phone": "+996 551 295-168",
+    "city": "Ош",
+    "tg": "@касымов_dev",
+    "exp": [
+      [
+        "2024-01 — н.в.",
+        "CloudMobile",
+        "Cross-platform Lead",
+        "2.7 г."
+      ],
+      [
+        "2023-07 — 2020",
+        "CloudMobile",
+        "Mobile Architect",
+        "2.0 г."
+      ]
+    ],
+    "total_exp": "~2.0 г.",
+    "stack": "Flutter, Dart, Provider, REST, Firebase — тестов и архитектурного опыта мало",
+    "edu": "МУК, Программная инженерия, 2017",
+    "verdict": "НЕ ПОДХОДИТ",
+    "vc": "verdict-red",
+    "criteria": [
+      [
+        "warn",
+        "Flutter — ~2 года, до senior не дотягивает"
+      ],
+      [
+        "no",
+        "Модульность/нативная интеграция/CI — нет"
+      ],
+      [
+        "no",
+        "Глубокое тестирование — отсутствует"
+      ]
+    ],
+    "summary": "Senior Flutter-разработчик с опытом ~2.0 г.",
+    "questions": [
+      "Как проектировали движок синхронизации и разрешение конфликтов?",
+      "Модульность (melos) — как делили пакеты и границы?"
+    ],
+    "status": "new",
+    "note": null,
+    "version": 1,
+    "date_added": "2026-01-28"
+  },
+  {
+    "id": "назаров_6",
+    "name": "Назаров Тимур",
+    "position": "flutter-senior",
+    "pos_label": "Flutter — главный программист",
+    "file": "Назаров_Тимур.pdf",
+    "email": "назаров6@email.com",
+    "phone": "+996 577 599-577",
+    "city": "Астана",
+    "tg": "@назаров_dev",
+    "exp": [
+      [
+        "2021-07 — н.в.",
+        "MobileLab",
+        "Flutter Developer",
+        "1.2 г."
+      ],
+      [
+        "2024-06 — 2023",
+        "StartupHub",
+        "Senior Flutter Developer",
+        "3.4 г."
+      ]
+    ],
+    "total_exp": "~4.5 г.",
+    "stack": "Flutter, Dart, Riverpod, Dio, REST, SQLite — offline-first частично, CI не описан",
+    "edu": "МУК, Программная инженерия, 2018",
+    "verdict": "ЧАСТИЧНО",
+    "vc": "verdict-orange",
+    "criteria": [
+      [
+        "ok",
+        "Flutter/Dart, архитектура — есть"
+      ],
+      [
+        "warn",
+        "Нативная интеграция/менторство — частично"
+      ],
+      [
+        "warn",
+        "Тестирование (golden/E2E) — не указано"
+      ]
+    ],
+    "summary": "Senior Flutter-разработчик с опытом ~4.5 г.",
+    "questions": [
+      "Как проектировали движок синхронизации и разрешение конфликтов?",
+      "Нативная интеграция через platform channels — приведите пример.",
+      "CI/CD и flavors — как настраивали?"
+    ],
+    "status": "invited",
+    "note": null,
+    "version": 3,
+    "date_added": "2026-04-15"
+  },
+  {
+    "id": "иванов_7",
+    "name": "Иванов Бекзат",
+    "position": "flutter-senior",
+    "pos_label": "Flutter — главный программист",
+    "file": "Иванов_Бекзат.pdf",
+    "email": "иванов7@email.com",
+    "phone": "+996 574 328-645",
+    "city": "Каракол",
+    "tg": "@иванов_dev",
+    "exp": [
+      [
+        "2020-09 — н.в.",
+        "DigitalKG",
+        "Senior Flutter Developer",
+        "2.7 г."
+      ],
+      [
+        "2022-09 — 2022",
+        "MobileLab",
+        "Flutter Developer",
+        "2.7 г."
+      ]
+    ],
+    "total_exp": "~5.0 г.",
+    "stack": "Flutter, Dart, Clean Architecture, BLoC, Dio, GraphQL, Isar, AutoRoute, GetIt, Freezed, нативные плагины (Kotlin/Swift), Firebase, Sentry, flavors, тесты (bloc_test, integration_test)",
+    "edu": "КРСУ, Программная инженерия, 2018",
+    "verdict": "ПОДХОДИТ",
+    "vc": "verdict-green",
+    "criteria": [
+      [
+        "ok",
+        "Flutter/Dart 4+ лет, Clean Architecture, модульность — есть"
+      ],
+      [
+        "ok",
+        "Нативная интеграция (platform channels), тесты (golden/E2E) — есть"
+      ],
+      [
+        "ok",
+        "Offline-first, CI/CD, менторство — есть"
+      ]
+    ],
+    "summary": "Senior Flutter-разработчик с опытом ~5.0 г.",
+    "questions": [
+      "CI/CD и flavors — как настраивали?",
+      "Нативная интеграция через platform channels — приведите пример."
+    ],
+    "status": "review",
+    "note": null,
+    "version": 2,
+    "date_added": "2026-04-17"
+  },
+  {
+    "id": "джолдошев_8",
+    "name": "Джолдошев Нурлан",
+    "position": "flutter-senior",
+    "pos_label": "Flutter — главный программист",
+    "file": "Джолдошев_Нурлан.pdf",
+    "email": "джолдошев8@email.com",
+    "phone": "+996 553 332-581",
+    "city": "Ош",
+    "tg": "@джолдошев_dev",
+    "exp": [
+      [
+        "2023-05 — н.в.",
+        "FinApp",
+        "Cross-platform Lead",
+        "3.0 г."
+      ],
+      [
+        "2023-06 — 2022",
+        "StartupHub",
+        "Flutter Tech Lead",
+        "3.4 г."
+      ]
+    ],
+    "total_exp": "~2.0 г.",
+    "stack": "Flutter, Dart, BLoC, Dio, REST — опыт ~2 года, senior-практик (модульность/нативка) нет",
+    "edu": "АУЦА, Программная инженерия, 2017",
+    "verdict": "НЕ ПОДХОДИТ",
+    "vc": "verdict-red",
+    "criteria": [
+      [
+        "warn",
+        "Flutter — ~2 года, до senior не дотягивает"
+      ],
+      [
+        "no",
+        "Модульность/нативная интеграция/CI — нет"
+      ],
+      [
+        "no",
+        "Глубокое тестирование — отсутствует"
+      ]
+    ],
+    "summary": "Senior Flutter-разработчик с опытом ~2.0 г.",
+    "questions": [
+      "Isolate/compute — где выносили тяжёлые операции?",
+      "Тестирование senior-уровня (golden/E2E) — как организовано?"
+    ],
+    "status": "new",
+    "note": null,
+    "version": 4,
+    "date_added": "2026-06-21"
+  },
+  {
+    "id": "кузнецов_9",
+    "name": "Кузнецов Айбек",
+    "position": "flutter-senior",
+    "pos_label": "Flutter — главный программист",
+    "file": "Кузнецов_Айбек.pdf",
+    "email": "кузнецов9@email.com",
+    "phone": "+996 554 704-576",
+    "city": "Токмок",
+    "tg": "@кузнецов_dev",
+    "exp": [
+      [
+        "2021-08 — н.в.",
+        "MobileLab",
+        "Mobile Architect",
+        "3.0 г."
+      ],
+      [
+        "2022-02 — 2025",
+        "AppFactory",
+        "Mobile Architect",
+        "3.0 г."
+      ],
+      [
+        "2020-03 — 2021",
+        "MobileLab",
+        "Senior Flutter Developer",
+        "2.0 г."
+      ]
+    ],
+    "total_exp": "~4.4 г.",
+    "stack": "Flutter, Dart, Clean Architecture, melos, BLoC, Riverpod, Dio/Retrofit, REST, Drift, go_router, get_it/injectable, Freezed, platform channels, Isolate, golden/E2E tests, CI/CD",
+    "edu": "КНУ, Программная инженерия, 2019",
+    "verdict": "ПОДХОДИТ",
+    "vc": "verdict-green",
+    "criteria": [
+      [
+        "ok",
+        "Flutter/Dart 4+ лет, Clean Architecture, модульность — есть"
+      ],
+      [
+        "ok",
+        "Нативная интеграция (platform channels), тесты (golden/E2E) — есть"
+      ],
+      [
+        "ok",
+        "Offline-first, CI/CD, менторство — есть"
+      ]
+    ],
+    "summary": "Senior Flutter-разработчик с опытом ~4.4 г.",
+    "questions": [
+      "CI/CD и flavors — как настраивали?",
+      "Модульность (melos) — как делили пакеты и границы?"
+    ],
+    "status": "review",
+    "note": null,
+    "version": 5,
+    "date_added": "2026-05-14"
+  },
+  {
+    "id": "иванов_10",
+    "name": "Иванов Иван",
+    "position": "flutter-senior",
+    "pos_label": "Flutter — главный программист",
+    "file": "Иванов_Иван.pdf",
+    "email": "иванов10@email.com",
+    "phone": "+996 567 529-954",
+    "city": "Ош",
+    "tg": "@иванов_dev",
+    "exp": [
+      [
+        "2021-04 — н.в.",
+        "TechCorp",
+        "Flutter Developer",
+        "2.1 г."
+      ],
+      [
+        "2024-04 — 2024",
+        "SoftLine",
+        "Flutter Developer",
+        "1.5 г."
+      ]
+    ],
+    "total_exp": "~8.0 г.",
+    "stack": "Flutter, Dart, Clean Architecture, melos, BLoC, Riverpod, Dio/Retrofit, REST, Drift, go_router, get_it/injectable, Freezed, platform channels, Isolate, golden/E2E tests, CI/CD",
+    "edu": "КГТУ, Программная инженерия, 2018",
+    "verdict": "ПОДХОДИТ",
+    "vc": "verdict-green",
+    "criteria": [
+      [
+        "ok",
+        "Flutter/Dart 4+ лет, Clean Architecture, модульность — есть"
+      ],
+      [
+        "ok",
+        "Нативная интеграция (platform channels), тесты (golden/E2E) — есть"
+      ],
+      [
+        "ok",
+        "Offline-first, CI/CD, менторство — есть"
+      ]
+    ],
+    "summary": "Senior Flutter-разработчик с опытом ~8.0 г.",
+    "questions": [
+      "Isolate/compute — где выносили тяжёлые операции?",
+      "Тестирование senior-уровня (golden/E2E) — как организовано?"
+    ],
+    "status": "rejected",
+    "note": null,
+    "version": 5,
+    "date_added": "2026-02-27"
+  },
+  {
+    "id": "джолдошев_11",
+    "name": "Джолдошев Тимур",
+    "position": "flutter-senior",
+    "pos_label": "Flutter — главный программист",
+    "file": "Джолдошев_Тимур.pdf",
+    "email": "джолдошев11@email.com",
+    "phone": "+996 566 668-594",
+    "city": "Токмок",
+    "tg": "@джолдошев_dev",
+    "exp": [
+      [
+        "2021-03 — н.в.",
+        "MobileLab",
+        "Mobile Architect",
+        "2.5 г."
+      ],
+      [
+        "2020-09 — 2020",
+        "SoftLine",
+        "Cross-platform Lead",
+        "2.5 г."
+      ]
+    ],
+    "total_exp": "~6.6 г.",
+    "stack": "Flutter, Dart, Riverpod, Dio, REST, SQLite — offline-first частично, CI не описан",
+    "edu": "КГТУ, Программная инженерия, 2016",
+    "verdict": "ЧАСТИЧНО",
+    "vc": "verdict-orange",
+    "criteria": [
+      [
+        "ok",
+        "Flutter/Dart, архитектура — есть"
+      ],
+      [
+        "warn",
+        "Нативная интеграция/менторство — частично"
+      ],
+      [
+        "warn",
+        "Тестирование (golden/E2E) — не указано"
+      ]
+    ],
+    "summary": "Senior Flutter-разработчик с опытом ~6.6 г.",
+    "questions": [
+      "Нативная интеграция через platform channels — приведите пример.",
+      "CI/CD и flavors — как настраивали?",
+      "Модульность (melos) — как делили пакеты и границы?"
+    ],
+    "status": "new",
+    "note": null,
+    "version": 1,
+    "date_added": "2026-05-24"
+  },
+  {
+    "id": "иванов_12",
+    "name": "Иванов Аман",
+    "position": "flutter-senior",
+    "pos_label": "Flutter — главный программист",
+    "file": "Иванов_Аман.pdf",
+    "email": "иванов12@email.com",
+    "phone": "+996 554 526-224",
+    "city": "Астана",
+    "tg": "@иванов_dev",
+    "exp": [
+      [
+        "2024-09 — н.в.",
+        "FinApp",
+        "Flutter Developer",
+        "1.8 г."
+      ],
+      [
+        "2024-08 — 2024",
+        "FinApp",
+        "Cross-platform Lead",
+        "2.1 г."
+      ],
+      [
+        "2022-09 — 2021",
+        "Bilim Tech",
+        "Mobile Architect",
+        "3.2 г."
+      ]
+    ],
+    "total_exp": "~7.8 г.",
+    "stack": "Flutter, Dart, Clean Architecture, melos, BLoC, Riverpod, Dio/Retrofit, REST, Drift, go_router, get_it/injectable, Freezed, platform channels, Isolate, golden/E2E tests, CI/CD",
+    "edu": "МУК, Программная инженерия, 2018",
+    "verdict": "ПОДХОДИТ",
+    "vc": "verdict-green",
+    "criteria": [
+      [
+        "ok",
+        "Flutter/Dart 4+ лет, Clean Architecture, модульность — есть"
+      ],
+      [
+        "ok",
+        "Нативная интеграция (platform channels), тесты (golden/E2E) — есть"
+      ],
+      [
+        "ok",
+        "Offline-first, CI/CD, менторство — есть"
+      ]
+    ],
+    "summary": "Senior Flutter-разработчик с опытом ~7.8 г.",
+    "questions": [
+      "Как проектировали движок синхронизации и разрешение конфликтов?",
+      "Нативная интеграция через platform channels — приведите пример."
+    ],
+    "status": "rejected",
+    "note": null,
+    "version": 1,
+    "date_added": "2026-02-19"
+  },
+  {
+    "id": "асанов_13",
+    "name": "Асанов Айбек",
+    "position": "flutter-senior",
+    "pos_label": "Flutter — главный программист",
+    "file": "Асанов_Айбек.pdf",
+    "email": "асанов13@email.com",
+    "phone": "+996 556 465-426",
+    "city": "Бишкек",
+    "tg": "@асанов_dev",
+    "exp": [
+      [
+        "2021-08 — н.в.",
+        "FinApp",
+        "Senior Flutter Developer",
+        "1.4 г."
+      ],
+      [
+        "2023-03 — 2025",
+        "Bilim Tech",
+        "Flutter Tech Lead",
+        "2.0 г."
+      ],
+      [
+        "2023-09 — 2023",
+        "SoftLine",
+        "Mobile Architect",
+        "1.4 г."
+      ]
+    ],
+    "total_exp": "~8.5 г.",
+    "stack": "Flutter, Dart, BLoC, Dio, REST, Firebase, Drift, go_router — нативная интеграция/golden-тесты не упомянуты",
+    "edu": "АУЦА, Программная инженерия, 2016",
+    "verdict": "ЧАСТИЧНО",
+    "vc": "verdict-orange",
+    "criteria": [
+      [
+        "ok",
+        "Flutter/Dart, архитектура — есть"
+      ],
+      [
+        "warn",
+        "Нативная интеграция/менторство — частично"
+      ],
+      [
+        "warn",
+        "Тестирование (golden/E2E) — не указано"
+      ]
+    ],
+    "summary": "Senior Flutter-разработчик с опытом ~8.5 г.",
+    "questions": [
+      "Модульность (melos) — как делили пакеты и границы?",
+      "Тестирование senior-уровня (golden/E2E) — как организовано?",
+      "Isolate/compute — где выносили тяжёлые операции?"
+    ],
+    "status": "rejected",
+    "note": null,
+    "version": 1,
+    "date_added": "2026-04-20"
+  },
+  {
+    "id": "соколов_14",
+    "name": "Соколов Бекзат",
+    "position": "flutter-senior",
+    "pos_label": "Flutter — главный программист",
+    "file": "Соколов_Бекзат.pdf",
+    "email": "соколов14@email.com",
+    "phone": "+996 577 792-938",
+    "city": "Алматы",
+    "tg": "@соколов_dev",
+    "exp": [
+      [
+        "2021-02 — н.в.",
+        "StartupHub",
+        "Flutter Developer",
+        "3.5 г."
+      ],
+      [
+        "2021-05 — 2021",
+        "Bilim Tech",
+        "Mobile Architect",
+        "1.7 г."
+      ]
+    ],
+    "total_exp": "~5.5 г.",
+    "stack": "Flutter, Dart, Clean Architecture, melos, BLoC, Riverpod, Dio/Retrofit, REST, Drift, go_router, get_it/injectable, Freezed, platform channels, Isolate, golden/E2E tests, CI/CD",
+    "edu": "МУК, Программная инженерия, 2017",
+    "verdict": "ПОДХОДИТ",
+    "vc": "verdict-green",
+    "criteria": [
+      [
+        "ok",
+        "Flutter/Dart 4+ лет, Clean Architecture, модульность — есть"
+      ],
+      [
+        "ok",
+        "Нативная интеграция (platform channels), тесты (golden/E2E) — есть"
+      ],
+      [
+        "ok",
+        "Offline-first, CI/CD, менторство — есть"
+      ]
+    ],
+    "summary": "Senior Flutter-разработчик с опытом ~5.5 г.",
+    "questions": [
+      "Тестирование senior-уровня (golden/E2E) — как организовано?",
+      "CI/CD и flavors — как настраивали?"
+    ],
+    "status": "rejected",
+    "note": null,
+    "version": 3,
+    "date_added": "2026-01-18"
+  },
+  {
+    "id": "эшматов_15",
+    "name": "Эшматов Алексей",
+    "position": "flutter-senior",
+    "pos_label": "Flutter — главный программист",
+    "file": "Эшматов_Алексей.pdf",
+    "email": "эшматов15@email.com",
+    "phone": "+996 564 111-447",
+    "city": "Каракол",
+    "tg": "@эшматов_dev",
+    "exp": [
+      [
+        "2020-02 — н.в.",
+        "MegaApp",
+        "Flutter Developer",
+        "1.7 г."
+      ],
+      [
+        "2021-02 — 2022",
+        "Bilim Tech",
+        "Senior Flutter Developer",
+        "1.2 г."
+      ]
+    ],
+    "total_exp": "~7.4 г.",
+    "stack": "Flutter, Dart, Riverpod, Dio, REST, SQLite — offline-first частично, CI не описан",
+    "edu": "МУК, Программная инженерия, 2018",
+    "verdict": "ЧАСТИЧНО",
+    "vc": "verdict-orange",
+    "criteria": [
+      [
+        "ok",
+        "Flutter/Dart, архитектура — есть"
+      ],
+      [
+        "warn",
+        "Нативная интеграция/менторство — частично"
+      ],
+      [
+        "warn",
+        "Тестирование (golden/E2E) — не указано"
+      ]
+    ],
+    "summary": "Senior Flutter-разработчик с опытом ~7.4 г.",
+    "questions": [
+      "Тестирование senior-уровня (golden/E2E) — как организовано?",
+      "Нативная интеграция через platform channels — приведите пример.",
+      "Как проектировали движок синхронизации и разрешение конфликтов?"
+    ],
+    "status": "review",
+    "note": null,
+    "version": 1,
+    "date_added": "2026-02-18"
+  },
+  {
+    "id": "беков_16",
+    "name": "Беков Алексей",
+    "position": "flutter-senior",
+    "pos_label": "Flutter — главный программист",
+    "file": "Беков_Алексей.pdf",
+    "email": "беков16@email.com",
+    "phone": "+996 565 351-557",
+    "city": "Бишкек",
+    "tg": "@беков_dev",
+    "exp": [
+      [
+        "2021-05 — н.в.",
+        "CloudMobile",
+        "Cross-platform Lead",
+        "2.3 г."
+      ],
+      [
+        "2022-06 — 2020",
+        "DigitalKG",
+        "Senior Flutter Developer",
+        "2.7 г."
+      ],
+      [
+        "2025-09 — 2024",
+        "FinApp",
+        "Cross-platform Lead",
+        "1.0 г."
+      ]
+    ],
+    "total_exp": "~5.0 г.",
+    "stack": "Flutter, Dart, Riverpod, Dio, REST, SQLite — offline-first частично, CI не описан",
+    "edu": "МУК, Программная инженерия, 2019",
+    "verdict": "ЧАСТИЧНО",
+    "vc": "verdict-orange",
+    "criteria": [
+      [
+        "ok",
+        "Flutter/Dart, архитектура — есть"
+      ],
+      [
+        "warn",
+        "Нативная интеграция/менторство — частично"
+      ],
+      [
+        "warn",
+        "Тестирование (golden/E2E) — не указано"
+      ]
+    ],
+    "summary": "Senior Flutter-разработчик с опытом ~5.0 г.",
+    "questions": [
+      "Тестирование senior-уровня (golden/E2E) — как организовано?",
+      "Isolate/compute — где выносили тяжёлые операции?",
+      "Модульность (melos) — как делили пакеты и границы?"
+    ],
+    "status": "review",
+    "note": null,
+    "version": 2,
+    "date_added": "2026-03-16"
+  },
+  {
+    "id": "осмонов_17",
+    "name": "Осмонов Жыргал",
+    "position": "flutter-senior",
+    "pos_label": "Flutter — главный программист",
+    "file": "Осмонов_Жыргал.pdf",
+    "email": "осмонов17@email.com",
+    "phone": "+996 557 809-400",
+    "city": "Бишкек",
+    "tg": "@осмонов_dev",
+    "exp": [
+      [
+        "2020-03 — н.в.",
+        "TechCorp",
+        "Senior Flutter Developer",
+        "3.5 г."
+      ],
+      [
+        "2022-07 — 2021",
+        "TechCorp",
+        "Senior Flutter Developer",
+        "2.6 г."
+      ],
+      [
+        "2023-09 — 2025",
+        "DigitalKG",
+        "Cross-platform Lead",
+        "2.7 г."
+      ]
+    ],
+    "total_exp": "~7.5 г.",
+    "stack": "Flutter, Dart, Clean Architecture, melos, BLoC, Riverpod, Dio/Retrofit, REST, Drift, go_router, get_it/injectable, Freezed, platform channels, Isolate, golden/E2E tests, CI/CD",
+    "edu": "МУК, Программная инженерия, 2017",
+    "verdict": "ПОДХОДИТ",
+    "vc": "verdict-green",
+    "criteria": [
+      [
+        "ok",
+        "Flutter/Dart 4+ лет, Clean Architecture, модульность — есть"
+      ],
+      [
+        "ok",
+        "Нативная интеграция (platform channels), тесты (golden/E2E) — есть"
+      ],
+      [
+        "ok",
+        "Offline-first, CI/CD, менторство — есть"
+      ]
+    ],
+    "summary": "Senior Flutter-разработчик с опытом ~7.5 г.",
+    "questions": [
+      "Нативная интеграция через platform channels — приведите пример.",
+      "Модульность (melos) — как делили пакеты и границы?"
+    ],
+    "status": "rejected",
+    "note": null,
+    "version": 1,
+    "date_added": "2026-03-21"
+  },
+  {
+    "id": "назаров_18",
+    "name": "Назаров Эмир",
+    "position": "flutter-senior",
+    "pos_label": "Flutter — главный программист",
+    "file": "Назаров_Эмир.pdf",
+    "email": "назаров18@email.com",
+    "phone": "+996 554 509-700",
+    "city": "Бишкек",
+    "tg": "@назаров_dev",
+    "exp": [
+      [
+        "2021-01 — н.в.",
+        "SoftLine",
+        "Mobile Architect",
+        "1.5 г."
+      ],
+      [
+        "2022-09 — 2025",
+        "FinApp",
+        "Flutter Tech Lead",
+        "1.2 г."
+      ],
+      [
+        "2020-02 — 2022",
+        "Bilim Tech",
+        "Senior Flutter Developer",
+        "2.3 г."
+      ]
+    ],
+    "total_exp": "~5.6 г.",
+    "stack": "Flutter, Dart, Clean Architecture, melos, BLoC, Riverpod, Dio/Retrofit, REST, Drift, go_router, get_it/injectable, Freezed, platform channels, Isolate, golden/E2E tests, CI/CD",
+    "edu": "МУК, Программная инженерия, 2016",
+    "verdict": "ПОДХОДИТ",
+    "vc": "verdict-green",
+    "criteria": [
+      [
+        "ok",
+        "Flutter/Dart 4+ лет, Clean Architecture, модульность — есть"
+      ],
+      [
+        "ok",
+        "Нативная интеграция (platform channels), тесты (golden/E2E) — есть"
+      ],
+      [
+        "ok",
+        "Offline-first, CI/CD, менторство — есть"
+      ]
+    ],
+    "summary": "Senior Flutter-разработчик с опытом ~5.6 г.",
+    "questions": [
+      "Модульность (melos) — как делили пакеты и границы?",
+      "CI/CD и flavors — как настраивали?"
+    ],
+    "status": "review",
+    "note": null,
+    "version": 1,
+    "date_added": "2026-05-26"
+  },
+  {
+    "id": "мырзаев_19",
+    "name": "Мырзаев Мирлан",
+    "position": "flutter-senior",
+    "pos_label": "Flutter — главный программист",
+    "file": "Мырзаев_Мирлан.pdf",
+    "email": "мырзаев19@email.com",
+    "phone": "+996 576 802-698",
+    "city": "Токмок",
+    "tg": "@мырзаев_dev",
+    "exp": [
+      [
+        "2023-03 — н.в.",
+        "DigitalKG",
+        "Cross-platform Lead",
+        "2.8 г."
+      ],
+      [
+        "2020-09 — 2025",
+        "AppFactory",
+        "Cross-platform Lead",
+        "2.6 г."
+      ],
+      [
+        "2024-09 — 2024",
+        "Bilim Tech",
+        "Senior Flutter Developer",
+        "1.3 г."
+      ]
+    ],
+    "total_exp": "~4.8 г.",
+    "stack": "Flutter, Dart, Riverpod, Dio, REST, SQLite — offline-first частично, CI не описан",
+    "edu": "КНУ, Программная инженерия, 2016",
+    "verdict": "ЧАСТИЧНО",
+    "vc": "verdict-orange",
+    "criteria": [
+      [
+        "ok",
+        "Flutter/Dart, архитектура — есть"
+      ],
+      [
+        "warn",
+        "Нативная интеграция/менторство — частично"
+      ],
+      [
+        "warn",
+        "Тестирование (golden/E2E) — не указано"
+      ]
+    ],
+    "summary": "Senior Flutter-разработчик с опытом ~4.8 г.",
+    "questions": [
+      "Как проектировали движок синхронизации и разрешение конфликтов?",
+      "CI/CD и flavors — как настраивали?",
+      "Нативная интеграция через platform channels — приведите пример."
+    ],
+    "status": "invited",
+    "note": null,
+    "version": 1,
+    "date_added": "2026-04-24"
+  },
+  {
+    "id": "смирнов_20",
+    "name": "Смирнов Аман",
+    "position": "flutter-senior",
+    "pos_label": "Flutter — главный программист",
+    "file": "Смирнов_Аман.pdf",
+    "email": "смирнов20@email.com",
+    "phone": "+996 557 857-765",
+    "city": "Астана",
+    "tg": "@смирнов_dev",
+    "exp": [
+      [
+        "2023-02 — н.в.",
+        "O!Bank",
+        "Cross-platform Lead",
+        "1.7 г."
+      ],
+      [
+        "2020-09 — 2020",
+        "O!Bank",
+        "Mobile Architect",
+        "3.2 г."
+      ],
+      [
+        "2020-05 — 2021",
+        "O!Bank",
+        "Flutter Tech Lead",
+        "1.6 г."
+      ]
+    ],
+    "total_exp": "~7.1 г.",
+    "stack": "Flutter, Dart, Clean Architecture, melos, BLoC, Riverpod, Dio/Retrofit, REST, Drift, go_router, get_it/injectable, Freezed, platform channels, Isolate, golden/E2E tests, CI/CD",
+    "edu": "МУК, Программная инженерия, 2019",
+    "verdict": "ПОДХОДИТ",
+    "vc": "verdict-green",
+    "criteria": [
+      [
+        "ok",
+        "Flutter/Dart 4+ лет, Clean Architecture, модульность — есть"
+      ],
+      [
+        "ok",
+        "Нативная интеграция (platform channels), тесты (golden/E2E) — есть"
+      ],
+      [
+        "ok",
+        "Offline-first, CI/CD, менторство — есть"
+      ]
+    ],
+    "summary": "Senior Flutter-разработчик с опытом ~7.1 г.",
+    "questions": [
+      "Как проектировали движок синхронизации и разрешение конфликтов?",
+      "Isolate/compute — где выносили тяжёлые операции?"
+    ],
+    "status": "invited",
+    "note": null,
+    "version": 1,
+    "date_added": "2026-05-16"
+  },
+  {
+    "id": "соколов_21",
+    "name": "Соколов Дмитрий",
+    "position": "flutter-senior",
+    "pos_label": "Flutter — главный программист",
+    "file": "Соколов_Дмитрий.pdf",
+    "email": "соколов21@email.com",
+    "phone": "+996 574 221-662",
+    "city": "Ош",
+    "tg": "@соколов_dev",
+    "exp": [
+      [
+        "2021-01 — н.в.",
+        "CloudMobile",
+        "Senior Flutter Developer",
+        "2.6 г."
+      ],
+      [
+        "2025-02 — 2025",
+        "FinApp",
+        "Mobile Architect",
+        "2.2 г."
+      ],
+      [
+        "2024-05 — 2023",
+        "CloudMobile",
+        "Mobile Architect",
+        "1.7 г."
+      ]
+    ],
+    "total_exp": "~4.7 г.",
+    "stack": "Flutter, Dart, Clean Architecture, BLoC, Dio, GraphQL, Isar, AutoRoute, GetIt, Freezed, нативные плагины (Kotlin/Swift), Firebase, Sentry, flavors, тесты (bloc_test, integration_test)",
+    "edu": "АУЦА, Программная инженерия, 2016",
+    "verdict": "ПОДХОДИТ",
+    "vc": "verdict-green",
+    "criteria": [
+      [
+        "ok",
+        "Flutter/Dart 4+ лет, Clean Architecture, модульность — есть"
+      ],
+      [
+        "ok",
+        "Нативная интеграция (platform channels), тесты (golden/E2E) — есть"
+      ],
+      [
+        "ok",
+        "Offline-first, CI/CD, менторство — есть"
+      ]
+    ],
+    "summary": "Senior Flutter-разработчик с опытом ~4.7 г.",
+    "questions": [
+      "Isolate/compute — где выносили тяжёлые операции?",
+      "Как проектировали движок синхронизации и разрешение конфликтов?"
+    ],
+    "status": "invited",
+    "note": null,
+    "version": 4,
+    "date_added": "2026-01-26"
+  },
+  {
+    "id": "маматов_22",
+    "name": "Маматов Санжар",
+    "position": "flutter-senior",
+    "pos_label": "Flutter — главный программист",
+    "file": "Маматов_Санжар.pdf",
+    "email": "маматов22@email.com",
+    "phone": "+996 557 609-997",
+    "city": "Астана",
+    "tg": "@маматов_dev",
+    "exp": [
+      [
+        "2021-09 — н.в.",
+        "DigitalKG",
+        "Flutter Developer",
+        "2.5 г."
+      ],
+      [
+        "2025-09 — 2022",
+        "StartupHub",
+        "Flutter Developer",
+        "1.3 г."
+      ]
+    ],
+    "total_exp": "~5.9 г.",
+    "stack": "Flutter, Dart, BLoC, Dio, REST, Firebase, Drift, go_router — нативная интеграция/golden-тесты не упомянуты",
+    "edu": "МУК, Программная инженерия, 2016",
+    "verdict": "ЧАСТИЧНО",
+    "vc": "verdict-orange",
+    "criteria": [
+      [
+        "ok",
+        "Flutter/Dart, архитектура — есть"
+      ],
+      [
+        "warn",
+        "Нативная интеграция/менторство — частично"
+      ],
+      [
+        "warn",
+        "Тестирование (golden/E2E) — не указано"
+      ]
+    ],
+    "summary": "Senior Flutter-разработчик с опытом ~5.9 г.",
+    "questions": [
+      "Нативная интеграция через platform channels — приведите пример.",
+      "Как проектировали движок синхронизации и разрешение конфликтов?",
+      "Isolate/compute — где выносили тяжёлые операции?"
+    ],
+    "status": "rejected",
+    "note": null,
+    "version": 4,
+    "date_added": "2026-03-14"
+  },
+  {
+    "id": "турсунов_23",
+    "name": "Турсунов Чынгыз",
+    "position": "flutter-senior",
+    "pos_label": "Flutter — главный программист",
+    "file": "Турсунов_Чынгыз.pdf",
+    "email": "турсунов23@email.com",
+    "phone": "+996 577 149-387",
+    "city": "Бишкек",
+    "tg": "@турсунов_dev",
+    "exp": [
+      [
+        "2022-07 — н.в.",
+        "StartupHub",
+        "Flutter Tech Lead",
+        "1.0 г."
+      ],
+      [
+        "2025-05 — 2022",
+        "SoftLine",
+        "Senior Flutter Developer",
+        "2.8 г."
+      ],
+      [
+        "2024-02 — 2022",
+        "AppFactory",
+        "Flutter Developer",
+        "2.0 г."
+      ]
+    ],
+    "total_exp": "~5.9 г.",
+    "stack": "Flutter, Dart, Clean Architecture, melos, BLoC, Riverpod, Dio/Retrofit, REST, Drift, go_router, get_it/injectable, Freezed, platform channels, Isolate, golden/E2E tests, CI/CD",
+    "edu": "КГТУ, Программная инженерия, 2018",
+    "verdict": "ПОДХОДИТ",
+    "vc": "verdict-green",
+    "criteria": [
+      [
+        "ok",
+        "Flutter/Dart 4+ лет, Clean Architecture, модульность — есть"
+      ],
+      [
+        "ok",
+        "Нативная интеграция (platform channels), тесты (golden/E2E) — есть"
+      ],
+      [
+        "ok",
+        "Offline-first, CI/CD, менторство — есть"
+      ]
+    ],
+    "summary": "Senior Flutter-разработчик с опытом ~5.9 г.",
+    "questions": [
+      "CI/CD и flavors — как настраивали?",
+      "Нативная интеграция через platform channels — приведите пример."
+    ],
+    "status": "review",
+    "note": null,
+    "version": 3,
+    "date_added": "2026-04-26"
+  },
+  {
+    "id": "орозов_24",
+    "name": "Орозов Эмир",
+    "position": "flutter-senior",
+    "pos_label": "Flutter — главный программист",
+    "file": "Орозов_Эмир.pdf",
+    "email": "орозов24@email.com",
+    "phone": "+996 569 870-241",
+    "city": "Джалал-Абад",
+    "tg": "@орозов_dev",
+    "exp": [
+      [
+        "2025-07 — н.в.",
+        "Devs.kg",
+        "Cross-platform Lead",
+        "3.0 г."
+      ],
+      [
+        "2020-01 — 2025",
+        "AppFactory",
+        "Mobile Architect",
+        "1.5 г."
+      ]
+    ],
+    "total_exp": "~7.9 г.",
+    "stack": "Flutter, Dart, Clean Architecture, BLoC, Dio, GraphQL, Isar, AutoRoute, GetIt, Freezed, нативные плагины (Kotlin/Swift), Firebase, Sentry, flavors, тесты (bloc_test, integration_test)",
+    "edu": "АУЦА, Программная инженерия, 2019",
+    "verdict": "ПОДХОДИТ",
+    "vc": "verdict-green",
+    "criteria": [
+      [
+        "ok",
+        "Flutter/Dart 4+ лет, Clean Architecture, модульность — есть"
+      ],
+      [
+        "ok",
+        "Нативная интеграция (platform channels), тесты (golden/E2E) — есть"
+      ],
+      [
+        "ok",
+        "Offline-first, CI/CD, менторство — есть"
+      ]
+    ],
+    "summary": "Senior Flutter-разработчик с опытом ~7.9 г.",
+    "questions": [
+      "Как проектировали движок синхронизации и разрешение конфликтов?",
+      "Тестирование senior-уровня (golden/E2E) — как организовано?"
+    ],
+    "status": "review",
+    "note": null,
+    "version": 2,
+    "date_added": "2026-04-23"
+  },
+  {
+    "id": "сыдыков_25",
+    "name": "Сыдыков Эмир",
+    "position": "flutter-senior",
+    "pos_label": "Flutter — главный программист",
+    "file": "Сыдыков_Эмир.pdf",
+    "email": "сыдыков25@email.com",
+    "phone": "+996 574 560-537",
+    "city": "Ош",
+    "tg": "@сыдыков_dev",
+    "exp": [
+      [
+        "2022-08 — н.в.",
+        "Devs.kg",
+        "Mobile Architect",
+        "2.6 г."
+      ],
+      [
+        "2025-03 — 2020",
+        "FinApp",
+        "Cross-platform Lead",
+        "1.3 г."
+      ],
+      [
+        "2023-09 — 2021",
+        "CloudMobile",
+        "Flutter Developer",
+        "3.3 г."
+      ]
+    ],
+    "total_exp": "~5.5 г.",
+    "stack": "Flutter, Dart, Clean Architecture, BLoC, Dio, GraphQL, Isar, AutoRoute, GetIt, Freezed, нативные плагины (Kotlin/Swift), Firebase, Sentry, flavors, тесты (bloc_test, integration_test)",
+    "edu": "КРСУ, Программная инженерия, 2017",
+    "verdict": "ПОДХОДИТ",
+    "vc": "verdict-green",
+    "criteria": [
+      [
+        "ok",
+        "Flutter/Dart 4+ лет, Clean Architecture, модульность — есть"
+      ],
+      [
+        "ok",
+        "Нативная интеграция (platform channels), тесты (golden/E2E) — есть"
+      ],
+      [
+        "ok",
+        "Offline-first, CI/CD, менторство — есть"
+      ]
+    ],
+    "summary": "Senior Flutter-разработчик с опытом ~5.5 г.",
+    "questions": [
+      "Нативная интеграция через platform channels — приведите пример.",
+      "Как проектировали движок синхронизации и разрешение конфликтов?"
+    ],
+    "status": "review",
+    "note": null,
+    "version": 3,
+    "date_added": "2026-05-12"
+  }
+]

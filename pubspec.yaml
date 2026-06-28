@@ -1,0 +1,54 @@
+name: cv_scan_workspace
+publish_to: none
+
+environment:
+  sdk: ^3.12.2
+
+workspace:
+  - app
+  - packages/core
+  - packages/domain
+  - packages/data
+  - packages/ui_kit
+  - packages/features/shared
+  - packages/features/auth
+  - packages/features/candidates_list
+  - packages/features/candidate_detail
+  - plugins/secure_storage
+
+dev_dependencies:
+  melos: 7.8.1
+
+melos:
+  scripts:
+    analyze:
+      run: melos exec --concurrency 1 -- flutter analyze
+      description: Run flutter analyze on all packages
+
+    test:
+      run: melos exec -- flutter test
+      description: Run unit/widget tests in packages that have a test/ directory
+      packageFilters:
+        dirExists: test
+
+    test:e2e:
+      run: melos exec -- flutter test integration_test
+      description: Run integration (E2E) tests in packages that have an integration_test/ directory
+      packageFilters:
+        dirExists: integration_test
+
+    test:all:
+      run: melos run test && melos run test:e2e
+      description: Run both unit/widget and integration tests
+
+    build:
+      run: melos exec -- dart run build_runner build --delete-conflicting-outputs
+      description: Run codegen on all packages
+
+    get-sequential:
+      run: melos exec --concurrency 1 -- flutter pub get
+      description: Run flutter pub get on all packages
+
+    get:
+      run: melos exec -- flutter pub get
+      description: Run flutter pub get on all packages
